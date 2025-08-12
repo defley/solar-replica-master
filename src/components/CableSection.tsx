@@ -262,16 +262,16 @@ const CableSection = () => {
           </div>
         </div>
 
-        {/* Final Panel - appears only at the end */}
+        {/* Final Panel - Large solar panel where wire connects */}
         <div 
           data-panel="3"
           className="absolute inset-0 transition-all duration-300 opacity-0"
         >
-          <div id="solar-target" className="relative h-[58vh] md:h-[62vh] lg:h-[66vh]">
+          <div id="solar-target" className="relative h-full flex items-end justify-end">
             <img 
-              src="/assets/cable/final.jpg" 
-              alt="Illustration finale de ferme solaire"
-              className="absolute right-[6vw] bottom-0 max-w-[46vw] md:max-w-[42vw] lg:max-w-[38vw] h-auto object-contain"
+              src="/assets/serre-solaire.png" 
+              alt="Panneau solaire connecté"
+              className="w-[60vw] md:w-[50vw] lg:w-[45vw] h-auto object-contain mb-[5vh] mr-[3vw]"
               loading="lazy"
             />
           </div>
