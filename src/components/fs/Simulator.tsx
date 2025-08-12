@@ -168,7 +168,7 @@ const Simulator = () => {
               </div>
 
               <div className="mt-8 grid gap-3">
-                <a href="/monprojet" className="rounded-full h-11 px-5 inline-flex items-center justify-center bg-primary text-primary-foreground font-medium focus-ring">
+                <a href="/mondossier" className="rounded-full h-11 px-5 inline-flex items-center justify-center bg-primary text-primary-foreground font-medium focus-ring">
                   Déposer son dossier
                 </a>
                 <a href="tel:+33412280241" className="text-center text-sm text-foreground/80 hover:underline focus-ring rounded-md">

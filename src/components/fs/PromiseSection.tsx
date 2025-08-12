@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const PromiseSection = () => {
   return (
@@ -18,7 +19,7 @@ const PromiseSection = () => {
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild variant="cta" className="rounded-full h-11 px-5">
-            <a href="/monprojet">Déposer mon dossier</a>
+            <Link to="/mondossier">Déposer mon dossier</Link>
           </Button>
           <a href="/comment-ca-marche" className="text-foreground/80 hover:underline focus-ring rounded-md">Voir Comment ça marche</a>
         </div>

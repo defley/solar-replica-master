@@ -29,7 +29,7 @@ const ValueProposition = () => {
         </div>
 
         <div className="mt-8 flex items-center justify-center gap-4">
-          <a href="/monprojet" className="rounded-full h-11 px-5 inline-flex items-center justify-center bg-primary text-primary-foreground font-medium focus-ring">
+          <a href="/mondossier" className="rounded-full h-11 px-5 inline-flex items-center justify-center bg-primary text-primary-foreground font-medium focus-ring">
             Héberger une ferme solaire
           </a>
           <a href="tel:+33412280241" className="text-sm text-foreground/80 hover:underline focus-ring rounded-md">
