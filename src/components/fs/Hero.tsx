@@ -1,20 +1,7 @@
-import { useEffect } from "react";
-import { initCableAnimation } from "@/lib/scroll/cable";
+// Internal reproduction authorized by Ferme Solaire
+import CableLottie from "@/components/CableLottie";
 
 const Hero = () => {
-  useEffect(() => {
-    const cleanup = initCableAnimation({
-      wrap: "#cable-wrap",
-      cable: "#cable-image",
-      tip: "#cable-tip",
-      target: "#solar-target",
-      pin: true,
-    });
-    return () => {
-      if (typeof cleanup === "function") cleanup();
-    };
-  }, []);
-
   return (
     <section id="top" className="relative pt-10 lg:pt-20">
       <div className="container-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -41,20 +28,8 @@ const Hero = () => {
             width={1200}
             height={900}
           />
-          {/* Cable animation overlay */}
-          <div id="cable-wrap" className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div
-              id="cable-image"
-              className="absolute left-[10%] top-[-120%] w-1 bg-foreground rounded-full"
-              style={{ height: "300vh" }}
-              aria-hidden
-            />
-            <div
-              id="cable-tip"
-              className="absolute left-[9.5%] top-0 w-3 h-3 rounded-full bg-foreground"
-              aria-hidden
-            />
-          </div>
+          {/* Cable animation overlay (Lottie, scroll-driven) */}
+          <CableLottie />
         </div>
       </div>
 
@@ -86,7 +61,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Invisible target for cable snapping */}
+      {/* Invisible target for cable snapping (for future fine-tuning) */}
       <div id="solar-target" className="absolute left-[10%] bottom-[-120px] w-6 h-2 bg-transparent" aria-hidden />
     </section>
   );
