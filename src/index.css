@@ -182,7 +182,7 @@
   position: absolute; 
   inset: 0; 
   pointer-events: none; 
-  z-index: 20; 
+  z-index: 1; 
   overflow: hidden; 
 }
 
@@ -199,7 +199,7 @@
 
 /* socket over the cable, to mask any overshoot */
 #socket-wrap { 
-  z-index: 30; 
+  z-index: 10; 
 }
 
 /* Point d'ancrage visible en debug */

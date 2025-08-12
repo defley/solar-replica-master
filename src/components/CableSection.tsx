@@ -176,7 +176,7 @@ const CableSection = () => {
       </div>
 
       {/* Content Panels */}
-      <div className="relative z-10 min-h-screen">
+      <div className="relative z-20 min-h-screen">
         {/* Panel A */}
         <div 
           data-panel="0"
@@ -272,7 +272,7 @@ const CableSection = () => {
           data-panel="3"
           className="absolute inset-0 transition-all duration-300 opacity-0"
         >
-          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh] z-[30] flex items-center justify-end">
+          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh] z-[10] flex items-center justify-end">
             <img
               id="socket-img"
               src="/lovable-uploads/73f0f72a-4082-4522-a2bc-d2de67c70b5c.png"
