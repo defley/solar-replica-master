@@ -207,7 +207,7 @@
   left: var(--socket-anchor-x); 
   top: var(--socket-anchor-y);
   transform: translate(-50%,-50%);
-  display: var(--socket-debug) == 1 ? block : none;
+  display: none;
 }
 
 /* Utilities */
