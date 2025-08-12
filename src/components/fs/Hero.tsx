@@ -4,6 +4,7 @@ import CableLottie from "@/components/CableLottie";
 const Hero = () => {
   return (
     <section id="top" className="relative pt-10 lg:pt-20">
+      <CableLottie />
       <div className="container-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div>
           <h1 className="text-5xl sm:text-6xl xl:text-7xl leading-[0.95] font-bold font-display">
@@ -28,8 +29,6 @@ const Hero = () => {
             width={1200}
             height={900}
           />
-          {/* Cable animation overlay (Lottie, scroll-driven) */}
-          <CableLottie />
         </div>
       </div>
 

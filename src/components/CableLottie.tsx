@@ -1,3 +1,4 @@
+'use client';
 // Internal reproduction authorized by Ferme Solaire
 import { useEffect, useRef } from "react";
 import lottie, { AnimationItem } from "lottie-web";
@@ -16,7 +17,7 @@ interface CableLottieProps {
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const CableLottie = ({ className = "", pin = true, endDistance = "+=160vh", ariaHidden = true }: CableLottieProps) => {
+const CableLottie = ({ className = "", pin = true, endDistance = "+=160%", ariaHidden = true }: CableLottieProps) => {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const animRef = useRef<AnimationItem | null>(null);
@@ -27,6 +28,8 @@ const CableLottie = ({ className = "", pin = true, endDistance = "+=160vh", aria
 
     // Respect reduced motion
     if (prefersReducedMotion()) {
+      // Hide overlay entirely
+      if (wrapRef.current) wrapRef.current.style.display = "none";
       return;
     }
 
@@ -97,7 +100,7 @@ const CableLottie = ({ className = "", pin = true, endDistance = "+=160vh", aria
   }, [endDistance, pin]);
 
   return (
-    <div ref={wrapRef} className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden={ariaHidden}>
+    <div ref={wrapRef} className={`pointer-events-none absolute inset-0 overflow-hidden z-[20] min-h-screen ${className}`} aria-hidden={ariaHidden}>
       <div ref={containerRef} id="cable-lottie" className="w-full h-full" />
     </div>
   );
