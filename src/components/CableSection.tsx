@@ -272,12 +272,12 @@ const CableSection = () => {
           data-panel="3"
           className="absolute inset-0 transition-all duration-300 opacity-0"
         >
-          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh] z-[30]">
+          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh] z-[30] flex items-center justify-end">
             <img
               id="socket-img"
               src="/lovable-uploads/73f0f72a-4082-4522-a2bc-d2de67c70b5c.png"
               alt="Panneaux solaires dans la campagne"
-              className="absolute bottom-0 right-[var(--socket-right)] max-w-[var(--socket-w)] h-auto object-contain pointer-events-none"
+              className="relative right-[var(--socket-right)] max-w-[var(--socket-w)] h-auto object-contain pointer-events-none"
               loading="lazy"
             />
             {/* Point d'ancrage (centre du trou de prise) */}

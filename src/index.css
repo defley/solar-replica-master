@@ -48,9 +48,9 @@
     --cable-final-dx: 0px;   /* + right / − left  */
     --cable-final-dy: -18px; /* − up   / + down  */
 
-    /* socket size/placement */
-    --socket-w: 40vw;       /* 38–46vw */
-    --socket-right: 6vw;    /* 5–8vw   */
+    /* socket size/placement - positioned where cable ends */
+    --socket-w: 50vw;       /* 38–46vw */
+    --socket-right: 15vw;    /* moved further right where cable ends */
 
     /* Position du TROU dans l'image (% de la boîte image) */
     --socket-anchor-x: 84%;  /* ajuste si besoin */
