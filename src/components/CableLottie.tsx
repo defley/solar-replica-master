@@ -102,7 +102,7 @@ const CableLottie = ({ className = "", pin = true, endDistance = "+=160%", ariaH
   }, [endDistance, pin]);
 
   return (
-    <div ref={wrapRef} className={`pointer-events-none absolute inset-0 overflow-hidden z-[20] min-h-screen ${className}`} aria-hidden={ariaHidden}>
+    <div ref={wrapRef} className={`pointer-events-none absolute inset-0 overflow-hidden z-[-1] min-h-screen ${className}`} aria-hidden={ariaHidden}>
       <div ref={containerRef} id="cable-lottie" className="w-full h-full" />
     </div>
   );
