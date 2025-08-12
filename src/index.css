@@ -38,19 +38,19 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 @layer base {
   :root {
-    /* CÂBLE – "gros" réglages */
-    --cable-scale: 0.88;  /* 0.75–1.05 */
-    --cable-x: -6vw;     /* − gauche / + droite */
-    --cable-y: -8vh;     /* − haut / + bas */
-    --cable-end: 152;    /* 145–165 pour caler la fin */
+    /* CÂBLE – stop earlier + put socket above cable + end micro-nudge */
+    --cable-end: 140;      /* was ~152; tune 136–146 if needed */
+    --cable-x: -6vw;
+    --cable-y: -8vh;
+    --cable-scale: 0.88;
 
-    /* Micro-nudges 95–100% pour clip parfait */
-    --cable-final-dx: 0px;   /* + vers la droite */
-    --cable-final-dy: 0px;   /* + vers le bas */
+    /* micro nudge 95–100% only (to click perfectly in) */
+    --cable-final-dx: 0px;   /* + right / − left  */
+    --cable-final-dy: -18px; /* − up   / + down  */
 
-    /* SOCKET (image finale) */
-    --socket-w: 95vw;     /* largeur visuelle cible pour occuper l'écran */
-    --socket-right: 2.5vw;  /* centré avec petite marge */
+    /* socket size/placement */
+    --socket-w: 40vw;       /* 38–46vw */
+    --socket-right: 6vw;    /* 5–8vw   */
 
     /* Position du TROU dans l'image (% de la boîte image) */
     --socket-anchor-x: 84%;  /* ajuste si besoin */
@@ -182,7 +182,7 @@
   position: absolute; 
   inset: 0; 
   pointer-events: none; 
-  z-index: 5; 
+  z-index: 20; 
   overflow: hidden; 
 }
 
@@ -195,6 +195,11 @@
   transform: translate(var(--cable-x), var(--cable-y)) scale(var(--cable-scale));
   transform-origin: top right; 
   will-change: transform;
+}
+
+/* socket over the cable, to mask any overshoot */
+#socket-wrap { 
+  z-index: 30; 
 }
 
 /* Point d'ancrage visible en debug */

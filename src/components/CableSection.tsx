@@ -59,35 +59,33 @@ const CableSection = () => {
       const total = Math.max(1, Math.floor(anim.getDuration(true)));
       const easeOut = gsap.parseEase("power2.out");
 
-      function cssVarPx(name: string, fallback = 0) {
+      const cssNumber = (name: string, fallback = 0) => {
         const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
         const n = parseFloat(v);
         return Number.isFinite(n) ? n : fallback;
-      }
+      };
 
-      const endPct = parseFloat(getComputedStyle(document.documentElement)
-        .getPropertyValue("--cable-end")) || 152;
+      const endPct = cssNumber("--cable-end", 140);
 
       const st = ScrollTrigger.create({
-        id: "cableST",
-        trigger: sectionRef.current!,
+        trigger: "#cable-section",
         start: "top top",
         end: `+=${endPct}%`,
         scrub: true,
         pin: true,
         pinSpacing: true,
         onUpdate: (self) => {
-          const prog = self.progress;
-          
-          // 0–90% linéaire, 90–100% ease-out (même feeling que la source)
-          let t = prog < 0.9 ? prog : 0.9 + 0.1 * easeOut((prog - 0.9) / 0.1);
+          const p = self.progress;
+
+          // 0–90% linear, 90–100% ease-out (same feel as original)
+          const t = p < 0.9 ? p : 0.9 + 0.1 * easeOut((p - 0.9) / 0.1);
           const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
           anim.goToAndStop(frame, true);
 
-          // Micro-nudge pour emboîter parfaitement la prise (95–100%)
-          const micro = prog <= 0.95 ? 0 : (prog - 0.95) / 0.05; // 0..1
-          const dx = cssVarPx("--cable-final-dx", 0) * micro;
-          const dy = cssVarPx("--cable-final-dy", 0) * micro;
+          // micro-nudge only near the end (95–100%)
+          const micro = p <= 0.95 ? 0 : (p - 0.95) / 0.05; // 0..1
+          const dx = cssNumber("--cable-final-dx") * micro;
+          const dy = cssNumber("--cable-final-dy") * micro;
 
           const el = document.getElementById("cable-lottie");
           if (el) {
@@ -103,23 +101,23 @@ const CableSection = () => {
             const translateX = 24;
 
             if (index === 0) {
-              const vIn = Math.min(1, prog / 0.1);
-              const vOut = Math.max(0, (0.33 - prog) / 0.1);
-              opacity = prog <= 0.1 ? vIn : (prog <= 0.33 ? 1 : vOut);
+              const vIn = Math.min(1, p / 0.1);
+              const vOut = Math.max(0, (0.33 - p) / 0.1);
+              opacity = p <= 0.1 ? vIn : (p <= 0.33 ? 1 : vOut);
             } else if (index === 1) {
-              if (prog >= 0.33 && prog <= 0.66) {
-                if (prog <= 0.43) opacity = (prog - 0.33) / 0.1;
-                else if (prog >= 0.56) opacity = Math.max(0, (0.66 - prog) / 0.1);
+              if (p >= 0.33 && p <= 0.66) {
+                if (p <= 0.43) opacity = (p - 0.33) / 0.1;
+                else if (p >= 0.56) opacity = Math.max(0, (0.66 - p) / 0.1);
                 else opacity = 1;
               } else opacity = 0;
             } else if (index === 2) {
-              if (prog >= 0.66 && prog <= 0.95) {
-                if (prog <= 0.76) opacity = (prog - 0.66) / 0.1;
-                else if (prog >= 0.85) opacity = Math.max(0, (0.95 - prog) / 0.1);
+              if (p >= 0.66 && p <= 0.95) {
+                if (p <= 0.76) opacity = (p - 0.66) / 0.1;
+                else if (p >= 0.85) opacity = Math.max(0, (0.95 - p) / 0.1);
                 else opacity = 1;
               } else opacity = 0;
             } else if (index === 3) {
-              opacity = prog >= 0.95 ? Math.min(1, (prog - 0.95) / 0.05) : 0;
+              opacity = p >= 0.95 ? Math.min(1, (p - 0.95) / 0.05) : 0;
             }
 
             element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
@@ -269,18 +267,17 @@ const CableSection = () => {
           </div>
         </div>
 
-        {/* Final Panel - Large solar panel where wire connects */}
+        {/* SOCKET (final illustration) */}
         <div 
           data-panel="3"
           className="absolute inset-0 transition-all duration-300 opacity-0"
         >
-          {/* SOCKET (image finale) */}
-          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh]">
+          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh] z-[30]">
             <img
               id="socket-img"
               src="/lovable-uploads/73f0f72a-4082-4522-a2bc-d2de67c70b5c.png"
               alt="Panneaux solaires dans la campagne"
-              className="absolute bottom-0 right-[var(--socket-right)] max-w-[var(--socket-w)] h-auto object-contain z-[10]"
+              className="absolute bottom-0 right-[var(--socket-right)] max-w-[var(--socket-w)] h-auto object-contain pointer-events-none"
               loading="lazy"
             />
             {/* Point d'ancrage (centre du trou de prise) */}
