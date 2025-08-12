@@ -1,6 +1,7 @@
 import FSHeader from "@/components/fs/FSHeader";
 import Hero from "@/components/fs/Hero";
 import VideoSection from "@/components/fs/VideoSection";
+import CableSection from "@/components/CableSection";
 import ValueProposition from "@/components/fs/ValueProposition";
 import GainSection from "@/components/fs/GainSection";
 import TransparencySection from "@/components/fs/TransparencySection";
@@ -15,6 +16,7 @@ const Index = () => {
       <FSHeader />
       <Hero />
       <VideoSection />
+      <CableSection />
       <ValueProposition />
       <GainSection />
       <TransparencySection />
