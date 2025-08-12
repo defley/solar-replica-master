@@ -60,7 +60,7 @@ const CableSection = () => {
       const easeOut = gsap.parseEase("power2.out");
 
       const scrubObj = { p: 0 };
-      const endDistance = isMobile ? "+=120%" : "+=160%";
+      const endDistance = isMobile ? "+=110%" : "+=140%";
       
       const tween = gsap.to(scrubObj, {
         p: 1,
@@ -84,31 +84,47 @@ const CableSection = () => {
             const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
             anim.goToAndStop(frame, true);
 
-            // Panel visibility based on scroll progress - 3 panels only
+            // Panel visibility based on scroll progress (A:0-0.33, B:0.33-0.66, C:0.66-0.95, Final:0.95-1)
             const panels = sectionRef.current?.querySelectorAll('[data-panel]');
             panels?.forEach((panel, index) => {
               const element = panel as HTMLElement;
               let opacity = 0;
-              let translateX = 24;
+              const translateX = 24;
 
-              if (index === 0) { // Panel A: 0-40%
-                opacity = prog <= 0.4 ? Math.min(1, prog / 0.1) : Math.max(0, (0.4 - prog) / 0.1);
-              } else if (index === 1) { // Panel B: 30-70%
-                opacity = prog >= 0.3 && prog <= 0.7 ? 
-                  (prog >= 0.3 && prog <= 0.4 ? (prog - 0.3) / 0.1 : 
-                   prog >= 0.6 ? Math.max(0, (0.7 - prog) / 0.1) : 1) : 0;
-              } else if (index === 2) { // Panel C: 60-100%
-                opacity = prog >= 0.6 ? Math.min(1, (prog - 0.6) / 0.1) : 0;
+              if (index === 0) {
+                const vIn = Math.min(1, prog / 0.1);
+                const vOut = Math.max(0, (0.33 - prog) / 0.1);
+                opacity = prog <= 0.1 ? vIn : (prog <= 0.33 ? 1 : vOut);
+              } else if (index === 1) {
+                if (prog >= 0.33 && prog <= 0.66) {
+                  if (prog <= 0.43) opacity = (prog - 0.33) / 0.1;
+                  else if (prog >= 0.56) opacity = Math.max(0, (0.66 - prog) / 0.1);
+                  else opacity = 1;
+                } else opacity = 0;
+              } else if (index === 2) {
+                if (prog >= 0.66 && prog <= 0.95) {
+                  if (prog <= 0.76) opacity = (prog - 0.66) / 0.1;
+                  else if (prog >= 0.85) opacity = Math.max(0, (0.95 - prog) / 0.1);
+                  else opacity = 1;
+                } else opacity = 0;
+              } else if (index === 3) {
+                opacity = prog >= 0.95 ? Math.min(1, (prog - 0.95) / 0.05) : 0;
               }
 
               element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
               
-              if (opacity > 0) {
-                element.style.transform = `translateX(${(1 - opacity) * translateX * (index % 2 === 0 ? -1 : 1)}px)`;
+              if (index <= 2) {
+                const dir = index % 2 === 0 ? -1 : 1;
+                if (opacity > 0) {
+                  element.style.transform = `translateX(${(1 - opacity) * translateX * dir}px)`;
+                } else {
+                  element.style.transform = `translateX(${translateX * dir}px)`;
+                }
               } else {
-                element.style.transform = `translateX(${translateX * (index % 2 === 0 ? -1 : 1)}px)`;
+                element.style.transform = 'none';
               }
             });
+
           }
         },
       });
@@ -248,15 +264,20 @@ const CableSection = () => {
           </div>
         </div>
 
-        {/* Background final image */}
-        <div className="absolute inset-0 flex items-end justify-center">
-          <img 
-            id="solar-target"
-            src="/lovable-uploads/25985e9f-57f1-4a11-a166-d1d648f094e6.png" 
-            alt="Illustration de ferme solaire avec panneaux et paysage rural"
-            className="w-full h-auto max-h-[60vh] object-contain"
-            loading="lazy"
-          />
+        {/* Final Panel - appears only at the end */}
+        <div 
+          data-panel="3"
+          className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0"
+        >
+          <div className="w-full h-full">
+            <img 
+              id="solar-target"
+              src="/lovable-uploads/25985e9f-57f1-4a11-a166-d1d648f094e6.png" 
+              alt="Illustration finale de ferme solaire"
+              className="w-full h-full object-contain"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
