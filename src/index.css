@@ -38,11 +38,26 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 @layer base {
   :root {
-    /* Cable animation calibration variables */
-    --cable-scale: 0.88;      /* 0.75–1.05 */
-    --cable-x: -6vw;          /* move left(−)/right(+) relative to right edge */
-    --cable-y: -8vh;          /* move up(−)/down(+) */
-    --cable-end: 152;         /* Scroll distance in %, change 145–165 to match */
+    /* CÂBLE – "gros" réglages */
+    --cable-scale: 0.88;  /* 0.75–1.05 */
+    --cable-x: -6vw;     /* − gauche / + droite */
+    --cable-y: -8vh;     /* − haut / + bas */
+    --cable-end: 152;    /* 145–165 pour caler la fin */
+
+    /* Micro-nudges 95–100% pour clip parfait */
+    --cable-final-dx: 0px;   /* + vers la droite */
+    --cable-final-dy: 0px;   /* + vers le bas */
+
+    /* SOCKET (image finale) */
+    --socket-w: 95vw;     /* largeur visuelle cible pour occuper l'écran */
+    --socket-right: 2.5vw;  /* centré avec petite marge */
+
+    /* Position du TROU dans l'image (% de la boîte image) */
+    --socket-anchor-x: 84%;  /* ajuste si besoin */
+    --socket-anchor-y: 14%;  /* ajuste si besoin */
+
+    /* Debug: 1 pour afficher le point vert d'ancrage */
+    --socket-debug: 0;
 
     /* Typography tokens */
     --font-display: "FS Display", serif;
@@ -180,6 +195,19 @@
   transform: translate(var(--cable-x), var(--cable-y)) scale(var(--cable-scale));
   transform-origin: top right; 
   will-change: transform;
+}
+
+/* Point d'ancrage visible en debug */
+#socket-anchor {
+  position: absolute; 
+  width: 10px; 
+  height: 10px; 
+  border-radius: 9999px;
+  background: rgba(0,200,0,.45);
+  left: var(--socket-anchor-x); 
+  top: var(--socket-anchor-y);
+  transform: translate(-50%,-50%);
+  display: var(--socket-debug) == 1 ? block : none;
 }
 
 /* Utilities */

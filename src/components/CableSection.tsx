@@ -59,75 +59,83 @@ const CableSection = () => {
       const total = Math.max(1, Math.floor(anim.getDuration(true)));
       const easeOut = gsap.parseEase("power2.out");
 
-      const scrubObj = { p: 0 };
-      const cableEndValue = getComputedStyle(document.documentElement).getPropertyValue("--cable-end").trim();
-      const endDistance = isMobile ? `+=${parseInt(cableEndValue) - 22}%` : `+=${cableEndValue}%`;
-      
-      const tween = gsap.to(scrubObj, {
-        p: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current!,
-          start: "top top",
-          end: endDistance,
-          scrub: true,
-          pin: true,
-          pinSpacing: true,
-          onUpdate: (self) => {
-            const prog = self.progress;
-            
-            // Cable animation with 0–90% linear / 90–100% ease-out mapping
-            let t = prog;
-            if (t >= 0.9) {
-              const last = (t - 0.9) / 0.1;
-              t = 0.9 + 0.1 * easeOut(last);
-            }
-            const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
-            anim.goToAndStop(frame, true);
+      function cssVarPx(name: string, fallback = 0) {
+        const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseFloat(v);
+        return Number.isFinite(n) ? n : fallback;
+      }
 
-            // Panel visibility based on scroll progress (A:0-0.33, B:0.33-0.66, C:0.66-0.95, Final:0.95-1)
-            const panels = sectionRef.current?.querySelectorAll('[data-panel]');
-            panels?.forEach((panel, index) => {
-              const element = panel as HTMLElement;
-              let opacity = 0;
-              const translateX = 24;
+      const endPct = parseFloat(getComputedStyle(document.documentElement)
+        .getPropertyValue("--cable-end")) || 152;
 
-              if (index === 0) {
-                const vIn = Math.min(1, prog / 0.1);
-                const vOut = Math.max(0, (0.33 - prog) / 0.1);
-                opacity = prog <= 0.1 ? vIn : (prog <= 0.33 ? 1 : vOut);
-              } else if (index === 1) {
-                if (prog >= 0.33 && prog <= 0.66) {
-                  if (prog <= 0.43) opacity = (prog - 0.33) / 0.1;
-                  else if (prog >= 0.56) opacity = Math.max(0, (0.66 - prog) / 0.1);
-                  else opacity = 1;
-                } else opacity = 0;
-              } else if (index === 2) {
-                if (prog >= 0.66 && prog <= 0.95) {
-                  if (prog <= 0.76) opacity = (prog - 0.66) / 0.1;
-                  else if (prog >= 0.85) opacity = Math.max(0, (0.95 - prog) / 0.1);
-                  else opacity = 1;
-                } else opacity = 0;
-              } else if (index === 3) {
-                opacity = prog >= 0.95 ? Math.min(1, (prog - 0.95) / 0.05) : 0;
-              }
+      const st = ScrollTrigger.create({
+        id: "cableST",
+        trigger: sectionRef.current!,
+        start: "top top",
+        end: `+=${endPct}%`,
+        scrub: true,
+        pin: true,
+        pinSpacing: true,
+        onUpdate: (self) => {
+          const prog = self.progress;
+          
+          // 0–90% linéaire, 90–100% ease-out (même feeling que la source)
+          let t = prog < 0.9 ? prog : 0.9 + 0.1 * easeOut((prog - 0.9) / 0.1);
+          const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
+          anim.goToAndStop(frame, true);
 
-              element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
-              
-              if (index <= 2) {
-                const dir = index % 2 === 0 ? -1 : 1;
-                if (opacity > 0) {
-                  element.style.transform = `translateX(${(1 - opacity) * translateX * dir}px)`;
-                } else {
-                  element.style.transform = `translateX(${translateX * dir}px)`;
-                }
-              } else {
-                element.style.transform = 'none';
-              }
-            });
+          // Micro-nudge pour emboîter parfaitement la prise (95–100%)
+          const micro = prog <= 0.95 ? 0 : (prog - 0.95) / 0.05; // 0..1
+          const dx = cssVarPx("--cable-final-dx", 0) * micro;
+          const dy = cssVarPx("--cable-final-dy", 0) * micro;
 
+          const el = document.getElementById("cable-lottie");
+          if (el) {
+            el.style.transform =
+              `translate(var(--cable-x),var(--cable-y)) translate(${dx}px,${dy}px) scale(var(--cable-scale))`;
           }
-        },
+
+          // Panel visibility based on scroll progress (A:0-0.33, B:0.33-0.66, C:0.66-0.95, Final:0.95-1)
+          const panels = sectionRef.current?.querySelectorAll('[data-panel]');
+          panels?.forEach((panel, index) => {
+            const element = panel as HTMLElement;
+            let opacity = 0;
+            const translateX = 24;
+
+            if (index === 0) {
+              const vIn = Math.min(1, prog / 0.1);
+              const vOut = Math.max(0, (0.33 - prog) / 0.1);
+              opacity = prog <= 0.1 ? vIn : (prog <= 0.33 ? 1 : vOut);
+            } else if (index === 1) {
+              if (prog >= 0.33 && prog <= 0.66) {
+                if (prog <= 0.43) opacity = (prog - 0.33) / 0.1;
+                else if (prog >= 0.56) opacity = Math.max(0, (0.66 - prog) / 0.1);
+                else opacity = 1;
+              } else opacity = 0;
+            } else if (index === 2) {
+              if (prog >= 0.66 && prog <= 0.95) {
+                if (prog <= 0.76) opacity = (prog - 0.66) / 0.1;
+                else if (prog >= 0.85) opacity = Math.max(0, (0.95 - prog) / 0.1);
+                else opacity = 1;
+              } else opacity = 0;
+            } else if (index === 3) {
+              opacity = prog >= 0.95 ? Math.min(1, (prog - 0.95) / 0.05) : 0;
+            }
+
+            element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+            
+            if (index <= 2) {
+              const dir = index % 2 === 0 ? -1 : 1;
+              if (opacity > 0) {
+                element.style.transform = `translateX(${(1 - opacity) * translateX * dir}px)`;
+              } else {
+                element.style.transform = `translateX(${translateX * dir}px)`;
+              }
+            } else {
+              element.style.transform = 'none';
+            }
+          });
+        }
       });
 
       // GPU compositing for smoothness
@@ -136,8 +144,7 @@ const CableSection = () => {
       }
 
       return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
+        st.kill();
       };
     };
 
@@ -267,13 +274,17 @@ const CableSection = () => {
           data-panel="3"
           className="absolute inset-0 transition-all duration-300 opacity-0"
         >
-          <div id="solar-target" className="relative h-full flex items-end justify-end">
-            <img 
-              src="/assets/serre-solaire.png" 
-              alt="Panneau solaire connecté"
-              className="w-[60vw] md:w-[50vw] lg:w-[45vw] h-auto object-contain mb-[5vh] mr-[3vw]"
+          {/* SOCKET (image finale) */}
+          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh]">
+            <img
+              id="socket-img"
+              src="/lovable-uploads/73f0f72a-4082-4522-a2bc-d2de67c70b5c.png"
+              alt="Panneaux solaires dans la campagne"
+              className="absolute bottom-0 right-[var(--socket-right)] max-w-[var(--socket-w)] h-auto object-contain z-[10]"
               loading="lazy"
             />
+            {/* Point d'ancrage (centre du trou de prise) */}
+            <div id="socket-anchor" aria-hidden="true"></div>
           </div>
         </div>
       </div>
