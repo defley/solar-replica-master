@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 const nav = [
   { label: "Comment ça marche ?", href: "/comment-ca-marche", isRoute: true },
-  { label: "Type de terrain", href: "#types" },
-  { label: "Aide", href: "#aide" },
-  { label: "Avis Clients", href: "#avis" },
+  { label: "Questions & Réponses", href: "/faq", isRoute: true },
   { label: "Magazine", href: "/magazine", isRoute: true },
   { label: "Contact", href: "/contact", isRoute: true },
 ];
