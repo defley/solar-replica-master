@@ -53,15 +53,17 @@ const CableLottie = ({ className = "", pin = true, endDistance = "+=160%", ariaH
       const easeOut = gsap.parseEase("power2.out");
 
       const scrubObj = { p: 0 };
+      const sectionEl = wrapRef.current?.parentElement as HTMLElement | null;
       const tween = gsap.to(scrubObj, {
         p: 1,
         ease: "none",
         scrollTrigger: {
-          trigger: wrapRef.current!,
+          trigger: sectionEl ?? wrapRef.current!,
           start: "top top",
           end: endDistance,
           scrub: true,
-          pin,
+          pin: pin ? (sectionEl ?? true) : false,
+          pinSpacing: true,
         },
         onUpdate: () => {
           const prog = (tween.scrollTrigger as any)?.progress ?? 0;
