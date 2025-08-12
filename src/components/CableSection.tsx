@@ -60,7 +60,8 @@ const CableSection = () => {
       const easeOut = gsap.parseEase("power2.out");
 
       const scrubObj = { p: 0 };
-      const endDistance = isMobile ? "+=100%" : "+=120%";
+      const cableEndValue = getComputedStyle(document.documentElement).getPropertyValue("--cable-end").trim();
+      const endDistance = isMobile ? `+=${parseInt(cableEndValue) - 22}%` : `+=${cableEndValue}%`;
       
       const tween = gsap.to(scrubObj, {
         p: 1,
@@ -75,12 +76,11 @@ const CableSection = () => {
           onUpdate: (self) => {
             const prog = self.progress;
             
-            // Cable animation ends at 95% to sync with final image
-            const cableProgress = Math.min(0.95, prog / 0.95);
-            let t = cableProgress;
-            if (t >= 0.85) {
-              const last = (t - 0.85) / 0.1;
-              t = 0.85 + 0.1 * easeOut(last);
+            // Cable animation with 0–90% linear / 90–100% ease-out mapping
+            let t = prog;
+            if (t >= 0.9) {
+              const last = (t - 0.9) / 0.1;
+              t = 0.9 + 0.1 * easeOut(last);
             }
             const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
             anim.goToAndStop(frame, true);
@@ -162,14 +162,11 @@ const CableSection = () => {
       <div 
         ref={cableWrapRef}
         id="cable-wrap" 
-        className="absolute inset-0 pointer-events-none overflow-hidden z-5"
         aria-hidden="true"
       >
         <div 
           ref={cableLottieRef}
-          id="cable-lottie" 
-          className="w-full h-full"
-          style={{ transform: 'translateX(25%)' }}
+          id="cable-lottie"
         />
       </div>
 
@@ -268,14 +265,13 @@ const CableSection = () => {
         {/* Final Panel - appears only at the end */}
         <div 
           data-panel="3"
-          className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0"
+          className="absolute inset-0 transition-all duration-300 opacity-0"
         >
-          <div className="flex items-center justify-center h-full">
+          <div id="solar-target" className="relative h-[58vh] md:h-[62vh] lg:h-[66vh]">
             <img 
-              id="solar-target"
-              src="/lovable-uploads/25985e9f-57f1-4a11-a166-d1d648f094e6.png" 
+              src="/assets/cable/final.jpg" 
               alt="Illustration finale de ferme solaire"
-              className="max-w-lg w-full h-auto object-contain"
+              className="absolute right-[6vw] bottom-0 max-w-[46vw] md:max-w-[42vw] lg:max-w-[38vw] h-auto object-contain"
               loading="lazy"
             />
           </div>

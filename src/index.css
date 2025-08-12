@@ -38,6 +38,12 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 @layer base {
   :root {
+    /* Cable animation calibration variables */
+    --cable-scale: 0.88;      /* 0.75–1.05 */
+    --cable-x: -6vw;          /* move left(−)/right(+) relative to right edge */
+    --cable-y: -8vh;          /* move up(−)/down(+) */
+    --cable-end: 152;         /* Scroll distance in %, change 145–165 to match */
+
     /* Typography tokens */
     --font-display: "FS Display", serif;
     --font-sans: "FS Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -154,6 +160,26 @@
   h1,h2,h3,h4 {
     font-family: var(--font-display);
   }
+}
+
+/* Cable specific styles */
+#cable-wrap { 
+  position: absolute; 
+  inset: 0; 
+  pointer-events: none; 
+  z-index: 20; 
+  overflow: hidden; 
+}
+
+#cable-lottie {
+  position: absolute; 
+  top: 0; 
+  right: 0;
+  width: 120vw; 
+  height: 140vh;           /* oversize to preserve curvature */
+  transform: translate(var(--cable-x), var(--cable-y)) scale(var(--cable-scale));
+  transform-origin: top right; 
+  will-change: transform;
 }
 
 /* Utilities */
