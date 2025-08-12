@@ -1,6 +1,7 @@
 import FSHeader from "@/components/fs/FSHeader";
 import Hero from "@/components/fs/Hero";
 import VideoSection from "@/components/fs/VideoSection";
+import Simulator from "@/components/fs/Simulator";
 import Footer from "@/components/fs/Footer";
 
 const Index = () => {
@@ -9,6 +10,7 @@ const Index = () => {
       <FSHeader />
       <Hero />
       <VideoSection />
+      <Simulator />
       <Footer />
     </main>
   );
