@@ -84,30 +84,21 @@ const CableSection = () => {
             const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
             anim.goToAndStop(frame, true);
 
-            // Panel visibility based on scroll progress
+            // Panel visibility based on scroll progress - 3 panels only
             const panels = sectionRef.current?.querySelectorAll('[data-panel]');
             panels?.forEach((panel, index) => {
               const element = panel as HTMLElement;
-              let isVisible = false;
               let opacity = 0;
               let translateX = 24;
 
-              if (index === 0) { // Panel A: 0-33%
-                isVisible = prog >= 0 && prog <= 0.33;
-                opacity = prog <= 0.33 ? Math.min(1, prog / 0.1) : Math.max(0, (0.33 - prog) / 0.1);
-              } else if (index === 1) { // Panel B: 33-66%
-                isVisible = prog >= 0.28 && prog <= 0.66;
-                opacity = prog >= 0.33 && prog <= 0.66 ? 
-                  (prog >= 0.33 && prog <= 0.38 ? (prog - 0.28) / 0.1 : 
-                   prog >= 0.61 ? Math.max(0, (0.66 - prog) / 0.1) : 1) : 0;
-              } else if (index === 2) { // Panel C: 66-95%
-                isVisible = prog >= 0.61 && prog <= 0.95;
-                opacity = prog >= 0.66 && prog <= 0.95 ? 
-                  (prog >= 0.66 && prog <= 0.71 ? (prog - 0.61) / 0.1 : 
-                   prog >= 0.9 ? Math.max(0, (0.95 - prog) / 0.1) : 1) : 0;
-              } else if (index === 3) { // Final: 95-100%
-                isVisible = prog >= 0.9;
-                opacity = prog >= 0.95 ? Math.min(1, (prog - 0.9) / 0.1) : 0;
+              if (index === 0) { // Panel A: 0-40%
+                opacity = prog <= 0.4 ? Math.min(1, prog / 0.1) : Math.max(0, (0.4 - prog) / 0.1);
+              } else if (index === 1) { // Panel B: 30-70%
+                opacity = prog >= 0.3 && prog <= 0.7 ? 
+                  (prog >= 0.3 && prog <= 0.4 ? (prog - 0.3) / 0.1 : 
+                   prog >= 0.6 ? Math.max(0, (0.7 - prog) / 0.1) : 1) : 0;
+              } else if (index === 2) { // Panel C: 60-100%
+                opacity = prog >= 0.6 ? Math.min(1, (prog - 0.6) / 0.1) : 0;
               }
 
               element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
@@ -150,11 +141,11 @@ const CableSection = () => {
       id="cable-section" 
       className="relative min-h-[160vh] bg-background"
     >
-      {/* Cable Lottie Overlay */}
+      {/* Cable Lottie Overlay - Behind content */}
       <div 
         ref={cableWrapRef}
         id="cable-wrap" 
-        className="absolute inset-0 pointer-events-none overflow-hidden z-20"
+        className="absolute inset-0 pointer-events-none overflow-hidden z-5"
         aria-hidden="true"
       >
         <div 
@@ -257,20 +248,15 @@ const CableSection = () => {
           </div>
         </div>
 
-        {/* Final Panel */}
-        <div 
-          data-panel="3"
-          className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0"
-        >
-          <div className="w-full h-full">
-            <img 
-              id="solar-target"
-              src="/assets/cable/final.jpg" 
-              alt="Installation finale de la ferme solaire"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
+        {/* Background final image */}
+        <div className="absolute inset-0 flex items-end justify-center">
+          <img 
+            id="solar-target"
+            src="/lovable-uploads/25985e9f-57f1-4a11-a166-d1d648f094e6.png" 
+            alt="Illustration de ferme solaire avec panneaux et paysage rural"
+            className="w-full h-auto max-h-[60vh] object-contain"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
