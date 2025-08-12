@@ -21,7 +21,7 @@ const PromiseSection = () => {
           <Button asChild variant="cta" className="rounded-full h-11 px-5">
             <Link to="/mondossier">Déposer mon dossier</Link>
           </Button>
-          <a href="/comment-ca-marche" className="text-foreground/80 hover:underline focus-ring rounded-md">Voir Comment ça marche</a>
+          <Link to="/comment-ca-marche" className="text-foreground/80 hover:underline focus-ring rounded-md">Voir Comment ça marche</Link>
         </div>
       </div>
     </section>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="mt-24 border-t">
@@ -5,9 +7,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} Ferme Solaire — Tous droits réservés</p>
           <nav className="flex gap-6" aria-label="Liens de bas de page">
-            <a href="#legal" className="hover:underline focus-ring">Mentions légales</a>
-            <a href="#privacy" className="hover:underline focus-ring">Confidentialité</a>
-            <a href="#contact" className="hover:underline focus-ring">Contact</a>
+            <Link to="/mentions-legales" className="hover:underline focus-ring">Mentions légales</Link>
+            <Link to="/magazine" className="hover:underline focus-ring">Magazine</Link>
+            <Link to="/contact" className="hover:underline focus-ring">Contact</Link>
           </nav>
         </div>
       </div>
