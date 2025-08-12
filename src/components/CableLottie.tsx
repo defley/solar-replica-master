@@ -60,8 +60,8 @@ const CableLottie = ({ className = "", pin = true, endDistance = "+=160vh", aria
           scrub: true,
           pin,
         },
-        onUpdate: function (self) {
-          const prog = (self as any).progress ?? ScrollTrigger.getById("cable-st")?.progress() ?? 0;
+        onUpdate: () => {
+          const prog = (tween.scrollTrigger as any)?.progress ?? 0;
           let t = prog;
           if (t >= 0.9) {
             const last = (t - 0.9) / 0.1; // 0..1
