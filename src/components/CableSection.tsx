@@ -82,18 +82,12 @@ const CableSection = () => {
           const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
           anim.goToAndStop(frame, true);
 
-          // micro-nudge only near the end (95–100%)
-          const micro = p <= 0.95 ? 0 : (p - 0.95) / 0.05; // 0..1
-          const dx = cssNumber("--cable-final-dx") * micro;
-          const dy = cssNumber("--cable-final-dy") * micro;
-
           const el = document.getElementById("cable-lottie");
           if (el) {
-            el.style.transform =
-              `translate(var(--cable-x),var(--cable-y)) translate(${dx}px,${dy}px) scale(var(--cable-scale))`;
+            el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
 
-          // Panel visibility based on scroll progress (A:0-0.33, B:0.33-0.66, C:0.66-0.95, Final:0.95-1)
+          // Panel visibility based on scroll progress (A:0-0.33, B:0.33-0.66, C:0.66-1)
           const panels = sectionRef.current?.querySelectorAll('[data-panel]');
           panels?.forEach((panel, index) => {
             const element = panel as HTMLElement;
@@ -111,13 +105,10 @@ const CableSection = () => {
                 else opacity = 1;
               } else opacity = 0;
             } else if (index === 2) {
-              if (p >= 0.66 && p <= 0.95) {
+              if (p >= 0.66) {
                 if (p <= 0.76) opacity = (p - 0.66) / 0.1;
-                else if (p >= 0.85) opacity = Math.max(0, (0.95 - p) / 0.1);
-                else opacity = 1;
+                else opacity = 1; // stay visible until the end
               } else opacity = 0;
-            } else if (index === 3) {
-              opacity = p >= 0.95 ? Math.min(1, (p - 0.95) / 0.05) : 0;
             }
 
             element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
@@ -161,7 +152,7 @@ const CableSection = () => {
     <section 
       ref={sectionRef}
       id="cable-section" 
-      className="relative min-h-[160vh] bg-background"
+      className="relative min-h-[120vh] bg-background"
     >
       {/* Cable Lottie Overlay - Behind content */}
       <div 
@@ -267,23 +258,6 @@ const CableSection = () => {
           </div>
         </div>
 
-        {/* SOCKET (final illustration) */}
-        <div 
-          data-panel="3"
-          className="absolute inset-0 transition-all duration-300 opacity-0"
-        >
-          <div id="socket-wrap" className="relative h-[64vh] md:h-[68vh] lg:h-[72vh] z-[10] flex items-center justify-end">
-            <img
-              id="socket-img"
-              src="/lovable-uploads/73f0f72a-4082-4522-a2bc-d2de67c70b5c.png"
-              alt="Panneaux solaires dans la campagne"
-              className="relative right-[var(--socket-right)] max-w-[var(--socket-w)] h-auto object-contain pointer-events-none"
-              loading="lazy"
-            />
-            {/* Point d'ancrage (centre du trou de prise) */}
-            <div id="socket-anchor" aria-hidden="true"></div>
-          </div>
-        </div>
       </div>
     </section>
   );

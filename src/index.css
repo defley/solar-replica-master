@@ -39,25 +39,11 @@
 @layer base {
   :root {
     /* CÂBLE – stop earlier + put socket above cable + end micro-nudge */
-    --cable-end: 140;      /* was ~152; tune 136–146 if needed */
+    --cable-end: 105;      /* was ~152; tune 136–146 if needed */
     --cable-x: -6vw;
     --cable-y: -8vh;
     --cable-scale: 0.88;
 
-    /* micro nudge 95–100% only (to click perfectly in) */
-    --cable-final-dx: 0px;   /* + right / − left  */
-    --cable-final-dy: -18px; /* − up   / + down  */
-
-    /* socket size/placement - positioned where cable ends */
-    --socket-w: 50vw;       /* 38–46vw */
-    --socket-right: 15vw;    /* moved further right where cable ends */
-
-    /* Position du TROU dans l'image (% de la boîte image) */
-    --socket-anchor-x: 84%;  /* ajuste si besoin */
-    --socket-anchor-y: 14%;  /* ajuste si besoin */
-
-    /* Debug: 1 pour afficher le point vert d'ancrage */
-    --socket-debug: 0;
 
     /* Typography tokens */
     --font-display: "FS Display", serif;
@@ -195,24 +181,6 @@
   transform: translate(var(--cable-x), var(--cable-y)) scale(var(--cable-scale));
   transform-origin: top right; 
   will-change: transform;
-}
-
-/* socket over the cable, to mask any overshoot */
-#socket-wrap { 
-  z-index: 10; 
-}
-
-/* Point d'ancrage visible en debug */
-#socket-anchor {
-  position: absolute; 
-  width: 10px; 
-  height: 10px; 
-  border-radius: 9999px;
-  background: rgba(0,200,0,.45);
-  left: var(--socket-anchor-x); 
-  top: var(--socket-anchor-y);
-  transform: translate(-50%,-50%);
-  display: none;
 }
 
 /* Utilities */
