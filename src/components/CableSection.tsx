@@ -60,7 +60,7 @@ const CableSection = () => {
       const easeOut = gsap.parseEase("power2.out");
 
       const scrubObj = { p: 0 };
-      const endDistance = isMobile ? "+=110%" : "+=140%";
+      const endDistance = isMobile ? "+=100%" : "+=120%";
       
       const tween = gsap.to(scrubObj, {
         p: 1,
@@ -75,11 +75,12 @@ const CableSection = () => {
           onUpdate: (self) => {
             const prog = self.progress;
             
-            // Cable animation with ease-out at 90%
-            let t = prog;
-            if (t >= 0.9) {
-              const last = (t - 0.9) / 0.1;
-              t = 0.9 + 0.1 * easeOut(last);
+            // Cable animation ends at 95% to sync with final image
+            const cableProgress = Math.min(0.95, prog / 0.95);
+            let t = cableProgress;
+            if (t >= 0.85) {
+              const last = (t - 0.85) / 0.1;
+              t = 0.85 + 0.1 * easeOut(last);
             }
             const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
             anim.goToAndStop(frame, true);
@@ -269,12 +270,12 @@ const CableSection = () => {
           data-panel="3"
           className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0"
         >
-          <div className="w-full h-full">
+          <div className="flex items-center justify-center h-full">
             <img 
               id="solar-target"
               src="/lovable-uploads/25985e9f-57f1-4a11-a166-d1d648f094e6.png" 
               alt="Illustration finale de ferme solaire"
-              className="w-full h-full object-contain"
+              className="max-w-lg w-full h-auto object-contain"
               loading="lazy"
             />
           </div>
