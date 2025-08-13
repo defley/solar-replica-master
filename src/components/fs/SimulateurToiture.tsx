@@ -5,8 +5,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 
 // Constantes pour les calculs
-const PROD_SPEC_KWH_PER_M2 = 150; // Production spécifique kWh/m²/an
-const EM_CO2_RTE_2019_G_PER_KWH = 57.1; // Émission CO₂ RTE 2019 en g/kWh
+const PROD_SPEC_KWH_PER_M2 = 198; // Production spécifique kWh/m²/an (basé sur 0.165 kWc/m² × 1200 kWh/kWc/an)
+const EM_CO2_RTE_2019_G_PER_KWH = 80; // Émission CO₂ RTE 2019 en g/kWh
 const PAIEMENT_UNIQUE_RATIO = 0.576599327; // Ratio appliqué au total 30 ans pour paiement unique
 
 const PAYMENT_MODES = [
