@@ -65,7 +65,7 @@ const CableSection = () => {
         return Number.isFinite(n) ? n : fallback;
       };
 
-      const endPct = cssNumber("--cable-end", 400);
+      const endPct = cssNumber("--cable-end", 800);
 
       const st = ScrollTrigger.create({
         trigger: "#cable-section",
