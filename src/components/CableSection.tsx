@@ -178,10 +178,10 @@ const CableSection = () => {
               <div className="md:col-span-5">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">
-                    Gagnez jusqu'à 5500€ de loyer annuel par hectare
+                    Financez vos travaux grâce à votre toiture
                   </h3>
                   <p className="mt-4 text-foreground/80">
-                    dédié aux panneaux photovoltaïques. Grâce à notre connaissance du marché, nous vous guidons pour recevoir le meilleur loyer et la proposition la plus fiable.
+                    Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
                     <a href="#simulator">Simuler son loyer annuel</a>
