@@ -174,7 +174,7 @@ const CableSection = () => {
     <section 
       ref={sectionRef}
       id="cable-section" 
-      className="relative bg-background -mt-8"
+      className="relative min-h-[80vh] bg-background"
     >
       {/* Cable Lottie Overlay - Behind content */}
       <div 
@@ -189,7 +189,7 @@ const CableSection = () => {
       </div>
 
       {/* Content Panels */}
-      <div className="relative z-20 min-h-[60vh]">
+      <div className="relative z-20 min-h-screen">
         {/* Panel A */}
         <div 
           data-panel="0"
