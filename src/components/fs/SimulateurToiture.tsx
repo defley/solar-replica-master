@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 // Constantes pour les calculs
 const PROD_SPEC_KWH_PER_M2 = 150; // Production spécifique kWh/m²/an
 const EM_CO2_RTE_2019_G_PER_KWH = 57.1; // Émission CO₂ RTE 2019 en g/kWh
+const PAIEMENT_UNIQUE_RATIO = 0.576599327; // Ratio appliqué au total 30 ans pour paiement unique
 
 const PAYMENT_MODES = [
   { key: "monthly", label: "Loyer mensuel" },
@@ -81,6 +82,7 @@ const SimulateurToiture = () => {
   const { loyerAnnuel, co2Evite } = calculatedResults;
   const loyerMensuel = loyerAnnuel / 12;
   const totalSur30Ans = loyerAnnuel * 30;
+  const paiementUnique = totalSur30Ans * PAIEMENT_UNIQUE_RATIO;
 
   return (
     <section id="simulateur-toiture" className="py-20 md:py-28 bg-muted/30">
@@ -211,7 +213,7 @@ const SimulateurToiture = () => {
                   <>
                     <div className="rounded-xl border bg-card p-6">
                       <div className="text-sm text-foreground/70">Montant unique</div>
-                      <div className="mt-2 text-3xl font-semibold">{formatCurrency(totalSur30Ans)}</div>
+                      <div className="mt-2 text-3xl font-semibold">{formatCurrency(paiementUnique)}</div>
                     </div>
                     <div className="rounded-xl border bg-card p-6">
                       <div className="text-sm text-foreground/70">Loyer annuel théorique</div>
