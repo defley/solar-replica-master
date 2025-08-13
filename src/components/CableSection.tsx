@@ -65,7 +65,7 @@ const CableSection = () => {
         return Number.isFinite(n) ? n : fallback;
       };
 
-      const endPct = cssNumber("--cable-end", 140);
+      const endPct = cssNumber("--cable-end", 200);
 
       const st = ScrollTrigger.create({
         trigger: "#cable-section",
@@ -95,18 +95,18 @@ const CableSection = () => {
             const translateX = 24;
 
             if (index === 0) {
-              const vIn = Math.min(1, p / 0.15);
-              const vOut = Math.max(0, (0.5 - p) / 0.15);
-              opacity = p <= 0.15 ? vIn : (p <= 0.5 ? 1 : vOut);
+              const vIn = Math.min(1, p / 0.1);
+              const vOut = Math.max(0, (0.35 - p) / 0.1);
+              opacity = p <= 0.1 ? vIn : (p <= 0.35 ? 1 : vOut);
             } else if (index === 1) {
-              if (p >= 0.35 && p <= 0.75) {
-                if (p <= 0.5) opacity = (p - 0.35) / 0.15;
-                else if (p >= 0.6) opacity = Math.max(0, (0.75 - p) / 0.15);
+              if (p >= 0.45 && p <= 0.75) {
+                if (p <= 0.55) opacity = (p - 0.45) / 0.1;
+                else if (p >= 0.65) opacity = Math.max(0, (0.75 - p) / 0.1);
                 else opacity = 1;
               } else opacity = 0;
             } else if (index === 2) {
-              if (p >= 0.7) {
-                if (p <= 0.85) opacity = (p - 0.7) / 0.15;
+              if (p >= 0.8) {
+                if (p <= 0.9) opacity = (p - 0.8) / 0.1;
                 else opacity = 1; // stay visible until the end
               } else opacity = 0;
             }
@@ -152,7 +152,7 @@ const CableSection = () => {
     <section 
       ref={sectionRef}
       id="cable-section" 
-      className="relative min-h-[120vh] bg-background"
+      className="relative min-h-[200vh] bg-background"
     >
       {/* Cable Lottie Overlay - Behind content */}
       <div 
