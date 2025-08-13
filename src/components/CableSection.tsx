@@ -239,10 +239,10 @@ const CableSection = () => {
               <div className="md:col-span-5">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">
-                    Un service clé en mains et 100% transparent
+                    Financez vos travaux grâce à votre toiture
                   </h3>
                   <p className="mt-4 text-foreground/80">
-                    Un conseiller dédié vous rappelle sous 48h (jours ouvrés) pour élaborer votre dossier et évaluer la faisabilité du projet. Vous pouvez aussi nous missionner pour négocier avec nos partenaires développeurs d'énergie renouvelable.
+                    Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
                     <a href="#simulateur-toiture">Accéder au simulateur</a>
