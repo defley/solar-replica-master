@@ -87,7 +87,7 @@ const CableSection = () => {
             el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
 
-          // Panel visibility based on scroll progress - extended durations (A:0-0.4, B:0.35-0.75, C:0.7-1)
+          // Panel visibility based on scroll progress - very extended durations (A:0-0.5, B:0.3-0.8, C:0.6-1)
           const panels = sectionRef.current?.querySelectorAll('[data-panel]');
           panels?.forEach((panel, index) => {
             const element = panel as HTMLElement;
@@ -95,18 +95,18 @@ const CableSection = () => {
             const translateX = 24;
 
             if (index === 0) {
-              const vIn = Math.min(1, p / 0.1);
-              const vOut = Math.max(0, (0.4 - p) / 0.1);
-              opacity = p <= 0.1 ? vIn : (p <= 0.4 ? 1 : vOut);
+              const vIn = Math.min(1, p / 0.15);
+              const vOut = Math.max(0, (0.5 - p) / 0.15);
+              opacity = p <= 0.15 ? vIn : (p <= 0.5 ? 1 : vOut);
             } else if (index === 1) {
-              if (p >= 0.35 && p <= 0.75) {
-                if (p <= 0.45) opacity = (p - 0.35) / 0.1;
-                else if (p >= 0.65) opacity = Math.max(0, (0.75 - p) / 0.1);
+              if (p >= 0.3 && p <= 0.8) {
+                if (p <= 0.45) opacity = (p - 0.3) / 0.15;
+                else if (p >= 0.65) opacity = Math.max(0, (0.8 - p) / 0.15);
                 else opacity = 1;
               } else opacity = 0;
             } else if (index === 2) {
-              if (p >= 0.7) {
-                if (p <= 0.8) opacity = (p - 0.7) / 0.1;
+              if (p >= 0.6) {
+                if (p <= 0.75) opacity = (p - 0.6) / 0.15;
                 else opacity = 1; // stay visible until the end
               } else opacity = 0;
             }
