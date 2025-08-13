@@ -79,25 +79,20 @@ const SimulateurToiture = () => {
 
   // Calculs
   const isFeasible = surface >= 500;
-  const showAutoSavings = surface >= 600;
+  const showAutoConsumption = surface > 900;
   
   const calculatedResults = useMemo(() => {
     if (!isFeasible) {
       return { loyerAnnuel: 0, co2Evite: 0 };
     }
 
-    const rate = surface < 600 ? 3.5 : 3;
-    let loyerAnnuel = surface * rate;
-    
-    if (surface >= 600) {
-      loyerAnnuel += autoSavings;
-    }
+    const loyerAnnuel = surface * 3.5;
 
     const prodAnnuelle = surface * PROD_SPEC_KWH_PER_M2;
     const co2Evite = Math.round((prodAnnuelle * EM_CO2_RTE_2019_G_PER_KWH / 1000) / 1000 * 10) / 10; // Arrondi à 0.1 t près
 
     return { loyerAnnuel, co2Evite };
-  }, [surface, autoSavings, isFeasible]);
+  }, [surface, isFeasible]);
 
   const { loyerAnnuel, co2Evite } = calculatedResults;
   const totalSur30Ans = loyerAnnuel * 30;
@@ -176,11 +171,13 @@ const SimulateurToiture = () => {
               </RadioGroup>
             </div>
 
-            {/* Panel autoconsommation */}
-            <AutoConsumptionPanel 
-              state={autoConsumptionState}
-              onStateChange={onAutoConsumptionChange}
-            />
+            {/* Panel autoconsommation - affiché uniquement si surface > 900 m² */}
+            {showAutoConsumption && (
+              <AutoConsumptionPanel 
+                state={autoConsumptionState}
+                onStateChange={onAutoConsumptionChange}
+              />
+            )}
 
           </div>
 
