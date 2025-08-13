@@ -1,30 +1,10 @@
 import { AutoConsumptionResults } from "@/lib/sim/autoconsommation";
 import { formatCurrency, formatPrice } from "@/lib/sim/autoconsommation";
-import SavingsChart from "./SavingsChart";
-
 interface AutoConsumptionResultsProps {
   results: AutoConsumptionResults;
-  horizonYears: number;
-  inflationPct: number;
-  coveragePct: number;
 }
 
-const AutoConsumptionResultsDisplay = ({ 
-  results, 
-  horizonYears, 
-  inflationPct,
-  coveragePct 
-}: AutoConsumptionResultsProps) => {
-  // Si pas de couverture, on masque les résultats
-  if (coveragePct === 0) {
-    return (
-      <div className="mt-8 p-6 rounded-xl border bg-card/50 text-center">
-        <p className="text-sm text-foreground/70">
-          Définissez une part couverte &gt; 0 % pour voir les économies.
-        </p>
-      </div>
-    );
-  }
+const AutoConsumptionResultsDisplay = ({ results }: AutoConsumptionResultsProps) => {
 
   return (
     <div className="mt-8 space-y-6">
@@ -57,12 +37,12 @@ const AutoConsumptionResultsDisplay = ({
           </div>
         </div>
 
-        {/* Colonne droite - Sur X ans */}
+        {/* Colonne droite - Sur 30 ans */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Sur {horizonYears} ans</h3>
+          <h3 className="text-lg font-semibold">Sur 30 ans</h3>
           
           <div className="rounded-xl border bg-card p-6">
-            <div className="text-sm text-foreground/70">Économie sur {horizonYears} ans</div>
+            <div className="text-sm text-foreground/70">Économie sur 30 ans</div>
             <div className="mt-2 text-3xl font-semibold text-green-600">
               {formatCurrency(results.savingTotal)}
             </div>
@@ -77,7 +57,7 @@ const AutoConsumptionResultsDisplay = ({
                 <span className="font-medium">{formatCurrency(results.totalSolar)}</span>
               </div>
               <div className="flex justify-between border-t pt-2">
-                <span className="text-foreground/70">Prix EDF en année {horizonYears}</span>
+                <span className="text-foreground/70">Prix EDF en année 30</span>
                 <span className="font-medium">{formatPrice(results.edfPriceYearY)}/kWh</span>
               </div>
               <div className="flex justify-between">
@@ -91,20 +71,6 @@ const AutoConsumptionResultsDisplay = ({
         </div>
       </div>
 
-      {/* Graphique */}
-      <div className="rounded-xl border bg-card p-6">
-        <h4 className="text-lg font-semibold mb-4">Évolution des coûts cumulés</h4>
-        <SavingsChart data={results.yearlyData} />
-      </div>
-
-      {/* Encart pédagogique */}
-      <div className="rounded-lg bg-muted/50 p-4">
-        <div className="text-sm space-y-1">
-          <p>• Aucune inflation appliquée au prix solaire (production propre).</p>
-          <p>• Le Tarif Bleu est projeté avec une inflation moyenne de {inflationPct}%/an.</p>
-          <p>• Paramètres modifiables pour refléter votre situation réelle.</p>
-        </div>
-      </div>
     </div>
   );
 };

@@ -3,11 +3,6 @@
 export interface AutoConsumptionParams {
   consumptionKwh: number;      // kWh/an
   coveragePct: number;         // 0-100
-  edfTtc: number;             // €/kWh TTC
-  solarHt: number;            // €/kWh HT
-  vatPct: number;             // 0-100
-  inflationPct: number;       // 0-100
-  horizonYears: number;       // années
 }
 
 export interface AutoConsumptionResults {
@@ -36,30 +31,25 @@ export interface AutoConsumptionResults {
   
   // Métadonnées
   consumptionCovered: number; // kWh/an
-  solarPriceTtc: number;      // €/kWh TTC
 }
 
 export function calculateAutoConsumption(params: AutoConsumptionParams): AutoConsumptionResults {
-  const {
-    consumptionKwh,
-    coveragePct,
-    edfTtc,
-    solarHt,
-    vatPct,
-    inflationPct,
-    horizonYears
-  } = params;
+  const { consumptionKwh, coveragePct } = params;
+
+  // Paramètres fixes
+  const edfTtc = 0.1952;           // €/kWh TTC
+  const solarTtc = 0.15;           // €/kWh TTC 
+  const inflationPct = 4;          // %/an
+  const horizonYears = 30;         // années
 
   // Calculs de base
   const cov = coveragePct / 100;
-  const VAT = vatPct / 100;
   const r = inflationPct / 100;
   const consumptionCovered = consumptionKwh * cov;
-  const solarPriceTtc = solarHt * (1 + VAT);
 
   // Année 1
   const costEdfY1 = consumptionCovered * edfTtc;
-  const costSolarY1 = consumptionCovered * solarPriceTtc;
+  const costSolarY1 = consumptionCovered * solarTtc;
   const savingY1 = Math.max(costEdfY1 - costSolarY1, 0);
 
   // Projection sur horizonYears
@@ -74,7 +64,7 @@ export function calculateAutoConsumption(params: AutoConsumptionParams): AutoCon
 
   for (let t = 0; t < horizonYears; t++) {
     const yearEdfCost = consumptionCovered * edfTtc * Math.pow(1 + r, t);
-    const yearSolarCost = consumptionCovered * solarPriceTtc;
+    const yearSolarCost = consumptionCovered * solarTtc;
     
     totalEdf += yearEdfCost;
     totalSolar += yearSolarCost;
@@ -92,7 +82,7 @@ export function calculateAutoConsumption(params: AutoConsumptionParams): AutoCon
   // Prix moyens et finaux
   const edfPriceYearY = edfTtc * Math.pow(1 + r, horizonYears - 1);
   const avgEdfPrice = totalEdf / (consumptionCovered * horizonYears);
-  const avgSolarPrice = solarPriceTtc;
+  const avgSolarPrice = solarTtc;
 
   return {
     costEdfY1,
@@ -105,8 +95,7 @@ export function calculateAutoConsumption(params: AutoConsumptionParams): AutoCon
     avgEdfPrice,
     avgSolarPrice,
     yearlyData,
-    consumptionCovered,
-    solarPriceTtc
+    consumptionCovered
   };
 }
 

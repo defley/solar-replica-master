@@ -38,12 +38,7 @@ const SimulateurToiture = () => {
   const [autoConsumptionState, setAutoConsumptionState] = useState<AutoConsumptionState>({
     autoToggle: false,
     consumptionKwh: 4500,
-    coveragePct: 40,
-    edfTtc: 0.24,
-    solarHt: 0.125,
-    vatPct: 20,
-    inflationPct: 3,
-    horizonYears: 20
+    coveragePct: 40
   });
 
   // Charger depuis localStorage au montage
@@ -284,9 +279,6 @@ const SimulateurToiture = () => {
         {autoConsumptionState.autoToggle && autoConsumptionResults && (
           <AutoConsumptionResultsDisplay 
             results={autoConsumptionResults}
-            horizonYears={autoConsumptionState.horizonYears}
-            inflationPct={autoConsumptionState.inflationPct}
-            coveragePct={autoConsumptionState.coveragePct}
           />
         )}
       </div>

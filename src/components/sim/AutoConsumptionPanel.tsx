@@ -9,11 +9,6 @@ export interface AutoConsumptionState {
   autoToggle: boolean;
   consumptionKwh: number;
   coveragePct: number;
-  edfTtc: number;
-  solarHt: number;
-  vatPct: number;
-  inflationPct: number;
-  horizonYears: number;
 }
 
 interface AutoConsumptionPanelProps {
@@ -93,101 +88,18 @@ const AutoConsumptionPanel = ({ state, onStateChange }: AutoConsumptionPanelProp
                   <span className="text-sm font-medium w-12">{state.coveragePct}%</span>
                 </div>
               </div>
+            </div>
 
-              {/* Tarif EDF */}
-              <div>
-                <Label htmlFor="edfTtc" className="text-sm font-medium">
-                  Tarif Bleu EDF TTC (€/kWh)
-                </Label>
-                <p className="text-xs text-foreground/70 mt-1 mb-3">
-                  Éditable. Nous projeterons l'inflation sur {state.horizonYears} ans.
-                </p>
-                <input
-                  id="edfTtc"
-                  type="number"
-                  min={0}
-                  step={0.001}
-                  value={state.edfTtc}
-                  onChange={(e) => handleNumberChange('edfTtc', e.target.value)}
-                  className="w-full h-10 rounded-md border bg-background px-3 focus-ring"
-                  aria-describedby="edfTtc-help"
-                />
-              </div>
-
-              {/* Prix solaire HT */}
-              <div>
-                <Label htmlFor="solarHt" className="text-sm font-medium">
-                  Prix de l'énergie solaire (€/kWh HT)
-                </Label>
-                <p className="text-xs text-foreground/70 mt-1 mb-3">
-                  Coût moyen production centrale. Pas d'inflation appliquée.
-                </p>
-                <input
-                  id="solarHt"
-                  type="number"
-                  min={0}
-                  step={0.001}
-                  value={state.solarHt}
-                  onChange={(e) => handleNumberChange('solarHt', e.target.value)}
-                  className="w-full h-10 rounded-md border bg-background px-3 focus-ring"
-                  aria-describedby="solarHt-help"
-                />
-              </div>
-
-              {/* TVA */}
-              <div>
-                <Label htmlFor="vatPct" className="text-sm font-medium">
-                  TVA (%) appliquée au solaire
-                </Label>
-                <input
-                  id="vatPct"
-                  type="number"
-                  min={0}
-                  max={100}
-                  step={1}
-                  value={state.vatPct}
-                  onChange={(e) => handleNumberChange('vatPct', e.target.value)}
-                  className="w-full h-10 rounded-md border bg-background px-3 focus-ring"
-                />
-              </div>
-
-              {/* Inflation */}
-              <div>
-                <Label htmlFor="inflationPct" className="text-sm font-medium">
-                  Inflation énergétique moyenne (%/an)
-                </Label>
-                <p className="text-xs text-foreground/70 mt-1 mb-3">
-                  Appliquée au Tarif Bleu
-                </p>
-                <input
-                  id="inflationPct"
-                  type="number"
-                  min={0}
-                  max={50}
-                  step={0.1}
-                  value={state.inflationPct}
-                  onChange={(e) => handleNumberChange('inflationPct', e.target.value)}
-                  className="w-full h-10 rounded-md border bg-background px-3 focus-ring"
-                  aria-describedby="inflationPct-help"
-                />
-              </div>
-
-              {/* Durée projection */}
-              <div>
-                <Label htmlFor="horizonYears" className="text-sm font-medium">
-                  Durée de projection (années)
-                </Label>
-                <input
-                  id="horizonYears"
-                  type="number"
-                  min={1}
-                  max={30}
-                  step={1}
-                  value={state.horizonYears}
-                  onChange={(e) => handleNumberChange('horizonYears', e.target.value)}
-                  className="w-full h-10 rounded-md border bg-background px-3 focus-ring"
-                />
-              </div>
+            {/* Hypothèses */}
+            <div className="mt-6 p-4 bg-muted/30 rounded-lg">
+              <h4 className="font-medium text-sm mb-3">Hypothèses de calcul :</h4>
+              <ul className="text-xs text-foreground/70 space-y-1">
+                <li>• Prix EDF : 0,1952 €/kWh TTC</li>
+                <li>• Prix centrale solaire : 0,15 €/kWh TTC</li>
+                <li>• Inflation énergétique : 4 %/an (appliquée uniquement à EDF)</li>
+                <li>• Durée de projection : 30 ans</li>
+                <li>• Prix solaire constant (production propre)</li>
+              </ul>
             </div>
           </div>
         </CollapsibleContent>
