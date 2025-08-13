@@ -245,7 +245,7 @@ const CableSection = () => {
                     Un conseiller dédié vous rappelle sous 48h (jours ouvrés) pour élaborer votre dossier et évaluer la faisabilité du projet. Vous pouvez aussi nous missionner pour négocier avec nos partenaires développeurs d'énergie renouvelable.
                   </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
-                    <a href="#simulator">Accéder au simulateur</a>
+                    <a href="#simulateur-toiture">Accéder au simulateur</a>
                   </Button>
                 </div>
               </div>
