@@ -182,27 +182,6 @@ const SimulateurToiture = () => {
               onStateChange={onAutoConsumptionChange}
             />
 
-            {showAutoSavings && !autoConsumptionState.autoToggle && (
-              <div>
-                <Label className="text-base">Économie estimée d'autoconsommation (€/an)</Label>
-                <p className="text-sm text-foreground/70 mt-1">
-                  Économies sur votre facture d'électricité grâce à l'autoconsommation.
-                </p>
-                <div className="mt-4 flex items-center gap-4">
-                  <div className="flex-1">
-                    <input
-                      type="number"
-                      min={0}
-                      value={autoSavings}
-                      onChange={(e) => setAutoSavings(Math.max(0, Number(e.target.value) || 0))}
-                      className="w-full h-10 rounded-md border bg-background px-3 focus-ring"
-                      placeholder="0"
-                    />
-                  </div>
-                  <span className="text-sm font-medium">€/an</span>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Right: Results */}
