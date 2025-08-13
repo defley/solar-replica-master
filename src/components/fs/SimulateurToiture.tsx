@@ -251,8 +251,8 @@ const SimulateurToiture = () => {
           </aside>
         </div>
 
-        {/* Résultats autoconsommation */}
-        {autoConsumptionState.autoToggle && autoConsumptionResults && (
+        {/* Résultats autoconsommation - affichés seulement si surface > 900 m² ET toggle activé */}
+        {showAutoConsumption && autoConsumptionState.autoToggle && autoConsumptionResults && (
           <AutoConsumptionResultsDisplay 
             results={autoConsumptionResults}
           />
