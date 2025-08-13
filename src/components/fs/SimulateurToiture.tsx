@@ -3,6 +3,9 @@ import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
+import AutoConsumptionPanel, { AutoConsumptionState } from "@/components/sim/AutoConsumptionPanel";
+import AutoConsumptionResultsDisplay from "@/components/sim/AutoConsumptionResults";
+import { calculateAutoConsumption } from "@/lib/sim/autoconsommation";
 
 // Constantes pour les calculs
 const PROD_SPEC_KWH_PER_M2 = 198; // Production spécifique kWh/m²/an (basé sur 0.165 kWc/m² × 1200 kWh/kWc/an)
@@ -30,6 +33,18 @@ const SimulateurToiture = () => {
   const [surface, setSurface] = useState<number>(800);
   const [paymentMode, setPaymentMode] = useState<(typeof PAYMENT_MODES)[number]["key"]>("monthly");
   const [autoSavings, setAutoSavings] = useState<number>(0);
+  
+  // État autoconsommation
+  const [autoConsumptionState, setAutoConsumptionState] = useState<AutoConsumptionState>({
+    autoToggle: false,
+    consumptionKwh: 4500,
+    coveragePct: 40,
+    edfTtc: 0.24,
+    solarHt: 0.125,
+    vatPct: 20,
+    inflationPct: 3,
+    horizonYears: 20
+  });
 
   // Charger depuis localStorage au montage
   useEffect(() => {
@@ -40,6 +55,11 @@ const SimulateurToiture = () => {
         setSurface(data.surface || 800);
         setPaymentMode(data.paymentMode || "monthly");
         setAutoSavings(data.autoSavings || 0);
+        
+        // Charger état autoconsommation
+        if (data.autoConsumption) {
+          setAutoConsumptionState(prev => ({ ...prev, ...data.autoConsumption }));
+        }
       } catch (e) {
         console.error("Erreur lors du chargement des données:", e);
       }
@@ -51,11 +71,16 @@ const SimulateurToiture = () => {
     localStorage.setItem("simulateur-toiture", JSON.stringify({
       surface,
       paymentMode,
-      autoSavings
+      autoSavings,
+      autoConsumption: autoConsumptionState
     }));
-  }, [surface, paymentMode, autoSavings]);
+  }, [surface, paymentMode, autoSavings, autoConsumptionState]);
 
   const onSurfaceChange = (v: number) => setSurface(clamp(Number.isFinite(v) ? v : 100, 100, 3000));
+  
+  const onAutoConsumptionChange = (updates: Partial<AutoConsumptionState>) => {
+    setAutoConsumptionState(prev => ({ ...prev, ...updates }));
+  };
 
   // Calculs
   const isFeasible = surface >= 500;
@@ -83,6 +108,12 @@ const SimulateurToiture = () => {
   const totalSur30Ans = loyerAnnuel * 30;
   const paiementUnique = totalSur30Ans * PAIEMENT_UNIQUE_RATIO;
   const co2Total30Ans = Math.round(co2Evite * 30 * 10) / 10; // Arrondi à 0.1 T près
+
+  // Calculs autoconsommation
+  const autoConsumptionResults = useMemo(() => {
+    if (!autoConsumptionState.autoToggle) return null;
+    return calculateAutoConsumption(autoConsumptionState);
+  }, [autoConsumptionState]);
 
   return (
     <section id="simulateur-toiture" className="py-20 md:py-28 bg-muted/30">
@@ -150,7 +181,13 @@ const SimulateurToiture = () => {
               </RadioGroup>
             </div>
 
-            {showAutoSavings && (
+            {/* Panel autoconsommation */}
+            <AutoConsumptionPanel 
+              state={autoConsumptionState}
+              onStateChange={onAutoConsumptionChange}
+            />
+
+            {showAutoSavings && !autoConsumptionState.autoToggle && (
               <div>
                 <Label className="text-base">Économie estimée d'autoconsommation (€/an)</Label>
                 <p className="text-sm text-foreground/70 mt-1">
@@ -242,6 +279,16 @@ const SimulateurToiture = () => {
             )}
           </aside>
         </div>
+
+        {/* Résultats autoconsommation */}
+        {autoConsumptionState.autoToggle && autoConsumptionResults && (
+          <AutoConsumptionResultsDisplay 
+            results={autoConsumptionResults}
+            horizonYears={autoConsumptionState.horizonYears}
+            inflationPct={autoConsumptionState.inflationPct}
+            coveragePct={autoConsumptionState.coveragePct}
+          />
+        )}
       </div>
     </section>
   );
