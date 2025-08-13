@@ -4,7 +4,6 @@ import lottie, { AnimationItem } from "lottie-web";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
-import { initFeatureSteps } from "@/lib/scroll/features";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,13 +26,18 @@ const CableSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Lottie animation setup
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (!cableLottieRef.current || !cableWrapRef.current) return;
+    if (!sectionRef.current || !cableLottieRef.current || !cableWrapRef.current) return;
 
     // Respect reduced motion
     if (prefersReducedMotion()) {
+      // Show all panels statically
+      const panels = sectionRef.current.querySelectorAll('[data-panel]');
+      panels.forEach(panel => {
+        (panel as HTMLElement).style.opacity = '1';
+        (panel as HTMLElement).style.transform = 'none';
+      });
       if (cableWrapRef.current) cableWrapRef.current.style.display = 'none';
       return;
     }
@@ -53,35 +57,92 @@ const CableSection = () => {
 
     const onReady = () => {
       const total = Math.max(1, Math.floor(anim.getDuration(true)));
+      const easeOut = gsap.parseEase("power2.out");
 
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: 1.5,
+      const cssNumber = (name: string, fallback = 0) => {
+        const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseFloat(v);
+        return Number.isFinite(n) ? n : fallback;
+      };
+
+      const endPct = cssNumber("--cable-end", 1600);
+
+      const st = ScrollTrigger.create({
+        trigger: "#cable-section",
+        start: "top top",
+        end: `+=${endPct}%`,
+        scrub: true,
+        pin: true,
+        pinSpacing: true,
         onUpdate: (self) => {
-          let p = self.progress;
-          
-          // Panel A: 0-30%
-          if (p <= 0.3) {
-            p = p / 0.3; // normalize to 0-1
-          }
-          // Panel B: 35-65%
-          else if (p >= 0.35 && p <= 0.65) {
-            p = (p - 0.35) / 0.3; // normalize to 0-1
-          }
-          // Panel C: 70-100%
-          else if (p >= 0.7) {
-            p = (p - 0.7) / 0.3; // normalize to 0-1
-          }
-          
-          const frame = Math.min(total - 1, Math.max(0, Math.round(p * (total - 1))));
+          const p = self.progress;
+
+          // 0–90% linear, 90–100% ease-out (same feel as original)
+          const t = p < 0.9 ? p : 0.9 + 0.1 * easeOut((p - 0.9) / 0.1);
+          const frame = Math.min(total - 1, Math.max(0, Math.round(t * (total - 1))));
           anim.goToAndStop(frame, true);
 
           const el = document.getElementById("cable-lottie");
           if (el) {
             el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
+
+          // Panel visibility with NO overlap and extended reading times
+          // Panel A: 0-30% (fade-in 0-5%, stable 5-25%, fade-out 25-30%)
+          // Panel B: 35-65% (fade-in 35-40%, stable 40-60%, fade-out 60-65%)
+          // Panel C: 70-100% (fade-in 70-75%, stable 75-100%)
+          const panels = sectionRef.current?.querySelectorAll('[data-panel]');
+          panels?.forEach((panel, index) => {
+            const element = panel as HTMLElement;
+            let opacity = 0;
+            const translateX = 24;
+
+            if (index === 0) {
+              // Panel A: 0-30% avec transition complète avant le suivant
+              if (p <= 0.05) {
+                opacity = p / 0.05; // fade-in 0-5%
+              } else if (p <= 0.25) {
+                opacity = 1; // stable 5-25% (20% de temps visible)
+              } else if (p <= 0.30) {
+                opacity = (0.30 - p) / 0.05; // fade-out 25-30%
+              } else {
+                opacity = 0;
+              }
+            } else if (index === 1) {
+              // Panel B: 35-65% avec gap de 5% après Panel A
+              if (p >= 0.35 && p <= 0.40) {
+                opacity = (p - 0.35) / 0.05; // fade-in 35-40%
+              } else if (p > 0.40 && p <= 0.60) {
+                opacity = 1; // stable 40-60% (20% de temps visible)
+              } else if (p > 0.60 && p <= 0.65) {
+                opacity = (0.65 - p) / 0.05; // fade-out 60-65%
+              } else {
+                opacity = 0;
+              }
+            } else if (index === 2) {
+              // Panel C: 70-100% avec gap de 5% après Panel B
+              if (p >= 0.70 && p <= 0.75) {
+                opacity = (p - 0.70) / 0.05; // fade-in 70-75%
+              } else if (p > 0.75) {
+                opacity = 1; // stable 75-100% (25% de temps visible)
+              } else {
+                opacity = 0;
+              }
+            }
+
+            element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+            
+            if (index <= 2) {
+              const dir = index % 2 === 0 ? -1 : 1;
+              if (opacity > 0) {
+                element.style.transform = `translateX(${(1 - opacity) * translateX * dir}px)`;
+              } else {
+                element.style.transform = `translateX(${translateX * dir}px)`;
+              }
+            } else {
+              element.style.transform = 'none';
+            }
+          });
         }
       });
 
@@ -89,6 +150,10 @@ const CableSection = () => {
       if (cableLottieRef.current) {
         cableLottieRef.current.style.willChange = "transform";
       }
+
+      return () => {
+        st.kill();
+      };
     };
 
     anim.addEventListener("DOMLoaded", onReady);
@@ -106,14 +171,13 @@ const CableSection = () => {
     <section 
       ref={sectionRef}
       id="cable-section" 
-      className="relative min-h-[1600vh] bg-background"
+      className="relative min-h-[80vh] bg-background"
     >
       {/* Cable Lottie Overlay - Behind content */}
       <div 
         ref={cableWrapRef}
         id="cable-wrap" 
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-10"
       >
         <div 
           ref={cableLottieRef}
@@ -122,10 +186,11 @@ const CableSection = () => {
       </div>
 
       {/* Content Panels */}
-      <div className="relative z-20">
+      <div className="relative z-20 min-h-screen">
         {/* Panel A */}
         <div 
-          className="min-h-[500vh] flex items-center"
+          data-panel="0"
+          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -156,7 +221,8 @@ const CableSection = () => {
 
         {/* Panel B */}
         <div 
-          className="min-h-[500vh] flex items-center"
+          data-panel="1"
+          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -184,7 +250,8 @@ const CableSection = () => {
 
         {/* Panel C */}
         <div 
-          className="min-h-[500vh] flex items-center"
+          data-panel="2"
+          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -212,6 +279,7 @@ const CableSection = () => {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

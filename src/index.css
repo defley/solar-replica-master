@@ -183,35 +183,6 @@
   will-change: transform;
 }
 
-/* Feature Steps CSS */
-.fs-steps {
-  position: relative;
-}
-
-.fs-step {
-  min-height: 180vh; /* desktop cible */
-  display: grid;
-  place-items: center;
-  opacity: 0;            /* on reveal via GSAP */
-  will-change: transform, opacity;
-}
-
-/* Mobile: un peu plus court */
-@media (max-width: 768px) {
-  .fs-step {
-    min-height: 130vh;
-  }
-}
-
-/* Progress bar optionnelle (si ajoutée) */
-.fs-progress {
-  position: sticky;
-  top: 0;
-  height: 4px;
-  background: linear-gradient(to right, currentColor var(--p,0%), transparent 0);
-  z-index: 30;
-}
-
 /* Utilities */
 @layer utilities {
   .container-xl { @apply max-w-[1200px] mx-auto px-6; }
