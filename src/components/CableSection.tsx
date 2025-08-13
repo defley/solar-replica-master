@@ -152,7 +152,7 @@ const CableSection = () => {
     <section 
       ref={sectionRef}
       id="cable-section" 
-      className="relative min-h-[150vh] bg-background"
+      className="relative min-h-[80vh] bg-background"
     >
       {/* Cable Lottie Overlay - Behind content */}
       <div 
