@@ -89,19 +89,18 @@ const CableSection = () => {
             el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
 
-          // Panel visibility with extended reading times and smooth transitions
-          // Much longer stable periods for comfortable reading with the extended scroll
+          // Panel visibility with seamless transitions (no gaps to avoid white background)
           // Panel A: 0-35% (fade-in 0-3%, stable 3-30%, fade-out 30-35%)
-          // Panel B: 40-70% (fade-in 40-43%, stable 43-65%, fade-out 65-70%)  
-          // Panel C: 75-100% (fade-in 75-78%, stable 78-100%)
+          // Panel B: 35-70% (fade-in 35-38%, stable 38-65%, fade-out 65-70%)  
+          // Panel C: 70-100% (fade-in 70-73%, stable 73-100%)
           const panels = sectionRef.current?.querySelectorAll('[data-panel]');
           panels?.forEach((panel, index) => {
             const element = panel as HTMLElement;
             let opacity = 0;
-            const translateX = 16; // Reduced for smoother feel
+            const translateX = 16;
 
             if (index === 0) {
-              // Panel A: 0-35% with much longer stable period
+              // Panel A: 0-35% with long stable period
               if (p <= 0.03) {
                 opacity = p / 0.03; // fade-in 0-3%
               } else if (p <= 0.30) {
@@ -112,22 +111,22 @@ const CableSection = () => {
                 opacity = 0;
               }
             } else if (index === 1) {
-              // Panel B: 40-70% with 5% gap and longer stable period
-              if (p >= 0.40 && p <= 0.43) {
-                opacity = (p - 0.40) / 0.03; // fade-in 40-43%
-              } else if (p > 0.43 && p <= 0.65) {
-                opacity = 1; // stable 43-65% (22% visible time!)
+              // Panel B: 35-70% seamless transition from A, no gap before C
+              if (p >= 0.35 && p <= 0.38) {
+                opacity = (p - 0.35) / 0.03; // fade-in 35-38%
+              } else if (p > 0.38 && p <= 0.65) {
+                opacity = 1; // stable 38-65% (27% visible time!)
               } else if (p > 0.65 && p <= 0.70) {
                 opacity = (0.70 - p) / 0.05; // fade-out 65-70%
               } else {
                 opacity = 0;
               }
             } else if (index === 2) {
-              // Panel C: 75-100% with 5% gap and longest stable period
-              if (p >= 0.75 && p <= 0.78) {
-                opacity = (p - 0.75) / 0.03; // fade-in 75-78%
-              } else if (p > 0.78) {
-                opacity = 1; // stable 78-100% (22% visible time!)
+              // Panel C: 70-100% seamless transition from B, no gap
+              if (p >= 0.70 && p <= 0.73) {
+                opacity = (p - 0.70) / 0.03; // fade-in 70-73%
+              } else if (p > 0.73) {
+                opacity = 1; // stable 73-100% (27% visible time!)
               } else {
                 opacity = 0;
               }
