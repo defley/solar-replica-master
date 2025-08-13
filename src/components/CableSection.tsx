@@ -27,19 +27,6 @@ const CableSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Initialize feature steps system
-  useEffect(() => {
-    const cleanup = initFeatureSteps({
-      container: ".fs-steps",
-      step: ".fs-step",
-      pin: true,
-      vhPerStep: 190,         // plus long pour lecture confortable
-      vhPerStepMobile: 135,
-      snap: true,
-    });
-    return () => { if (typeof cleanup === "function") cleanup(); };
-  }, []);
-
   // Lottie animation setup
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -67,14 +54,27 @@ const CableSection = () => {
     const onReady = () => {
       const total = Math.max(1, Math.floor(anim.getDuration(true)));
 
-      // Sync cable animation with feature steps
       ScrollTrigger.create({
-        trigger: ".fs-steps",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1.5,
         onUpdate: (self) => {
-          const p = self.progress;
+          let p = self.progress;
+          
+          // Panel A: 0-30%
+          if (p <= 0.3) {
+            p = p / 0.3; // normalize to 0-1
+          }
+          // Panel B: 35-65%
+          else if (p >= 0.35 && p <= 0.65) {
+            p = (p - 0.35) / 0.3; // normalize to 0-1
+          }
+          // Panel C: 70-100%
+          else if (p >= 0.7) {
+            p = (p - 0.7) / 0.3; // normalize to 0-1
+          }
+          
           const frame = Math.min(total - 1, Math.max(0, Math.round(p * (total - 1))));
           anim.goToAndStop(frame, true);
 
@@ -106,7 +106,7 @@ const CableSection = () => {
     <section 
       ref={sectionRef}
       id="cable-section" 
-      className="fs-steps relative min-h-[80vh] bg-background"
+      className="relative min-h-[1600vh] bg-background"
     >
       {/* Cable Lottie Overlay - Behind content */}
       <div 
@@ -125,7 +125,7 @@ const CableSection = () => {
       <div className="relative z-20">
         {/* Panel A */}
         <div 
-          className="fs-step min-h-[180vh] flex items-center will-change-transform opacity-0"
+          className="min-h-[500vh] flex items-center"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -156,7 +156,7 @@ const CableSection = () => {
 
         {/* Panel B */}
         <div 
-          className="fs-step min-h-[180vh] flex items-center will-change-transform opacity-0"
+          className="min-h-[500vh] flex items-center"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -184,7 +184,7 @@ const CableSection = () => {
 
         {/* Panel C */}
         <div 
-          className="fs-step min-h-[180vh] flex items-center will-change-transform opacity-0"
+          className="min-h-[500vh] flex items-center"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
