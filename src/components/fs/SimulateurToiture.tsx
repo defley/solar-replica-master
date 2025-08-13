@@ -106,7 +106,7 @@ const SimulateurToiture = () => {
   }, [autoConsumptionState]);
 
   return (
-    <section id="simulateur-toiture" className="py-20 md:py-28 bg-muted/30">
+    <section id="simulateur-toiture" className="py-20 md:py-28">
       <div className="container-xl">
         <header className="text-center max-w-3xl mx-auto">
           <h2 className="font-display text-3xl md:text-4xl leading-tight">
