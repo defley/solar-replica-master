@@ -218,10 +218,10 @@ const CableSection = () => {
               <div className="md:col-span-5 md:col-start-8">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">
-                    Financez vos travaux grâce à votre toiture
+                    Financez votre Plan Pluriannuel de Travaux
                   </h3>
                   <p className="mt-4 text-foreground/80">
-                    Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
+                    Louez votre toiture et obtenez un versement unique de 30 000 à 50 000 €, selon la surface, pour réaliser vos travaux sans appel de fonds aux copropriétaires.
                   </p>
                 </div>
               </div>
@@ -239,10 +239,10 @@ const CableSection = () => {
               <div className="md:col-span-5">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">
-                    Financez votre Plan Pluriannuel de Travaux
+                    Financez vos travaux grâce à votre toiture
                   </h3>
                   <p className="mt-4 text-foreground/80">
-                    Louez votre toiture et obtenez un versement unique de 30 000 à 50 000 €, selon la surface, pour réaliser vos travaux sans appel de fonds aux copropriétaires.
+                    Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
                     <a href="#simulateur-toiture">Accéder au simulateur</a>
