@@ -41,7 +41,7 @@ const MonDossier = () => {
   const totalSteps = 5;
 
   useEffect(() => {
-    document.title = "Mon Dossier - Ferme Solaire";
+    document.title = "Mon Dossier - Copro Solaire";
   }, []);
 
   const handleNext = () => {
@@ -102,17 +102,17 @@ const MonDossier = () => {
             <div className="flex items-center gap-4">
               <img 
                 src="/assets/home-hero.png" 
-                alt="Ferme Solaire" 
+                alt="Copro Solaire" 
                 className="h-8"
               />
-              <span className="font-display text-xl">ferme solaire</span>
+              <span className="font-display text-xl">copro solaire</span>
             </div>
             <a 
-              href="tel:+33412280241" 
+              href="tel:+33782905669" 
               className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground"
             >
               <Phone className="w-4 h-4" />
-              04 12 28 02 41
+              07 82 90 56 69
             </a>
           </div>
         </div>
@@ -347,10 +347,10 @@ const MonDossier = () => {
             <p className="text-sm text-foreground/60">
               Des questions ? Contactez-nous au{" "}
               <a 
-                href="tel:+33412280241" 
+                href="tel:+33782905669" 
                 className="text-cta hover:underline font-medium"
               >
-                04 12 28 02 41
+                07 82 90 56 69
               </a>
             </p>
           </div>

@@ -36,13 +36,13 @@ const Magazine = () => {
       author: "Hortense Foillard", 
       date: "5/8/25",
       image: "/assets/cable/step-2.jpg",
-      excerpt: "Tout ce qu'il faut savoir avant de louer son terrain pour une ferme solaire."
+      excerpt: "Tout ce qu'il faut savoir avant de louer son terrain pour une centrale solaire."
     },
     {
       id: "3",
       title: "L'agrivoltaïsme ovin : comment réussir votre projet ?",
       category: "Monde agricole",
-      author: "Équipe Ferme Solaire",
+      author: "Équipe Copro Solaire",
       date: "2/8/25", 
       image: "/assets/cable/step-3.jpg",
       excerpt: "Combiner élevage et production d'énergie solaire : guide pratique et retours d'expérience."
@@ -51,7 +51,7 @@ const Magazine = () => {
       id: "4",
       title: "Réglementation solaire : les nouvelles obligations en 2024",
       category: "Réglementation solaire",
-      author: "Équipe Ferme Solaire",
+      author: "Équipe Copro Solaire",
       date: "28/7/25",
       image: "/assets/paysage-campagne-1.png",
       excerpt: "Point sur les évolutions réglementaires qui impactent les projets photovoltaïques."
@@ -60,7 +60,7 @@ const Magazine = () => {
       id: "5",
       title: "Opportunités de financement pour les fermes solaires",
       category: "Opportunités",
-      author: "Équipe Ferme Solaire",
+      author: "Équipe Copro Solaire",
       date: "25/7/25",
       image: "/assets/paysage-campagne-2.png",
       excerpt: "Tour d'horizon des aides et dispositifs de financement disponibles en 2024."
@@ -69,7 +69,7 @@ const Magazine = () => {
       id: "6",
       title: "Actualités du renouvelable : bilan du premier semestre 2024",
       category: "Actualités du renouvelable",
-      author: "Équipe Ferme Solaire",
+      author: "Équipe Copro Solaire",
       date: "22/7/25",
       image: "/assets/serre-solaire.png",
       excerpt: "Les chiffres clés de la transition énergétique et les tendances du marché."
@@ -91,7 +91,7 @@ const Magazine = () => {
     : articles.filter(article => article.category === selectedCategory);
 
   useEffect(() => {
-    document.title = "Magazine - Ferme Solaire";
+    document.title = "Magazine - Copro Solaire";
   }, []);
 
   return (

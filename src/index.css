@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Internal reproduction authorized by Ferme Solaire */
+/* Internal reproduction authorized by Copro Solaire */
 /* Global design tokens (HSL only) + local fonts */
 
 /* Local font faces */
@@ -49,7 +49,7 @@
     --font-display: "FS Display", serif;
     --font-sans: "FS Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-    /* Brand palette approximated from ferme solaire */
+    /* Brand palette approximated from copro solaire */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -65,8 +65,8 @@
     --accent: 114 90% 34%; /* green check */
     --accent-foreground: 0 0% 100%;
 
-    --cta: 48 96% 57%; /* sunflower yellow */
-    --cta-foreground: 222.2 84% 4.9%;
+    --cta: 210 100% 25%; /* navy blue */
+    --cta-foreground: 210 40% 98%;
 
     --card: var(--surface);
     --card-foreground: var(--surface-foreground);
@@ -115,8 +115,8 @@
     --accent: 142 71% 45%;
     --accent-foreground: 210 40% 98%;
 
-    --cta: 48 96% 52%;
-    --cta-foreground: 222.2 47.4% 11.2%;
+    --cta: 210 100% 30%;
+    --cta-foreground: 210 40% 98%;
 
     --card: 222.2 84% 6.9%;
     --card-foreground: 210 40% 98%;

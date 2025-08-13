@@ -1,4 +1,4 @@
-// Internal reproduction authorized by Ferme Solaire
+// Internal reproduction authorized by Copro Solaire
 import CableLottie from "@/components/CableLottie";
 const Hero = () => {
   return <section id="top" className="relative pt-10 lg:pt-20">

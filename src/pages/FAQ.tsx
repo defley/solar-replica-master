@@ -152,10 +152,10 @@ const FAQ = () => {
                   <div className="text-left">
                     <p className="text-sm text-foreground/60">Appelez-nous</p>
                     <a 
-                      href="tel:+33412280241"
+                      href="tel:+33782905669"
                       className="text-lg font-semibold text-cta hover:underline"
                     >
-                      04 12 28 02 41
+                      07 82 90 56 69
                     </a>
                   </div>
                 </div>
@@ -169,10 +169,10 @@ const FAQ = () => {
                   <div className="text-left">
                     <p className="text-sm text-foreground/60">Écrivez-nous</p>
                     <a 
-                      href="mailto:contact@fermesolaire.fr"
+                      href="mailto:romain@claudinon.fr"
                       className="text-lg font-semibold text-cta hover:underline"
                     >
-                      contact@fermesolaire.fr
+                      romain@claudinon.fr
                     </a>
                   </div>
                 </div>

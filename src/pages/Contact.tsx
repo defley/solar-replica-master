@@ -8,7 +8,7 @@ import { MapPin, Phone, Mail, Clock, Users, Award } from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
-    document.title = "Contact - Ferme Solaire";
+    document.title = "Contact - Copro Solaire";
   }, []);
 
   return (
@@ -48,10 +48,10 @@ const Contact = () => {
                     Un conseiller dédié vous rappelle sous 48h
                   </p>
                   <a 
-                    href="tel:+33412280241"
+                    href="tel:+33782905669"
                     className="text-2xl font-semibold text-cta hover:underline"
                   >
-                    04 12 28 02 41
+                    07 82 90 56 69
                   </a>
                   <p className="text-sm text-foreground/60 mt-2">
                     Du lundi au vendredi, 9h-18h
@@ -72,10 +72,10 @@ const Contact = () => {
                     Envoyez-nous vos questions par email
                   </p>
                   <a 
-                    href="mailto:contact@fermesolaire.fr"
+                    href="mailto:romain@claudinon.fr"
                     className="text-lg font-semibold text-cta hover:underline"
                   >
-                    contact@fermesolaire.fr
+                    romain@claudinon.fr
                   </a>
                   <p className="text-sm text-foreground/60 mt-2">
                     Réponse sous 24h

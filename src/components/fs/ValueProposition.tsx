@@ -20,7 +20,7 @@ const ValueProposition = () => {
     <section className="py-16 md:py-24">
       <div className="container-xs text-center">
         <h2 className="text-3xl md:text-4xl font-display leading-tight">Valorisez votre terrain au profit de la transition écologique.</h2>
-        <p className="paragraph-xl text-grey mt-3">Investissez dans un avenir durable<br /> en hébergeant une ferme solaire.</p>
+        <p className="paragraph-xl text-grey mt-3">Investissez dans un avenir durable<br /> en hébergeant une centrale solaire.</p>
 
         <div className="mt-4 flex items-center justify-center gap-8 text-sm">
           <div className="flex items-center gap-2"><CheckIcon /> <span>Gratuit de A à Z</span></div>
@@ -30,10 +30,10 @@ const ValueProposition = () => {
 
         <div className="mt-8 flex items-center justify-center gap-4">
           <a href="/mondossier" className="rounded-full h-11 px-5 inline-flex items-center justify-center bg-primary text-primary-foreground font-medium focus-ring">
-            Héberger une ferme solaire
+            Héberger une centrale solaire
           </a>
-          <a href="tel:+33412280241" className="text-sm text-foreground/80 hover:underline focus-ring rounded-md">
-            ou appelez-nous au 04.12.28.02.41
+          <a href="tel:+33782905669" className="text-sm text-foreground/80 hover:underline focus-ring rounded-md">
+            ou appelez-nous au 07.82.90.56.69
           </a>
         </div>
       </div>

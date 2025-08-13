@@ -8,7 +8,7 @@ import { CheckCircle, Phone, FileText, Target, Zap, Star } from "lucide-react";
 
 const CommentCaMarche = () => {
   useEffect(() => {
-    document.title = "Comment ça marche - Ferme Solaire";
+    document.title = "Comment ça marche - Copro Solaire";
   }, []);
 
   const steps = [
@@ -29,14 +29,14 @@ const CommentCaMarche = () => {
     {
       number: "3",
       title: "Je reçois jusqu'à 3 propositions de producteurs d'énergie",
-      description: "Si mon terrain est éligible je reçois jusqu'à 3 propositions de producteurs d'énergie renouvelables pour la construction de la centrale photovoltaïque. Tous partenaires de Ferme Solaire, ils ont été sélectionnés pour leur fiabilité et leur renommée en France et à l'international.",
+      description: "Si mon terrain est éligible je reçois jusqu'à 3 propositions de producteurs d'énergie renouvelables pour la construction de la centrale photovoltaïque. Tous partenaires de Copro Solaire, ils ont été sélectionnés pour leur fiabilité et leur renommée en France et à l'international.",
       image: "/assets/cable/step-3.jpg",
       icon: <Target className="w-8 h-8 text-cta" />
     },
     {
       number: "4",
       title: "Je choisis l'offre la plus adaptée à mes besoins",
-      description: "Le développeur de la centrale prend le relais et se charge de toutes les démarches administratives et financières. Autre possibilité : Ferme Solaire reste à mes côtés pour m'aiguiller et négocier la solution la plus pertinente. Totale indépendance ou relais de confiance : je fais mon choix !",
+      description: "Le développeur de la centrale prend le relais et se charge de toutes les démarches administratives et financières. Autre possibilité : Copro Solaire reste à mes côtés pour m'aiguiller et négocier la solution la plus pertinente. Totale indépendance ou relais de confiance : je fais mon choix !",
       image: "/assets/paysage-campagne-1.png",
       icon: <CheckCircle className="w-8 h-8 text-cta" />
     },
@@ -111,7 +111,7 @@ const CommentCaMarche = () => {
         <section className="py-16 md:py-24 bg-surface">
           <div className="container-xl">
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-sm italic text-foreground/70 mb-2">Hébergez une ferme solaire</p>
+              <p className="text-sm italic text-foreground/70 mb-2">Hébergez une centrale solaire</p>
               <h2 className="text-3xl md:text-4xl font-display leading-tight mb-6">
                 Déposez votre demande en moins de 5 minutes
               </h2>
@@ -138,10 +138,10 @@ const CommentCaMarche = () => {
                 <p className="text-sm text-foreground/60">
                   ou appelez-nous au{" "}
                   <a 
-                    href="tel:+33412280241" 
+                    href="tel:+33782905669" 
                     className="text-cta hover:underline font-medium"
                   >
-                    04.12.28.02.41
+                    07.82.90.56.69
                   </a>
                 </p>
               </div>

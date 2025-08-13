@@ -1,4 +1,4 @@
-// Internal reproduction authorized by Ferme Solaire
+// Internal reproduction authorized by Copro Solaire
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

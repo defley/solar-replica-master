@@ -3,7 +3,7 @@ import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
-// Internal reproduction authorized by Ferme Solaire
+// Internal reproduction authorized by Copro Solaire
 // NOTE: This is a faithful reimplementation of the homepage simulator UI.
 // The calculation model is a placeholder and will be replaced with the exact
 // formula after build-time scraping of the original assets/scripts.

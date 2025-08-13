@@ -1,5 +1,5 @@
 'use client';
-// Internal reproduction authorized by Ferme Solaire
+// Internal reproduction authorized by Copro Solaire
 import { useEffect, useRef } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import { gsap } from "gsap";
