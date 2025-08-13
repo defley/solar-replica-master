@@ -188,11 +188,11 @@ const CableSection = () => {
       </div>
 
       {/* Content Panels */}
-      <div className="relative z-20 min-h-[60vh]">
+      <div className="relative z-20 h-screen">
         {/* Panel A */}
         <div 
           data-panel="0"
-          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0"
+          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0 bg-background"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -224,7 +224,7 @@ const CableSection = () => {
         {/* Panel B */}
         <div 
           data-panel="1"
-          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0"
+          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0 bg-background"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
@@ -253,7 +253,7 @@ const CableSection = () => {
         {/* Panel C */}
         <div 
           data-panel="2"
-          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0"
+          className="absolute inset-0 flex items-center transition-all duration-300 opacity-0 bg-background"
         >
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
