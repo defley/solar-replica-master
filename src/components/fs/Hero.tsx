@@ -12,7 +12,7 @@ const Hero = () => {
             <br />
             une
             <br />
-            ferme
+            centrale
             <br />
             solaire
           </h1>
