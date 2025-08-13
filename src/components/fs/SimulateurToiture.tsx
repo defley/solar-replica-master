@@ -80,9 +80,9 @@ const SimulateurToiture = () => {
   }, [surface, autoSavings, isFeasible]);
 
   const { loyerAnnuel, co2Evite } = calculatedResults;
-  const loyerMensuel = loyerAnnuel / 12;
   const totalSur30Ans = loyerAnnuel * 30;
   const paiementUnique = totalSur30Ans * PAIEMENT_UNIQUE_RATIO;
+  const co2Total30Ans = co2Evite * 30;
 
   return (
     <section id="simulateur-toiture" className="py-20 md:py-28 bg-muted/30">
@@ -201,12 +201,11 @@ const SimulateurToiture = () => {
                       <div className="mt-2 text-3xl font-semibold">{formatCurrency(loyerAnnuel)}</div>
                     </div>
                     <div className="rounded-xl border bg-card p-6">
-                      <div className="text-sm text-foreground/70">Mensuel moyen</div>
-                      <div className="mt-2 text-2xl font-semibold">{formatCurrency(loyerMensuel)}</div>
-                    </div>
-                    <div className="rounded-xl border bg-card p-6">
-                      <div className="text-sm text-foreground/70">Total sur 30 ans</div>
-                      <div className="mt-2 text-xl font-semibold">{formatCurrency(totalSur30Ans)}</div>
+                      <div className="text-sm text-foreground/70">Total de CO₂ économisé sur 30 ans</div>
+                      <div className="mt-2 text-2xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} t</div>
+                      <div className="mt-1 text-xs text-foreground/70">
+                        Source : Étude RTE (2019)
+                      </div>
                     </div>
                   </>
                 ) : (
