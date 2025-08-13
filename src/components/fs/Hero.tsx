@@ -32,20 +32,8 @@ const Hero = () => {
             </svg>
             <span>Gratuit de A à Z</span>
           </div>
-          <div className="flex items-center gap-2">
-            <svg width="16" height="12" viewBox="0 0 14 11" aria-hidden>
-              <g fill="none" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="square">
-                <polyline points="9.68 0 3.02 6.86 0 3.74" />
-              </g>
-            </svg>
-            <span>Sans engagement</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg width="17" height="16" viewBox="0 0 17 16" aria-hidden>
-              <path fill="hsl(var(--accent))" d="M7.57.35c.15-.47.82-.47.97 0l1.54 4.97c.07.21.26.35.48.35h5.04c.48 0 .68.6.3.9l-4.12 3.13c-.17.13-.24.35-.18.56l1.56 5.04c.14.46-.43.83-.82.53L8.35 12.76a.62.62 0 0 0-.61 0L3.71 15.82c-.39.3-.96-.07-.82-.53l1.56-5.04a.62.62 0 0 0-.18-.54L.2 6.56c-.38-.3-.17-.9.32-.9h5.04c.22 0 .41-.14.48-.35L7.57.35z" />
-            </svg>
-            <span>Trustpilot</span>
-          </div>
+          
+          
         </div>
       </div>
 
