@@ -8,6 +8,7 @@ import TransparencySection from "@/components/fs/TransparencySection";
 import LandscapeBanner from "@/components/fs/LandscapeBanner";
 import PromiseSection from "@/components/fs/PromiseSection";
 import Simulator from "@/components/fs/Simulator";
+import SimulateurToiture from "@/components/fs/SimulateurToiture";
 import Footer from "@/components/fs/Footer";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <Hero />
       <VideoSection />
       <CableSection />
+      <SimulateurToiture />
       <ValueProposition />
       <GainSection />
       <TransparencySection />
