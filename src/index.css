@@ -38,8 +38,8 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 @layer base {
   :root {
-    /* CÂBLE – stop earlier + put socket above cable + end micro-nudge */
-    --cable-end: 105;      /* was ~152; tune 136–146 if needed */
+    /* CÂBLE – extended scroll for better UX (mobile: reduce to 600-800) */
+    --cable-end: 1000;     /* much longer scroll for comfortable reading */
     --cable-x: -6vw;
     --cable-y: -8vh;
     --cable-scale: 0.88;

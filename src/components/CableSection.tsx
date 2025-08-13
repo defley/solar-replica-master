@@ -65,13 +65,15 @@ const CableSection = () => {
         return Number.isFinite(n) ? n : fallback;
       };
 
-      const endPct = cssNumber("--cable-end", 1600);
+      const endPct = cssNumber("--cable-end", 1000);
+      // Mobile adaptation: reduce scroll distance for better mobile UX
+      const finalEndPct = isMobile ? Math.min(endPct, 700) : endPct;
 
       const st = ScrollTrigger.create({
         trigger: "#cable-section",
-        start: "top top",
-        end: `+=${endPct}%`,
-        scrub: true,
+        start: "top top", 
+        end: `+=${finalEndPct}%`,
+        scrub: 0.8,
         pin: true,
         pinSpacing: true,
         onUpdate: (self) => {
@@ -87,44 +89,45 @@ const CableSection = () => {
             el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
 
-          // Panel visibility with NO overlap and extended reading times
-          // Panel A: 0-30% (fade-in 0-5%, stable 5-25%, fade-out 25-30%)
-          // Panel B: 35-65% (fade-in 35-40%, stable 40-60%, fade-out 60-65%)
-          // Panel C: 70-100% (fade-in 70-75%, stable 75-100%)
+          // Panel visibility with extended reading times and smooth transitions
+          // Much longer stable periods for comfortable reading with the extended scroll
+          // Panel A: 0-35% (fade-in 0-3%, stable 3-30%, fade-out 30-35%)
+          // Panel B: 40-70% (fade-in 40-43%, stable 43-65%, fade-out 65-70%)  
+          // Panel C: 75-100% (fade-in 75-78%, stable 78-100%)
           const panels = sectionRef.current?.querySelectorAll('[data-panel]');
           panels?.forEach((panel, index) => {
             const element = panel as HTMLElement;
             let opacity = 0;
-            const translateX = 24;
+            const translateX = 16; // Reduced for smoother feel
 
             if (index === 0) {
-              // Panel A: 0-30% avec transition complète avant le suivant
-              if (p <= 0.05) {
-                opacity = p / 0.05; // fade-in 0-5%
-              } else if (p <= 0.25) {
-                opacity = 1; // stable 5-25% (20% de temps visible)
+              // Panel A: 0-35% with much longer stable period
+              if (p <= 0.03) {
+                opacity = p / 0.03; // fade-in 0-3%
               } else if (p <= 0.30) {
-                opacity = (0.30 - p) / 0.05; // fade-out 25-30%
+                opacity = 1; // stable 3-30% (27% visible time!)
+              } else if (p <= 0.35) {
+                opacity = (0.35 - p) / 0.05; // fade-out 30-35%
               } else {
                 opacity = 0;
               }
             } else if (index === 1) {
-              // Panel B: 35-65% avec gap de 5% après Panel A
-              if (p >= 0.35 && p <= 0.40) {
-                opacity = (p - 0.35) / 0.05; // fade-in 35-40%
-              } else if (p > 0.40 && p <= 0.60) {
-                opacity = 1; // stable 40-60% (20% de temps visible)
-              } else if (p > 0.60 && p <= 0.65) {
-                opacity = (0.65 - p) / 0.05; // fade-out 60-65%
+              // Panel B: 40-70% with 5% gap and longer stable period
+              if (p >= 0.40 && p <= 0.43) {
+                opacity = (p - 0.40) / 0.03; // fade-in 40-43%
+              } else if (p > 0.43 && p <= 0.65) {
+                opacity = 1; // stable 43-65% (22% visible time!)
+              } else if (p > 0.65 && p <= 0.70) {
+                opacity = (0.70 - p) / 0.05; // fade-out 65-70%
               } else {
                 opacity = 0;
               }
             } else if (index === 2) {
-              // Panel C: 70-100% avec gap de 5% après Panel B
-              if (p >= 0.70 && p <= 0.75) {
-                opacity = (p - 0.70) / 0.05; // fade-in 70-75%
-              } else if (p > 0.75) {
-                opacity = 1; // stable 75-100% (25% de temps visible)
+              // Panel C: 75-100% with 5% gap and longest stable period
+              if (p >= 0.75 && p <= 0.78) {
+                opacity = (p - 0.75) / 0.03; // fade-in 75-78%
+              } else if (p > 0.78) {
+                opacity = 1; // stable 78-100% (22% visible time!)
               } else {
                 opacity = 0;
               }
