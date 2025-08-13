@@ -201,7 +201,7 @@ const SimulateurToiture = () => {
                       <div className="mt-2 text-3xl font-semibold">{formatCurrency(loyerAnnuel)}</div>
                     </div>
                     <div className="rounded-xl border bg-card p-6">
-                      <div className="text-sm text-foreground/70">Total de CO₂ économisé sur 30 ans</div>
+                      <div className="text-sm text-foreground/70">Total de CO₂ évité sur 30 ans</div>
                       <div className="mt-2 text-2xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} T</div>
                       <div className="mt-1 text-xs text-foreground/70">
                         Source : Étude RTE (2019)
@@ -215,7 +215,7 @@ const SimulateurToiture = () => {
                       <div className="mt-2 text-3xl font-semibold">{formatCurrency(paiementUnique)}</div>
                     </div>
                     <div className="rounded-xl border bg-card p-6">
-                      <div className="text-sm text-foreground/70">Total de CO₂ économisé sur 30 ans</div>
+                      <div className="text-sm text-foreground/70">Total de CO₂ évité sur 30 ans</div>
                       <div className="mt-2 text-xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} T</div>
                       <div className="mt-1 text-xs text-foreground/70">
                         Source : Étude RTE (2019)
