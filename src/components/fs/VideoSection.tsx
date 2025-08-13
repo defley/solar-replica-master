@@ -12,7 +12,7 @@ const VideoSection = () => {
             preload="metadata"
             poster="/assets/hero-video-poster.jpeg"
           >
-            <source src="/assets/hero-video.mp4" type="video/mp4" />
+            <source src="/assets/15261867-hd_1920_1080_24fps.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
