@@ -1,9 +1,7 @@
 // Internal reproduction authorized by Ferme Solaire
 import CableLottie from "@/components/CableLottie";
-
 const Hero = () => {
-  return (
-    <section id="top" className="relative pt-10 lg:pt-20">
+  return <section id="top" className="relative pt-10 lg:pt-20">
       <CableLottie />
       <div className="container-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div>
@@ -16,19 +14,10 @@ const Hero = () => {
             <br />
             solaire
           </h1>
-          <p className="mt-6 text-foreground/80 max-w-[36ch]">
-            et touchez une rente de 1 000€ à 5500€/an par hectare sur 40 ans, sans aucun investissement
-          </p>
+          <p className="mt-6 text-foreground/80 max-w-[36ch]">Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500  € à 12 000 €/an selon la surface, pendant 30 ans, sans aucun investissement</p>
         </div>
         <div className="relative">
-          <img
-            src="/assets/home-hero.png"
-            alt="Illustration panneaux photovoltaïques et troupeau"
-            className="w-full h-auto select-none"
-            loading="eager"
-            width={1200}
-            height={900}
-          />
+          <img src="/assets/home-hero.png" alt="Illustration panneaux photovoltaïques et troupeau" className="w-full h-auto select-none" loading="eager" width={1200} height={900} />
         </div>
       </div>
 
@@ -62,8 +51,6 @@ const Hero = () => {
 
       {/* Invisible target for cable snapping (for future fine-tuning) */}
       <div id="solar-target" className="absolute left-[10%] bottom-[-120px] w-6 h-2 bg-transparent" aria-hidden />
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
