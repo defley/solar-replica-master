@@ -99,14 +99,14 @@ const CableSection = () => {
               const vOut = Math.max(0, (0.5 - p) / 0.15);
               opacity = p <= 0.15 ? vIn : (p <= 0.5 ? 1 : vOut);
             } else if (index === 1) {
-              if (p >= 0.3 && p <= 0.8) {
-                if (p <= 0.45) opacity = (p - 0.3) / 0.15;
-                else if (p >= 0.65) opacity = Math.max(0, (0.8 - p) / 0.15);
+              if (p >= 0.35 && p <= 0.75) {
+                if (p <= 0.5) opacity = (p - 0.35) / 0.15;
+                else if (p >= 0.6) opacity = Math.max(0, (0.75 - p) / 0.15);
                 else opacity = 1;
               } else opacity = 0;
             } else if (index === 2) {
-              if (p >= 0.6) {
-                if (p <= 0.75) opacity = (p - 0.6) / 0.15;
+              if (p >= 0.7) {
+                if (p <= 0.85) opacity = (p - 0.7) / 0.15;
                 else opacity = 1; // stay visible until the end
               } else opacity = 0;
             }
@@ -218,10 +218,10 @@ const CableSection = () => {
               <div className="md:col-span-5 md:col-start-8">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">
-                    Une démarche simple et sans aucune avance de frais
+                    Financez vos travaux grâce à votre toiture
                   </h3>
                   <p className="mt-4 text-foreground/80">
-                    Nous nous occupons de toutes les démarches administratives et financières et vous proposons l'offre la plus adaptée à vos besoins.
+                    Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
                 </div>
               </div>
@@ -239,10 +239,10 @@ const CableSection = () => {
               <div className="md:col-span-5">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">
-                    Financez vos travaux grâce à votre toiture
+                    Un service clé en mains et 100% transparent
                   </h3>
                   <p className="mt-4 text-foreground/80">
-                    Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement. Ce revenu régulier peut contribuer directement au Plan Pluriannuel de Travaux (PPT) : ravalement, isolation, rénovation énergétique… Transformez votre toit en ressource financière durable.
+                    Un conseiller dédié vous rappelle sous 48h (jours ouvrés) pour élaborer votre dossier et évaluer la faisabilité du projet. Vous pouvez aussi nous missionner pour négocier avec nos partenaires développeurs d'énergie renouvelable.
                   </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
                     <a href="#simulateur-toiture">Accéder au simulateur</a>
