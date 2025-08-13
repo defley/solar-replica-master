@@ -65,7 +65,7 @@ const CableSection = () => {
         return Number.isFinite(n) ? n : fallback;
       };
 
-      const endPct = cssNumber("--cable-end", 800);
+      const endPct = cssNumber("--cable-end", 1600);
 
       const st = ScrollTrigger.create({
         trigger: "#cable-section",
@@ -87,7 +87,10 @@ const CableSection = () => {
             el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
 
-          // Panel visibility based on scroll progress - very extended durations (A:0-0.5, B:0.3-0.8, C:0.6-1)
+          // Panel visibility with extended comfortable reading times
+          // Panel A: 0-40% (fade-in 0-5%, stable 5-35%, fade-out 35-40%)
+          // Panel B: 25-75% (fade-in 25-30%, stable 30-70%, fade-out 70-75%)
+          // Panel C: 60-100% (fade-in 60-65%, stable 65-100%)
           const panels = sectionRef.current?.querySelectorAll('[data-panel]');
           panels?.forEach((panel, index) => {
             const element = panel as HTMLElement;
@@ -95,20 +98,36 @@ const CableSection = () => {
             const translateX = 24;
 
             if (index === 0) {
-              const vIn = Math.min(1, p / 0.1);
-              const vOut = Math.max(0, (0.35 - p) / 0.1);
-              opacity = p <= 0.1 ? vIn : (p <= 0.35 ? 1 : vOut);
+              // Panel A: 0-40%
+              if (p <= 0.05) {
+                opacity = p / 0.05; // fade-in 0-5%
+              } else if (p <= 0.35) {
+                opacity = 1; // stable 5-35%
+              } else if (p <= 0.40) {
+                opacity = (0.40 - p) / 0.05; // fade-out 35-40%
+              } else {
+                opacity = 0;
+              }
             } else if (index === 1) {
-              if (p >= 0.45 && p <= 0.75) {
-                if (p <= 0.55) opacity = (p - 0.45) / 0.1;
-                else if (p >= 0.65) opacity = Math.max(0, (0.75 - p) / 0.1);
-                else opacity = 1;
-              } else opacity = 0;
+              // Panel B: 25-75%
+              if (p >= 0.25 && p <= 0.30) {
+                opacity = (p - 0.25) / 0.05; // fade-in 25-30%
+              } else if (p > 0.30 && p <= 0.70) {
+                opacity = 1; // stable 30-70%
+              } else if (p > 0.70 && p <= 0.75) {
+                opacity = (0.75 - p) / 0.05; // fade-out 70-75%
+              } else {
+                opacity = 0;
+              }
             } else if (index === 2) {
-              if (p >= 0.8) {
-                if (p <= 0.9) opacity = (p - 0.8) / 0.1;
-                else opacity = 1; // stay visible until the end
-              } else opacity = 0;
+              // Panel C: 60-100%
+              if (p >= 0.60 && p <= 0.65) {
+                opacity = (p - 0.60) / 0.05; // fade-in 60-65%
+              } else if (p > 0.65) {
+                opacity = 1; // stable 65-100%
+              } else {
+                opacity = 0;
+              }
             }
 
             element.style.opacity = String(Math.max(0, Math.min(1, opacity)));
