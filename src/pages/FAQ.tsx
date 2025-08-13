@@ -14,6 +14,7 @@ import { HelpCircle, Phone, Mail } from "lucide-react";
 const FAQ = () => {
   useEffect(() => {
     document.title = "Questions & Réponses - Centrale solaire en copropriété";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const faqs = [
