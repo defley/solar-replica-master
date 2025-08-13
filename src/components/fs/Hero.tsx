@@ -14,7 +14,7 @@ const Hero = () => {
             <br />
             solaire
           </h1>
-          <p className="mt-6 text-foreground/80 max-w-[36ch]">Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500  € à 12 000 €/an selon la surface, pendant 30 ans, sans aucun investissement</p>
+          <p className="mt-6 text-foreground/80 max-w-[36ch]">Accueillez une centrale solaire sur le toit de votre copropriété et financez vos travaux grâce à un loyer annuel de 2 500 € à 12 000 €, en fonction de la surface, garanti pendant 30 ans, sans aucun investissement.</p>
         </div>
         <div className="relative">
           <img src="/assets/home-hero.png" alt="Illustration panneaux photovoltaïques et troupeau" className="w-full h-auto select-none" loading="eager" width={1200} height={900} />
