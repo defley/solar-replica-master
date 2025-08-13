@@ -215,10 +215,6 @@ const SimulateurToiture = () => {
                       <div className="mt-2 text-3xl font-semibold">{formatCurrency(paiementUnique)}</div>
                     </div>
                     <div className="rounded-xl border bg-card p-6">
-                      <div className="text-sm text-foreground/70">Loyer annuel théorique</div>
-                      <div className="mt-2 text-2xl font-semibold">{formatCurrency(loyerAnnuel)}</div>
-                    </div>
-                    <div className="rounded-xl border bg-card p-6">
                       <div className="text-sm text-foreground/70">Tonnes de CO₂ évitées</div>
                       <div className="mt-2 text-xl font-semibold">{co2Evite.toLocaleString("fr-FR")} t/an</div>
                       <div className="mt-1 text-xs text-foreground/70">
