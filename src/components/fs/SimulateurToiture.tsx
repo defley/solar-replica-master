@@ -74,7 +74,7 @@ const SimulateurToiture = () => {
     }
 
     const prodAnnuelle = surface * PROD_SPEC_KWH_PER_M2;
-    const co2Evite = Math.round((prodAnnuelle * EM_CO2_RTE_2019_G_PER_KWH / 1000) / 1000);
+    const co2Evite = Math.round((prodAnnuelle * EM_CO2_RTE_2019_G_PER_KWH / 1000) / 1000 * 10) / 10; // Arrondi à 0.1 t près
 
     return { loyerAnnuel, co2Evite };
   }, [surface, autoSavings, isFeasible]);
@@ -82,7 +82,7 @@ const SimulateurToiture = () => {
   const { loyerAnnuel, co2Evite } = calculatedResults;
   const totalSur30Ans = loyerAnnuel * 30;
   const paiementUnique = totalSur30Ans * PAIEMENT_UNIQUE_RATIO;
-  const co2Total30Ans = co2Evite * 30;
+  const co2Total30Ans = Math.round(co2Evite * 30 * 10) / 10; // Arrondi à 0.1 T près
 
   return (
     <section id="simulateur-toiture" className="py-20 md:py-28 bg-muted/30">
@@ -202,7 +202,7 @@ const SimulateurToiture = () => {
                     </div>
                     <div className="rounded-xl border bg-card p-6">
                       <div className="text-sm text-foreground/70">Total de CO₂ économisé sur 30 ans</div>
-                      <div className="mt-2 text-2xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} t</div>
+                      <div className="mt-2 text-2xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} T</div>
                       <div className="mt-1 text-xs text-foreground/70">
                         Source : Étude RTE (2019)
                       </div>
@@ -216,7 +216,7 @@ const SimulateurToiture = () => {
                     </div>
                     <div className="rounded-xl border bg-card p-6">
                       <div className="text-sm text-foreground/70">Total de CO₂ économisé sur 30 ans</div>
-                      <div className="mt-2 text-xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} t</div>
+                      <div className="mt-2 text-xl font-semibold">{co2Total30Ans.toLocaleString("fr-FR")} T</div>
                       <div className="mt-1 text-xs text-foreground/70">
                         Source : Étude RTE (2019)
                       </div>
