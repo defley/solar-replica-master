@@ -22,7 +22,7 @@ const Hero = () => {
       </div>
 
       {/* Value props row */}
-      <div className="container-lg mt-8" aria-hidden>
+      <div className="container-xl mt-8" aria-hidden>
         <div className="flex flex-wrap gap-6 text-sm text-foreground/80">
           <div className="flex items-center gap-2">
             <svg width="16" height="12" viewBox="0 0 14 11" aria-hidden>
