@@ -13,69 +13,69 @@ import { HelpCircle, Phone, Mail } from "lucide-react";
 
 const FAQ = () => {
   useEffect(() => {
-    document.title = "Questions & Réponses - Ferme Solaire";
+    document.title = "Questions & Réponses - Centrale solaire en copropriété";
   }, []);
 
   const faqs = [
     {
       id: "faq1",
-      question: "Combien coûte votre service ?",
-      answer: "Notre service est entièrement gratuit de A à Z. Nous ne facturons aucun frais pour l'étude de votre terrain, la mise en relation avec les développeurs ou l'accompagnement dans votre projet. Notre rémunération provient des développeurs partenaires, ce qui garantit notre totale indépendance et la gratuité de nos services pour vous."
+      question: "Le revenu généré peut-il financer notre Plan Pluriannuel de Travaux ?",
+      answer: "Oui. Selon la surface disponible, vous pouvez opter pour un versement unique de 30 000 à 50 000 € ou un loyer annuel sur 30 ans. Ce budget peut couvrir une partie ou la totalité de votre PPT, sans appel de fonds aux copropriétaires."
     },
     {
-      id: "faq2", 
-      question: "Quelle est la surface minimale requise pour installer des panneaux solaires ?",
-      answer: "Pour les projets au sol, la surface minimale est généralement de 1 hectare (10 000 m²). Cette taille permet une rentabilité optimale de l'installation. Pour les projets sur toiture (hangars agricoles, serres, ombrières de parking), les surfaces peuvent être plus petites, à partir de 500 m² selon les configurations."
+      id: "faq2",
+      question: "Peut-on choisir entre un paiement unique ou un loyer annuel ?",
+      answer: "Oui. Vous avez le choix entre un versement immédiat pour financer des travaux rapidement ou un revenu annuel régulier pour réduire les charges sur le long terme."
     },
     {
       id: "faq3",
-      question: "Combien puis-je gagner en louant mon terrain ?",
-      answer: "Le loyer varie entre 1 000€ et 5 500€ par hectare et par an, selon plusieurs critères : l'exposition solaire de votre terrain, sa proximité avec un poste électrique, la topographie, l'accessibilité et la réglementation locale. Nos experts évaluent gratuitement le potentiel de votre terrain pour vous donner une estimation précise."
+      question: "Le syndic peut-il facturer des frais pour le suivi du projet ?",
+      answer: "Si le syndic facture des honoraires spécifiques pour le suivi des travaux, ces frais peuvent être pris en charge par le revenu généré par la centrale, afin de ne pas alourdir vos charges."
     },
     {
       id: "faq4",
-      question: "Combien de temps dure un contrat de location ?",
-      answer: "Les contrats de bail emphytéotique durent généralement entre 20 et 40 ans. Cette durée permet d'amortir l'investissement important que représente une centrale photovoltaïque. À l'issue du contrat, plusieurs options sont possibles : renouvellement, rachat des installations par le propriétaire, ou démantèlement et remise en état du terrain."
+      question: "Quelle est la surface minimale pour installer une centrale solaire ?",
+      answer: "En copropriété, il faut au moins 500 m² de toiture exploitable. Plus la surface est grande, plus la centrale est rentable et plus le revenu est important."
     },
     {
       id: "faq5",
-      question: "Dois-je investir de l'argent pour installer des panneaux solaires ?",
-      answer: "Non, aucun investissement financier n'est requis de votre part. Le développeur prend en charge l'intégralité des coûts : études techniques et administratives, financement, construction, exploitation et maintenance. Vous percevez uniquement un loyer annuel fixe ou indexé selon les termes du contrat."
+      question: "Le coût de l'électricité produite est-il avantageux ?",
+      answer: "Oui. Si la surface est suffisante pour alimenter une partie des logements, le prix de l'électricité peut être fixé à 15 centimes/kWh pendant 30 ans, bien en dessous des prix du marché."
     },
     {
       id: "faq6",
-      question: "Que devient mon terrain pendant la location ?",
-      answer: "Votre terrain reste votre propriété. Les panneaux solaires sont installés sur des structures qui n'abîment pas le sol. Un couloir de circulation est maintenu entre les rangées de panneaux, et une partie du terrain peut souvent continuer à être exploitée (pâturage ovin par exemple). À la fin du contrat, le terrain vous est rendu dans son état initial."
+      question: "Qui prend en charge les assurances ?",
+      answer: "Toutes les assurances liées à la centrale (responsabilité civile, dégâts, perte d'exploitation) sont prises en charge par l'exploitant. La copropriété n'a aucun coût ni risque."
     },
     {
       id: "faq7",
-      question: "Quels sont les critères d'éligibilité de mon terrain ?",
-      answer: "Plusieurs critères sont évalués : une surface d'au moins 1 hectare, une bonne exposition au soleil (idéalement orienté sud), un terrain relativement plat, un accès routier, la proximité d'un poste électrique, et l'absence de contraintes environnementales majeures. Nos experts analysent tous ces éléments gratuitement lors de l'étude de faisabilité."
+      question: "Que se passe-t-il en cas de panne ou de problème technique ?",
+      answer: "La maintenance est 100 % assurée par l'exploitant, sans frais pour la copropriété. Les interventions sont prévues dans le contrat."
     },
     {
       id: "faq8",
-      question: "Combien de temps faut-il pour finaliser un projet ?",
-      answer: "Le délai total varie entre 3 et 7 ans selon la complexité du projet. Cela inclut : l'étude de faisabilité (2-6 mois), l'obtention des autorisations administratives (1-3 ans), le financement et la construction (1-2 ans). Une fois la centrale en fonctionnement, vous commencez à percevoir votre loyer annuel."
+      question: "Comment lancer le projet dans notre copropriété ?",
+      answer: "Contactez-nous, échangez entre copropriétaires et parlez-en à votre syndic pour qu'il l'inscrive à l'ordre du jour de la prochaine Assemblée Générale. Pour toutes les autres démarches administratives et techniques, nous nous occupons de tout et fournissons un dossier complet pour faciliter le vote."
     },
     {
       id: "faq9",
-      question: "Puis-je annuler ma demande à tout moment ?",
-      answer: "Oui, vous pouvez vous désengager à tout moment avant la signature du bail. Notre service est sans engagement jusqu'à la signature du contrat définitif. Même après avoir reçu des propositions, vous êtes libre de ne pas donner suite ou de négocier les conditions qui vous conviennent le mieux."
+      question: "Quel vote est nécessaire en Assemblée Générale ?",
+      answer: "Lorsque le projet est lié à une rénovation énergétique ou à l'amélioration du DPE, il est voté à la majorité des présents en A.G (article 24-II-k de la loi du 10 juillet 1965)."
     },
     {
       id: "faq10",
-      question: "Les panneaux solaires ont-ils un impact sur l'environnement ?",
-      answer: "Les panneaux solaires ont un impact environnemental très positif. Une centrale photovoltaïque produit une énergie propre et renouvelable qui évite l'émission de milliers de tonnes de CO2 par an. Les installations sont réversibles et les panneaux sont recyclables à plus de 95%. De plus, la biodiversité peut être préservée voire améliorée sous et autour des panneaux."
+      question: "Qui finance l'installation et la mise en service ?",
+      answer: "Tout est financé par un tiers investisseur. La copropriété ne débourse rien."
     },
     {
       id: "faq11",
-      question: "Que se passe-t-il en cas de problème avec l'installation ?",
-      answer: "Le développeur est responsable de la maintenance et du bon fonctionnement de l'installation pendant toute la durée du contrat. Il souscrit également une assurance responsabilité civile qui vous couvre en cas de dommages. En cas de défaillance technique, le développeur prend en charge les réparations sans impact sur votre loyer."
+      question: "Combien de temps dure le contrat et que se passe-t-il à la fin ?",
+      answer: "La durée standard est de 30 ans. À la fin, la centrale est donnée à la copropriété en état de marche. Conçue pour durer 40 ans, elle pourra encore produire de l'énergie, et la copropriété pourra en faire l'usage qu'elle souhaite."
     },
     {
       id: "faq12",
-      question: "Comment Ferme Solaire sélectionne ses partenaires développeurs ?",
-      answer: "Nous travaillons uniquement avec des développeurs reconnus pour leur solidité financière, leur expertise technique et leur respect des engagements. Tous nos partenaires sont des acteurs établis du marché français et international, avec des références vérifiées et des garanties bancaires solides pour sécuriser vos revenus sur le long terme."
+      question: "Est-ce que cela augmente la valeur de notre immeuble ?",
+      answer: "Oui. Un immeuble équipé de panneaux solaires est perçu comme plus moderne, économe et respectueux de l'environnement, ce qui peut améliorer sa valeur et son attractivité."
     }
   ];
 
@@ -92,11 +92,11 @@ const FAQ = () => {
                 <HelpCircle className="w-8 h-8 text-cta" />
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display leading-tight mb-6">
-                Questions & Réponses
+                FAQ – Centrale solaire en copropriété
               </h1>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
-                Trouvez toutes les réponses à vos questions sur les fermes solaires, 
-                la location de terrain et notre processus d'accompagnement.
+                Trouvez toutes les réponses à vos questions sur les centrales solaires en copropriété, 
+                le financement et les démarches administratives.
               </p>
             </div>
           </div>
