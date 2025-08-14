@@ -154,7 +154,7 @@ const Hero = () => {
         {/* Section objectifs 2030 */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { label: "Copropriétés à équiper", value: "1000+", color: "text-green-600" },
+            { label: "Copropriétés à équiper", value: "150+", color: "text-green-600" },
             { label: "MW à installer", value: "200+", color: "text-blue-600" },
             { label: "Tonnes CO₂ à éviter", value: "50K+", color: "text-purple-600" }
           ].map((stat, index) => (
