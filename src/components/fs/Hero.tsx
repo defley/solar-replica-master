@@ -1,10 +1,9 @@
 // Internal reproduction authorized by Copro Solaire
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Pause, TrendingUp, Shield, CheckCircle } from "lucide-react";
+import { ArrowRight, TrendingUp, Shield, CheckCircle } from "lucide-react";
 
 const Hero = () => {
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -13,18 +12,6 @@ const Hero = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  const toggleVideo = () => {
-    const video = document.querySelector('video');
-    if (video) {
-      if (isPlaying) {
-        video.pause();
-      } else {
-        video.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   return (
     <section id="top" className="relative pt-10 lg:pt-20 pb-16 overflow-hidden">
@@ -128,21 +115,6 @@ const Hero = () => {
                   <source src="/assets/social_u3382912938_Make_a_picture_with_the_same_style_of_a_residenti_f4f30469-fe54-4a42-b91a-809b5d4c75c9_2.mp4" type="video/mp4" />
                   <p>Votre navigateur ne supporte pas les vidéos HTML5.</p>
                 </video>
-                
-                {/* Overlay avec contrôles modernes */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <button
-                    onClick={toggleVideo}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:scale-110 transition-all duration-200"
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-6 h-6 text-white ml-0.5" />
-                    ) : (
-                      <Play className="w-6 h-6 text-white ml-1" />
-                    )}
-                  </button>
-                </div>
               </div>
 
               {/* Éléments décoratifs flottants */}
