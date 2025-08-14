@@ -9,7 +9,6 @@ import { MapPin, Phone, Mail, Clock, Users, Award } from "lucide-react";
 const Contact = () => {
   useEffect(() => {
     document.title = "Contact - Copro Solaire";
-    window.scrollTo(0, 0);
   }, []);
 
   return (

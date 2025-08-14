@@ -86,6 +86,7 @@ const CableSection = () => {
             const element = panel as HTMLElement;
             let opacity = 0;
             const translateX = 12;
+
             if (index === 0) {
               // Panel A: 0-30%
               if (p <= 0.03) {
@@ -206,7 +207,24 @@ const CableSection = () => {
         {/* Panel C */}
         <div data-panel="2" className="absolute inset-0 flex items-center transition-all duration-300 opacity-0">
           <div className="container-xl">
-            
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-5">
+                <div className="max-w-md">
+                  <h3 className="text-2xl md:text-3xl font-display leading-tight">Bénéficiez d’une centrale solaire sans aucun frais pour la copropriété.</h3>
+                  <p className="mt-4 text-foreground/80">Grâce au modèle du tiers-investissement, nous prenons en charge 100 % de l’installation, de la maintenance et de l’exploitation, pendant toute la durée du contrat.
+Vous percevez un loyer garanti ou un versement unique… et réduisez vos charges sans investir un centime.
+
+
+                </p>
+                  <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
+                    
+                  </Button>
+                </div>
+              </div>
+              <div className="md:col-span-6 md:col-start-7">
+                <img src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" alt="Installation de panneaux solaires - Service transparent et conseiller dédié" className="w-full h-auto" loading="lazy" />
+              </div>
+            </div>
           </div>
         </div>
 
