@@ -207,7 +207,7 @@ const CableSection = () => {
         {/* Panel C */}
         <div data-panel="2" className="absolute inset-0 flex items-center transition-all duration-300 opacity-0">
           <div className="container-xl">
-            <div className="grid md:grid-cols-12 gap-8 items-center">
+            <div className="grid md:grid-cols-12 gap-1 items-center">
               <div className="md:col-span-5">
                 <div className="max-w-md">
                   <h3 className="text-2xl md:text-3xl font-display leading-tight">Bénéficiez d’une centrale solaire sans aucun frais pour la copropriété.</h3>
