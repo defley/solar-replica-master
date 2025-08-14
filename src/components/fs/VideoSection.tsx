@@ -9,7 +9,6 @@ const VideoSection = () => (
           muted
           playsInline
           preload="metadata"
-          poster="/assets/hero-video-poster.jpeg"
         >
           <source src="/assets/15261867-hd_1920_1080_24fps.mp4" type="video/mp4" />
         </video>
