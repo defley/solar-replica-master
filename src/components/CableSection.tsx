@@ -89,13 +89,13 @@ const CableSection = () => {
             const translateX = 16; // Reduced for smoother feel
 
             if (index === 0) {
-              // Panel A: 0-35% with much longer stable period
-              if (p <= 0.03) {
-                opacity = p / 0.03; // fade-in 0-3%
-              } else if (p <= 0.30) {
-                opacity = 1; // stable 3-30% (27% visible time!)
-              } else if (p <= 0.35) {
-                opacity = (0.35 - p) / 0.05; // fade-out 30-35%
+              // Panel A: 0-25% with earlier appearance and longer stable period
+              if (p <= 0.02) {
+                opacity = p / 0.02; // fade-in 0-2%
+              } else if (p <= 0.20) {
+                opacity = 1; // stable 2-20% (18% visible time!)
+              } else if (p <= 0.25) {
+                opacity = (0.25 - p) / 0.05; // fade-out 20-25%
               } else {
                 opacity = 0;
               }
