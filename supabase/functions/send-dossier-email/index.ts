@@ -14,17 +14,17 @@ interface DossierData {
   address: string;
   coordinates: string | null;
   role: string;
-  syndicName?: string;
-  syndicContact?: string;
-  roofType: string;
-  roofCovering: string;
-  exploitableSurface: string;
-  roofAccess: string;
-  firstName: string;
-  lastName: string;
+  syndic_name?: string;
+  syndic_contact?: string;
+  roof_type: string;
+  roof_covering: string;
+  exploitable_surface: string;
+  roof_access: string;
+  first_name: string;
+  last_name: string;
   email: string;
   phone: string;
-  fullAddress?: string;
+  full_address?: string;
   company?: string;
   message?: string;
 }
@@ -78,10 +78,10 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Parsed dossier data:", dossierData);
     
     // Basic validation - only check what's really required
-    if (!dossierData.firstName || !dossierData.lastName || !dossierData.email) {
+    if (!dossierData.first_name || !dossierData.last_name || !dossierData.email) {
       console.log("Missing critical fields:", {
-        firstName: !dossierData.firstName,
-        lastName: !dossierData.lastName,
+        first_name: !dossierData.first_name,
+        last_name: !dossierData.last_name,
         email: !dossierData.email
       });
       return new Response(
@@ -105,26 +105,26 @@ const handler = async (req: Request): Promise<Response> => {
       <h1>Nouveau dossier copropriété solaire</h1>
       
       <h2>Informations de contact</h2>
-      <p><strong>Nom:</strong> ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)}</p>
+      <p><strong>Nom:</strong> ${sanitizeHtml(dossierData.first_name)} ${sanitizeHtml(dossierData.last_name)}</p>
       <p><strong>Email:</strong> ${sanitizeHtml(dossierData.email)}</p>
       <p><strong>Téléphone:</strong> ${dossierData.phone ? sanitizeHtml(dossierData.phone) : 'Non renseigné'}</p>
       ${dossierData.company ? `<p><strong>Entreprise:</strong> ${sanitizeHtml(dossierData.company)}</p>` : ''}
       
       <h2>Rôle dans la copropriété</h2>
       <p><strong>Rôle:</strong> ${dossierData.role ? sanitizeHtml(dossierData.role) : 'Non renseigné'}</p>
-      ${dossierData.syndicName ? `<p><strong>Nom du syndic:</strong> ${sanitizeHtml(dossierData.syndicName)}</p>` : ''}
-      ${dossierData.syndicContact ? `<p><strong>Contact syndic:</strong> ${sanitizeHtml(dossierData.syndicContact)}</p>` : ''}
+      ${dossierData.syndic_name ? `<p><strong>Nom du syndic:</strong> ${sanitizeHtml(dossierData.syndic_name)}</p>` : ''}
+      ${dossierData.syndic_contact ? `<p><strong>Contact syndic:</strong> ${sanitizeHtml(dossierData.syndic_contact)}</p>` : ''}
       
       <h2>Localisation</h2>
       <p><strong>Adresse:</strong> ${dossierData.address ? sanitizeHtml(dossierData.address) : 'Non renseignée'}</p>
-      ${dossierData.fullAddress ? `<p><strong>Adresse complète:</strong> ${sanitizeHtml(dossierData.fullAddress)}</p>` : ''}
+      ${dossierData.full_address ? `<p><strong>Adresse complète:</strong> ${sanitizeHtml(dossierData.full_address)}</p>` : ''}
       ${dossierData.coordinates ? `<p><strong>Coordonnées:</strong> ${sanitizeHtml(dossierData.coordinates)}</p>` : ''}
       
       <h2>Informations toiture</h2>
-      <p><strong>Type de toiture:</strong> ${dossierData.roofType ? sanitizeHtml(dossierData.roofType) : 'Non renseigné'}</p>
-      <p><strong>Revêtement:</strong> ${dossierData.roofCovering ? sanitizeHtml(dossierData.roofCovering) : 'Non renseigné'}</p>
-      <p><strong>Surface exploitable:</strong> ${dossierData.exploitableSurface ? sanitizeHtml(dossierData.exploitableSurface) : 'Non renseignée'}</p>
-      <p><strong>Accès toiture:</strong> ${dossierData.roofAccess ? sanitizeHtml(dossierData.roofAccess) : 'Non renseigné'}</p>
+      <p><strong>Type de toiture:</strong> ${dossierData.roof_type ? sanitizeHtml(dossierData.roof_type) : 'Non renseigné'}</p>
+      <p><strong>Revêtement:</strong> ${dossierData.roof_covering ? sanitizeHtml(dossierData.roof_covering) : 'Non renseigné'}</p>
+      <p><strong>Surface exploitable:</strong> ${dossierData.exploitable_surface ? sanitizeHtml(dossierData.exploitable_surface) : 'Non renseignée'}</p>
+      <p><strong>Accès toiture:</strong> ${dossierData.roof_access ? sanitizeHtml(dossierData.roof_access) : 'Non renseigné'}</p>
       
       ${dossierData.message ? `
       <h2>Message</h2>
@@ -140,7 +140,7 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Copro Solaire <onboarding@resend.dev>",
       to: ["romain@claudinon.fr"],
-      subject: `Nouveau dossier: ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)} - ${dossierData.role || 'Rôle non précisé'}`,
+      subject: `Nouveau dossier: ${sanitizeHtml(dossierData.first_name)} ${sanitizeHtml(dossierData.last_name)} - ${dossierData.role || 'Rôle non précisé'}`,
       html: emailContent,
       replyTo: dossierData.email,
     });
@@ -153,7 +153,7 @@ const handler = async (req: Request): Promise<Response> => {
       to: [dossierData.email],
       subject: "Confirmation de réception - Votre dossier copropriété solaire",
       html: `
-        <h1>Merci ${sanitizeHtml(dossierData.firstName)} !</h1>
+        <h1>Merci ${sanitizeHtml(dossierData.first_name)} !</h1>
         <p>Nous avons bien reçu votre dossier pour le projet solaire de votre copropriété.</p>
         <p>Notre équipe va étudier votre demande et vous recontacter sous 48h pour la suite du processus.</p>
         <p>En attendant, n'hésitez pas à nous contacter au <strong>07 82 90 56 69</strong> si vous avez des questions.</p>
