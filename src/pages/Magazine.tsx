@@ -28,6 +28,9 @@ interface Article {
 
 const Magazine = () => {
   const [selectedCategory, setSelectedCategory] = useState("Tous les articles");
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   
   // Articles based on provided content
   const articles: Article[] = [
@@ -129,6 +132,27 @@ const Magazine = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || isSubmitting) return;
+    
+    setIsSubmitting(true);
+    try {
+      // Ici vous pourrez intégrer avec votre système d'email (Supabase, etc.)
+      console.log("Email subscription:", email);
+      
+      // Simulation d'une requête
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setSubscribed(true);
+      setEmail("");
+    } catch (error) {
+      console.error("Erreur lors de l'abonnement:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <FSHeader />
@@ -224,16 +248,31 @@ const Magazine = () => {
               <p className="text-foreground/80 mb-8">
                 Recevez nos articles et analyses directement dans votre boîte mail.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input 
-                  type="email" 
-                  placeholder="Votre adresse email"
-                  className="flex-1 px-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-cta"
-                />
-                <Button variant="cta" className="rounded-full px-6">
-                  S'abonner
-                </Button>
-              </div>
+              {subscribed ? (
+                <div className="text-center p-4 bg-green-50 border border-green-200 rounded-lg max-w-md mx-auto">
+                  <p className="text-green-800 font-medium">✅ Merci pour votre abonnement !</p>
+                  <p className="text-green-600 text-sm mt-1">Vous recevrez nos prochains articles par email.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <input 
+                    type="email" 
+                    placeholder="Votre adresse email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="flex-1 px-4 py-3 rounded-full border border-border bg-background focus:outline-none focus:ring-2 focus:ring-cta"
+                  />
+                  <Button 
+                    type="submit" 
+                    variant="cta" 
+                    className="rounded-full px-6"
+                    disabled={isSubmitting || !email}
+                  >
+                    {isSubmitting ? "..." : "S'abonner"}
+                  </Button>
+                </form>
+              )}
             </div>
           </div>
         </section>
