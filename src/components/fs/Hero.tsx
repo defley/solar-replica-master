@@ -23,7 +23,7 @@ const Hero = () => {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             poster="/assets/hero-video-poster.jpeg"
             controls={false}
             width="1200"
