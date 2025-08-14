@@ -4,6 +4,16 @@ import Footer from "@/components/fs/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from "lucide-react";
+
+// Import images
+import coproprietePanneaux1 from "@/assets/copropriete-panneaux-1.jpg";
+import coproprietePanneaux2 from "@/assets/copropriete-panneaux-2.jpg";
+import locationToiture1 from "@/assets/location-toiture-1.jpg";
+import locationToiture2 from "@/assets/location-toiture-2.jpg";
+import financementSolaire from "@/assets/financement-solaire.jpg";
+import autoconsommation from "@/assets/autoconsommation.jpg";
+import reglementationSolaire from "@/assets/reglementation-solaire.jpg";
 
 interface Article {
   id: string;
@@ -13,6 +23,7 @@ interface Article {
   date: string;
   image: string;
   excerpt: string;
+  url: string;
 }
 
 const Magazine = () => {
@@ -26,8 +37,9 @@ const Magazine = () => {
       category: "Copropriété",
       author: "Hellio",
       date: "15/1/25",
-      image: "/src/assets/copropriete-panneaux-1.jpg",
-      excerpt: "Modèle d'autoconsommation, charges réduites, valeur verte : découvrez tous les avantages du photovoltaïque en copropriété."
+      image: coproprietePanneaux1,
+      excerpt: "Modèle d'autoconsommation, charges réduites, valeur verte : découvrez tous les avantages du photovoltaïque en copropriété.",
+      url: "https://copropriete.hellio.com/blog/conseils/panneaux-solaires-immeuble?utm_source=chatgpt.com"
     },
     {
       id: "2", 
@@ -35,8 +47,9 @@ const Magazine = () => {
       category: "Copropriété",
       author: "Gre-enr", 
       date: "12/1/25",
-      image: "/src/assets/copropriete-panneaux-2.jpg",
-      excerpt: "Guide étape-par-étape, simulateur, aides : tout ce qu'il faut savoir pour réussir votre projet."
+      image: coproprietePanneaux2,
+      excerpt: "Guide étape-par-étape, simulateur, aides : tout ce qu'il faut savoir pour réussir votre projet.",
+      url: "https://www.gre-enr.fr/panneaux-solaires-copropriete/?utm_source=chatgpt.com"
     },
     {
       id: "3",
@@ -44,8 +57,9 @@ const Magazine = () => {
       category: "Location de toiture",
       author: "SunVolt",
       date: "10/1/25", 
-      image: "/src/assets/location-toiture-1.jpg",
-      excerpt: "Bail clé en main, revenus garantis, sans investissement : transformez votre toit en source de revenus."
+      image: locationToiture1,
+      excerpt: "Bail clé en main, revenus garantis, sans investissement : transformez votre toit en source de revenus.",
+      url: "https://www.sunvolt.fr/blog/panneau-solaire/location-de-toiture-photovoltaique/?utm_source=chatgpt.com"
     },
     {
       id: "4",
@@ -53,8 +67,9 @@ const Magazine = () => {
       category: "Financement",
       author: "Les Énergies Renouvelables",
       date: "8/1/25",
-      image: "/src/assets/financement-solaire.jpg",
-      excerpt: "Le modèle contractuel du tiers-investisseur expliqué via bail emphytéotique et ses avantages."
+      image: financementSolaire,
+      excerpt: "Le modèle contractuel du tiers-investisseur expliqué via bail emphytéotique et ses avantages.",
+      url: "https://www.les-energies-renouvelables.eu/conseils/panneaux-solaires-pour-entreprise-professionnels/tiers-investisseur-photovoltaique/?utm_source=chatgpt.com"
     },
     {
       id: "5",
@@ -62,8 +77,9 @@ const Magazine = () => {
       category: "Location de toiture",
       author: "Baticopro",
       date: "5/1/25",
-      image: "/src/assets/location-toiture-2.jpg",
-      excerpt: "Revenus passifs, contrats simples, maintenance incluse : le guide complet de la location de toiture."
+      image: locationToiture2,
+      excerpt: "Revenus passifs, contrats simples, maintenance incluse : le guide complet de la location de toiture.",
+      url: "https://www.baticopro.com/guides/louer-la-toiture-de-sa-copropriete-quels-avantages-et-comment-faire.html?utm_source=chatgpt.com"
     },
     {
       id: "6",
@@ -71,8 +87,9 @@ const Magazine = () => {
       category: "Autoconsommation",
       author: "Opéra-Énergie",
       date: "3/1/25",
-      image: "/src/assets/autoconsommation.jpg",
-      excerpt: "Bénéfices, étapes, impact sur le DPE et plan travaux : votre guide vers l'autoconsommation."
+      image: autoconsommation,
+      excerpt: "Bénéfices, étapes, impact sur le DPE et plan travaux : votre guide vers l'autoconsommation.",
+      url: "https://opera-energie.com/panneaux-solaires-copropriete/"
     },
     {
       id: "7",
@@ -80,8 +97,9 @@ const Magazine = () => {
       category: "Réglementation",
       author: "Cabinet Naudin",
       date: "1/1/25",
-      image: "/src/assets/reglementation-solaire.jpg",
-      excerpt: "Explication sur la majorité simple en AG, les formalités et la mise en conformité réglementaire."
+      image: reglementationSolaire,
+      excerpt: "Explication sur la majorité simple en AG, les formalités et la mise en conformité réglementaire.",
+      url: "https://www.cabinetnaudin.com/details-la%2Bpose%2Bde%2Bpanneaux%2Bphotovoltaiques%2Ben%2Bcopropriete%2Bvotee%2Ba%2Bl%2Barticle%2B24%2Bde%2Bla%2Bloi%2Bdu%2B10%2Bjuillet%2B1965-343.html?utm_source=chatgpt.com"
     }
   ];
 
@@ -145,32 +163,43 @@ const Magazine = () => {
           <div className="container-xl">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredArticles.map((article) => (
-                <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img 
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardHeader className="space-y-3">
-                    <Badge variant="secondary" className="w-fit">
-                      {article.category}
-                    </Badge>
-                    <h3 className="text-xl font-display leading-tight group-hover:text-primary transition-colors">
-                      {article.title}
-                    </h3>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-foreground/70 mb-4 leading-relaxed">
-                      {article.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between text-sm text-foreground/60">
-                      <span>Par {article.author}</span>
-                      <span>{article.date}</span>
+                <a 
+                  key={article.id} 
+                  href={article.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group cursor-pointer">
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img 
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                  </CardContent>
-                </Card>
+                    <CardHeader className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="secondary" className="w-fit">
+                          {article.category}
+                        </Badge>
+                        <ExternalLink className="h-4 w-4 text-foreground/60 group-hover:text-primary transition-colors" />
+                      </div>
+                      <h3 className="text-xl font-display leading-tight group-hover:text-primary transition-colors">
+                        {article.title}
+                      </h3>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-foreground/70 mb-4 leading-relaxed">
+                        {article.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-foreground/60">
+                        <span>Par {article.author}</span>
+                        <span>{article.date}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
             </div>
           </div>
