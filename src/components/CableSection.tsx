@@ -217,7 +217,7 @@ Vous percevez un loyer garanti ou un versement unique… et réduisez vos charge
 
                 </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
-                    
+                    <a href="#simulator">Simuler son loyer annuel</a>
                   </Button>
                 </div>
               </div>
