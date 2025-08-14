@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { ChevronLeft, ChevronRight, MapPin, Home, Wrench, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -187,53 +188,72 @@ const MonDossier = () => {
     setIsSubmitting(true);
     
     const submitData = {
-      ...formData,
-      coordinates: formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : "Non spécifiées",
-      subject: "Nouveau dossier copropriété solaire",
-      _replyto: formData.email
+      address: formData.address,
+      coordinates: formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : null,
+      role: formData.role,
+      syndic_name: formData.syndicName,
+      syndic_contact: formData.syndicContact,
+      roof_type: formData.roofType,
+      roof_covering: formData.roofCovering,
+      exploitable_surface: formData.exploitableSurface,
+      roof_access: formData.roofAccess,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      full_address: formData.fullAddress,
+      company: formData.company,
+      message: formData.message
     };
 
     try {
-      const response = await fetch("https://formspree.io/f/xdkovpzy", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(submitData)
+      // Sauvegarder dans la base de données
+      const { data, error: dbError } = await supabase
+        .from('dossiers_copropriete')
+        .insert(submitData);
+
+      if (dbError) {
+        throw dbError;
+      }
+
+      // Envoyer l'email via la fonction edge
+      const { data: emailResponse, error: emailError } = await supabase.functions.invoke('send-dossier-email', {
+        body: submitData
       });
 
-      if (response.ok) {
-        toast({
-          title: "Dossier envoyé avec succès !",
-          description: "Nous vous recontacterons sous 48h pour étudier votre projet.",
-          duration: 5000,
-        });
-        
-        // Reset form
-        setCurrentStep(1);
-        setFormData({
-          address: "",
-          coordinates: null,
-          role: "",
-          syndicName: "",
-          syndicContact: "",
-          roofType: "",
-          roofCovering: "",
-          exploitableSurface: "",
-          roofAccess: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          fullAddress: "",
-          company: "",
-          message: ""
-        });
-      } else {
-        throw new Error("Erreur lors de l'envoi");
+      if (emailError) {
+        console.error('Email error:', emailError);
+        // Continuer même si l'email échoue, car les données sont sauvegardées
       }
+
+      toast({
+        title: "Dossier envoyé avec succès !",
+        description: "Nous vous recontacterons sous 48h pour étudier votre projet.",
+        duration: 5000,
+      });
+      
+      // Reset form
+      setCurrentStep(1);
+      setFormData({
+        address: "",
+        coordinates: null,
+        role: "",
+        syndicName: "",
+        syndicContact: "",
+        roofType: "",
+        roofCovering: "",
+        exploitableSurface: "",
+        roofAccess: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        fullAddress: "",
+        company: "",
+        message: ""
+      });
     } catch (error) {
+      console.error('Submit error:', error);
       toast({
         title: "Erreur lors de l'envoi",
         description: "Une erreur est survenue. Veuillez réessayer ou nous contacter au 07 82 90 56 69.",
