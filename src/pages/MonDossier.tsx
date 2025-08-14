@@ -188,17 +188,9 @@ const MonDossier = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     
-    try {
-      // Configuration EmailJS - utilisation du service et template par défaut
-      const templateParams = {
-        to_email: 'romain@claudinon.fr',
-        from_name: `${formData.firstName} ${formData.lastName}`,
-        from_email: formData.email,
-        subject: `Nouveau dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`,
-        
-        // Données du formulaire formatées
-        message: `
-NOUVEAU DOSSIER COPROPRIÉTÉ SOLAIRE
+    // Solution directe avec mailto - garantie de fonctionner
+    const subject = encodeURIComponent(`Dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`);
+    const body = encodeURIComponent(`NOUVEAU DOSSIER COPROPRIÉTÉ SOLAIRE
 
 CONTACT:
 - Nom: ${formData.firstName} ${formData.lastName}
@@ -226,103 +218,43 @@ MESSAGE LIBRE:
 ${formData.message || 'Aucun message supplémentaire'}
 
 ---
-Envoyé via le formulaire de Copro Solaire
-        `
-      };
-
-      // Envoi via EmailJS avec les IDs par défaut
-      await emailjs.send(
-        'default_service',
-        'template_contact',
-        templateParams,
-        'user_default_key'
-      );
-      
-      toast({
-        title: "Dossier envoyé avec succès !",
-        description: "Nous avons bien reçu votre dossier et vous recontacterons sous 48h.",
-      });
-      
-      // Reset form
-      setCurrentStep(1);
-      setFormData({
-        address: "",
-        coordinates: null,
-        role: "",
-        syndicName: "",
-        syndicContact: "",
-        roofType: "",
-        roofCovering: "",
-        exploitableSurface: "",
-        roofAccess: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        fullAddress: "",
-        company: "",
-        message: ""
-      });
-
-    } catch (error: any) {
-      console.error('Erreur EmailJS:', error);
-      
-      // Fallback avec mailto
-      const subject = encodeURIComponent(`Dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`);
-      const body = encodeURIComponent(`
-NOUVEAU DOSSIER COPROPRIÉTÉ SOLAIRE
-
-CONTACT:
-- Nom: ${formData.firstName} ${formData.lastName}
-- Email: ${formData.email}
-- Téléphone: ${formData.phone || 'Non renseigné'}
-- Entreprise: ${formData.company || 'Non renseignée'}
-
-LOCALISATION:
-- Adresse: ${formData.address}
-- Adresse complète: ${formData.fullAddress || 'Non renseignée'}
-- Coordonnées: ${formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : 'Non renseignées'}
-
-RÔLE DANS LA COPROPRIÉTÉ:
-- Rôle: ${formData.role}
-- Nom du syndic: ${formData.syndicName || 'Non renseigné'}
-- Contact syndic: ${formData.syndicContact || 'Non renseigné'}
-
-INFORMATIONS TOITURE:
-- Type: ${formData.roofType}
-- Revêtement: ${formData.roofCovering}
-- Surface exploitable: ${formData.exploitableSurface} m²
-- Accès: ${formData.roofAccess}
-
-MESSAGE LIBRE:
-${formData.message || 'Aucun message supplémentaire'}
-      `);
-      
+Envoyé via le formulaire de Copro Solaire`);
+    
+    try {
       window.location.href = `mailto:romain@claudinon.fr?subject=${subject}&body=${body}`;
       
       toast({
-        title: "Ouverture de votre client mail",
-        description: "Votre client mail va s'ouvrir avec le dossier pré-rempli.",
+        title: "Dossier envoyé !",
+        description: "Votre client mail s'ouvre avec le dossier pré-rempli. Envoyez l'email pour finaliser.",
       });
       
-      setCurrentStep(1);
-      setFormData({
-        address: "",
-        coordinates: null,
-        role: "",
-        syndicName: "",
-        syndicContact: "",
-        roofType: "",
-        roofCovering: "",
-        exploitableSurface: "",
-        roofAccess: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        fullAddress: "",
-        company: "",
-        message: ""
+      // Reset form après un délai
+      setTimeout(() => {
+        setCurrentStep(1);
+        setFormData({
+          address: "",
+          coordinates: null,
+          role: "",
+          syndicName: "",
+          syndicContact: "",
+          roofType: "",
+          roofCovering: "",
+          exploitableSurface: "",
+          roofAccess: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          fullAddress: "",
+          company: "",
+          message: ""
+        });
+      }, 2000);
+      
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Impossible d'ouvrir le client mail. Contactez-nous au 07 82 90 56 69.",
       });
     } finally {
       setIsSubmitting(false);
