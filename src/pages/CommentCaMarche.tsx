@@ -15,38 +15,45 @@ const CommentCaMarche = () => {
   const steps = [
     {
       number: "1",
-      title: "Je remplis le formulaire en 5 minutes chrono",
-      description: "En quelques clics, je repère mon terrain, je sélectionne mes parcelles et je renseigne certains éléments clefs sur l'histoire du site. Ils permettront aux équipes d'avoir une première idée de mon projet et m'orienter au mieux.",
+      title: "Je remplis le formulaire en 5 minutes (5 min)",
+      description: "En quelques clics, je localise mon immeuble, indique la surface disponible sur le toit (minimum 500 m²) et précise quelques informations utiles. Ces éléments permettront à Copro Solaire d'évaluer rapidement le potentiel du projet.",
       image: "/assets/cable/step-1.jpg",
       icon: <FileText className="w-8 h-8 text-cta" />
     },
     {
       number: "2", 
-      title: "Un conseiller dédié me rappelle sous 48h",
-      description: "Il me posera les questions nécessaires pour valider l'éligibilité de mon terrain et évaluer mon loyer potentiel. Je profite de cet appel pour lui partager mes interrogations au sujet du photovoltaïque - il est là pour ça !",
+      title: "Un conseiller dédié me rappelle sous 48 h (2 jours)",
+      description: "Il vérifie l'éligibilité de ma copropriété, calcule le loyer ou le financement possible (paiement unique ou annuel) et répond à toutes mes questions, y compris sur le modèle tiers-investisseur.",
       image: "/assets/cable/step-2.jpg",
       icon: <Phone className="w-8 h-8 text-cta" />
     },
     {
       number: "3",
-      title: "Je reçois jusqu'à 3 propositions de producteurs d'énergie",
-      description: "Si mon terrain est éligible je reçois jusqu'à 3 propositions de producteurs d'énergie renouvelables pour la construction de la centrale photovoltaïque. Tous partenaires de Copro Solaire, ils ont été sélectionnés pour leur fiabilité et leur renommée en France et à l'international.",
+      title: "Prise de contact avec le syndic et présentation aux copropriétaires (2 à 4 semaines)",
+      description: "Nous contactons le syndic pour expliquer la démarche et organiser, si nécessaire, une réunion d'information avec les copropriétaires. Objectif : répondre à toutes les interrogations et présenter les bénéfices concrets du projet.",
       image: "/assets/cable/step-3.jpg",
       icon: <Target className="w-8 h-8 text-cta" />
     },
     {
       number: "4",
-      title: "Je choisis l'offre la plus adaptée à mes besoins",
-      description: "Le développeur de la centrale prend le relais et se charge de toutes les démarches administratives et financières. Autre possibilité : Copro Solaire reste à mes côtés pour m'aiguiller et négocier la solution la plus pertinente. Totale indépendance ou relais de confiance : je fais mon choix !",
+      title: "Présentation et vote en Assemblée Générale (1 à 3 mois, selon date de l'AG)",
+      description: "Nous fournissons un dossier complet prêt à être intégré à l'ordre du jour. Le projet se vote à la majorité des présents (24-II-K), car il est lié à l'amélioration énergétique et au DPE.",
       image: "/assets/paysage-campagne-1.png",
       icon: <CheckCircle className="w-8 h-8 text-cta" />
     },
     {
       number: "5",
-      title: "La centrale est mise en route : je commence à toucher mon loyer !",
-      description: "Une fois le développement du projet abouti et la centrale construite, l'exploitation peut démarrer. Je perçois alors un loyer pendant 20 à 40 ans, en fonction des modalités de mon contrat.",
+      title: "Installation et financement (9 à 10 mois, incluant démarches administratives)",
+      description: "Une fois voté, le partenaire investisseur finance 100 % de l'installation et prend en charge toutes les démarches administratives (urbanisme, raccordement, contrats, assurances). Durée des travaux sur site : environ 1 semaine seulement, sans gêner la vie de l'immeuble.",
       image: "/assets/serre-solaire.png",
       icon: <Zap className="w-8 h-8 text-cta" />
+    },
+    {
+      number: "6",
+      title: "Mise en service et revenus (à partir du 12ᵉ mois)",
+      description: "La centrale démarre et la copropriété perçoit soit un loyer annuel garanti pendant 30 ans, soit un paiement unique (30 000 € à 50 000 € selon la surface). En fin de contrat, la centrale est cédée gratuitement à la copropriété, en état de marche, avec une durée de vie estimée à 40 ans.",
+      image: "/assets/paysage-campagne-2.png",
+      icon: <Star className="w-8 h-8 text-cta" />
     }
   ];
 
@@ -61,10 +68,10 @@ const CommentCaMarche = () => {
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-sm italic text-foreground/70 mb-2">Comment ça marche</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display leading-tight mb-6">
-                Un service simple et 100% gratuit
+                Un service clé en main et 100 % gratuit pour votre copropriété
               </h1>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
-                Découvrez notre processus en 5 étapes pour transformer votre terrain en source de revenus durables.
+                Découvrez notre processus en 6 étapes simples pour financer vos travaux grâce à une centrale solaire en toiture.
               </p>
             </div>
           </div>
