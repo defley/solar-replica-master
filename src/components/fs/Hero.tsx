@@ -19,7 +19,7 @@ const Hero = () => (
           Accueillez une centrale solaire sur le toit de votre copropriété et financez vos travaux grâce à un loyer annuel de 2 500 € à 12 000 €, en fonction de la surface, garanti pendant 30 ans, sans aucun investissement.
         </p>
       </div>
-      <div className="relative lg:scale-110 xl:scale-125 z-10">
+      <div className="relative lg:scale-110 xl:scale-125">
         <video 
           className="w-full h-auto select-none"
           autoPlay
