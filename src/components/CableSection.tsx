@@ -172,9 +172,7 @@ const CableSection = () => {
             <span className="text-primary">source de revenus</span>
           </h2>
           
-          <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            Une solution innovante qui finance vos travaux tout en générant des revenus durables pour votre copropriété
-          </p>
+          <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">Une solution innovante qui finance vos travaux grâce à l’énergie solaire, sans aucun coût pour vous.</p>
         </div>
 
         {/* Grid système moderne avec cards avancées */}
