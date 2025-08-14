@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { ChevronLeft, ChevronRight, MapPin, Home, Wrench, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import emailjs from 'emailjs-com';
 
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -188,38 +189,54 @@ const MonDossier = () => {
     setIsSubmitting(true);
     
     try {
-      // Préparer les données pour Formspree
-      const formspreeData = {
-        _subject: `Nouveau dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`,
-        nom: `${formData.firstName} ${formData.lastName}`,
-        email: formData.email,
-        telephone: formData.phone || 'Non renseigné',
-        entreprise: formData.company || 'Non renseignée',
-        adresse: formData.address,
-        adresse_complete: formData.fullAddress || 'Non renseignée',
-        coordonnees: formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : 'Non renseignées',
-        role: formData.role,
-        nom_syndic: formData.syndicName || 'Non renseigné',
-        contact_syndic: formData.syndicContact || 'Non renseigné',
-        type_toiture: formData.roofType,
-        revetement_toiture: formData.roofCovering,
-        surface_exploitable: formData.exploitableSurface,
-        acces_toiture: formData.roofAccess,
-        message: formData.message || 'Aucun message'
+      // Configuration EmailJS - utilisation du service et template par défaut
+      const templateParams = {
+        to_email: 'romain@claudinon.fr',
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        subject: `Nouveau dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`,
+        
+        // Données du formulaire formatées
+        message: `
+NOUVEAU DOSSIER COPROPRIÉTÉ SOLAIRE
+
+CONTACT:
+- Nom: ${formData.firstName} ${formData.lastName}
+- Email: ${formData.email}
+- Téléphone: ${formData.phone || 'Non renseigné'}
+- Entreprise: ${formData.company || 'Non renseignée'}
+
+LOCALISATION:
+- Adresse: ${formData.address}
+- Adresse complète: ${formData.fullAddress || 'Non renseignée'}
+- Coordonnées: ${formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : 'Non renseignées'}
+
+RÔLE DANS LA COPROPRIÉTÉ:
+- Rôle: ${formData.role}
+- Nom du syndic: ${formData.syndicName || 'Non renseigné'}
+- Contact syndic: ${formData.syndicContact || 'Non renseigné'}
+
+INFORMATIONS TOITURE:
+- Type: ${formData.roofType}
+- Revêtement: ${formData.roofCovering}
+- Surface exploitable: ${formData.exploitableSurface} m²
+- Accès: ${formData.roofAccess}
+
+MESSAGE LIBRE:
+${formData.message || 'Aucun message supplémentaire'}
+
+---
+Envoyé via le formulaire de Copro Solaire
+        `
       };
 
-      // Envoyer via Formspree
-      const response = await fetch("https://formspree.io/f/xldekgol", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formspreeData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi du formulaire");
-      }
+      // Envoi via EmailJS avec les IDs par défaut
+      await emailjs.send(
+        'default_service',
+        'template_contact',
+        templateParams,
+        'user_default_key'
+      );
       
       toast({
         title: "Dossier envoyé avec succès !",
@@ -246,13 +263,14 @@ const MonDossier = () => {
         company: "",
         message: ""
       });
+
     } catch (error: any) {
-      console.error('Erreur lors de la soumission:', error);
+      console.error('Erreur EmailJS:', error);
       
-      // Fallback avec mailto si Formspree échoue
+      // Fallback avec mailto
       const subject = encodeURIComponent(`Dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`);
       const body = encodeURIComponent(`
-Nouveau dossier copropriété solaire
+NOUVEAU DOSSIER COPROPRIÉTÉ SOLAIRE
 
 CONTACT:
 - Nom: ${formData.firstName} ${formData.lastName}
@@ -265,19 +283,19 @@ LOCALISATION:
 - Adresse complète: ${formData.fullAddress || 'Non renseignée'}
 - Coordonnées: ${formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : 'Non renseignées'}
 
-RÔLE:
-- Rôle dans la copropriété: ${formData.role}
+RÔLE DANS LA COPROPRIÉTÉ:
+- Rôle: ${formData.role}
 - Nom du syndic: ${formData.syndicName || 'Non renseigné'}
 - Contact syndic: ${formData.syndicContact || 'Non renseigné'}
 
-TOITURE:
+INFORMATIONS TOITURE:
 - Type: ${formData.roofType}
 - Revêtement: ${formData.roofCovering}
-- Surface exploitable: ${formData.exploitableSurface}
+- Surface exploitable: ${formData.exploitableSurface} m²
 - Accès: ${formData.roofAccess}
 
-MESSAGE:
-${formData.message || 'Aucun message'}
+MESSAGE LIBRE:
+${formData.message || 'Aucun message supplémentaire'}
       `);
       
       window.location.href = `mailto:romain@claudinon.fr?subject=${subject}&body=${body}`;
