@@ -49,7 +49,7 @@ const sanitizeHtml = (text: string): string => {
 };
 
 const validateInputLength = (text: string, maxLength: number): boolean => {
-  return text && text.length <= maxLength;
+  return !text || text.length <= maxLength;
 };
 
 const handler = async (req: Request): Promise<Response> => {
@@ -67,6 +67,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const rawBody = await req.text();
+    console.log("Raw body received:", rawBody);
     
     // Check request size
     if (rawBody.length > 10000) {
@@ -77,6 +78,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const dossierData: DossierData = JSON.parse(rawBody);
+    console.log("Parsed dossier data:", dossierData);
     
     // Input validation
     if (!validateEmail(dossierData.email)) {
@@ -93,10 +95,24 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Validate required fields exist
+    if (!dossierData.firstName || !dossierData.lastName || !dossierData.address) {
+      console.log("Missing required fields:", {
+        firstName: !dossierData.firstName,
+        lastName: !dossierData.lastName,
+        address: !dossierData.address
+      });
+      return new Response(
+        JSON.stringify({ error: "Champs obligatoires manquants" }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
     // Validate input lengths
     if (!validateInputLength(dossierData.firstName, 100) ||
         !validateInputLength(dossierData.lastName, 100) ||
         !validateInputLength(dossierData.address, 500)) {
+      console.log("Input length validation failed");
       return new Response(
         JSON.stringify({ error: "Données d'entrée trop longues" }),
         { status: 400, headers: corsHeaders }
