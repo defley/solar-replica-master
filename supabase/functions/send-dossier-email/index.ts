@@ -4,7 +4,7 @@ import { Resend } from "npm:resend@2.0.0";
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "https://lovable.dev",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
 };
@@ -28,6 +28,30 @@ interface DossierData {
   message?: string;
 }
 
+// Input validation functions
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return emailRegex.test(email);
+};
+
+const validatePhone = (phone: string): boolean => {
+  const phoneRegex = /^[0-9\s\-\+\(\)\.]{8,20}$/;
+  return phoneRegex.test(phone);
+};
+
+const sanitizeHtml = (text: string): string => {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+};
+
+const validateInputLength = (text: string, maxLength: number): boolean => {
+  return text && text.length <= maxLength;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -42,39 +66,78 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const dossierData: DossierData = await req.json();
+    const rawBody = await req.text();
     
-    console.log("Received dossier data:", dossierData);
+    // Check request size
+    if (rawBody.length > 10000) {
+      return new Response(
+        JSON.stringify({ error: "Requête trop volumineuse" }),
+        { status: 413, headers: corsHeaders }
+      );
+    }
 
-    // Construire le contenu de l'email
+    const dossierData: DossierData = JSON.parse(rawBody);
+    
+    // Input validation
+    if (!validateEmail(dossierData.email)) {
+      return new Response(
+        JSON.stringify({ error: "Format d'email invalide" }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    if (!validatePhone(dossierData.phone)) {
+      return new Response(
+        JSON.stringify({ error: "Format de téléphone invalide" }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    // Validate input lengths
+    if (!validateInputLength(dossierData.firstName, 100) ||
+        !validateInputLength(dossierData.lastName, 100) ||
+        !validateInputLength(dossierData.address, 500)) {
+      return new Response(
+        JSON.stringify({ error: "Données d'entrée trop longues" }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+    
+    console.log("Received dossier data:", {
+      email: dossierData.email,
+      role: dossierData.role,
+      address: dossierData.address
+    });
+
+    // Construire le contenu de l'email avec sanitisation
     const emailContent = `
       <h1>Nouveau dossier copropriété solaire</h1>
       
       <h2>Informations de contact</h2>
-      <p><strong>Nom:</strong> ${dossierData.firstName} ${dossierData.lastName}</p>
-      <p><strong>Email:</strong> ${dossierData.email}</p>
-      <p><strong>Téléphone:</strong> ${dossierData.phone}</p>
-      ${dossierData.company ? `<p><strong>Entreprise:</strong> ${dossierData.company}</p>` : ''}
+      <p><strong>Nom:</strong> ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)}</p>
+      <p><strong>Email:</strong> ${sanitizeHtml(dossierData.email)}</p>
+      <p><strong>Téléphone:</strong> ${sanitizeHtml(dossierData.phone)}</p>
+      ${dossierData.company ? `<p><strong>Entreprise:</strong> ${sanitizeHtml(dossierData.company)}</p>` : ''}
       
       <h2>Rôle dans la copropriété</h2>
-      <p><strong>Rôle:</strong> ${dossierData.role}</p>
-      ${dossierData.syndicName ? `<p><strong>Nom du syndic:</strong> ${dossierData.syndicName}</p>` : ''}
-      ${dossierData.syndicContact ? `<p><strong>Contact syndic:</strong> ${dossierData.syndicContact}</p>` : ''}
+      <p><strong>Rôle:</strong> ${sanitizeHtml(dossierData.role)}</p>
+      ${dossierData.syndicName ? `<p><strong>Nom du syndic:</strong> ${sanitizeHtml(dossierData.syndicName)}</p>` : ''}
+      ${dossierData.syndicContact ? `<p><strong>Contact syndic:</strong> ${sanitizeHtml(dossierData.syndicContact)}</p>` : ''}
       
       <h2>Localisation</h2>
-      <p><strong>Adresse:</strong> ${dossierData.address}</p>
-      ${dossierData.fullAddress ? `<p><strong>Adresse complète:</strong> ${dossierData.fullAddress}</p>` : ''}
-      ${dossierData.coordinates ? `<p><strong>Coordonnées:</strong> ${dossierData.coordinates}</p>` : ''}
+      <p><strong>Adresse:</strong> ${sanitizeHtml(dossierData.address)}</p>
+      ${dossierData.fullAddress ? `<p><strong>Adresse complète:</strong> ${sanitizeHtml(dossierData.fullAddress)}</p>` : ''}
+      ${dossierData.coordinates ? `<p><strong>Coordonnées:</strong> ${sanitizeHtml(dossierData.coordinates)}</p>` : ''}
       
       <h2>Informations toiture</h2>
-      <p><strong>Type de toiture:</strong> ${dossierData.roofType}</p>
-      <p><strong>Revêtement:</strong> ${dossierData.roofCovering}</p>
-      <p><strong>Surface exploitable:</strong> ${dossierData.exploitableSurface}</p>
-      <p><strong>Accès toiture:</strong> ${dossierData.roofAccess}</p>
+      <p><strong>Type de toiture:</strong> ${sanitizeHtml(dossierData.roofType)}</p>
+      <p><strong>Revêtement:</strong> ${sanitizeHtml(dossierData.roofCovering)}</p>
+      <p><strong>Surface exploitable:</strong> ${sanitizeHtml(dossierData.exploitableSurface)}</p>
+      <p><strong>Accès toiture:</strong> ${sanitizeHtml(dossierData.roofAccess)}</p>
       
       ${dossierData.message ? `
       <h2>Message</h2>
-      <p>${dossierData.message}</p>
+      <p>${sanitizeHtml(dossierData.message)}</p>
       ` : ''}
       
       <hr>
@@ -85,7 +148,7 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Copro Solaire <onboarding@resend.dev>",
       to: ["romain@claudinon.fr"],
-      subject: `Nouveau dossier: ${dossierData.firstName} ${dossierData.lastName} - ${dossierData.role}`,
+      subject: `Nouveau dossier: ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)} - ${sanitizeHtml(dossierData.role)}`,
       html: emailContent,
       replyTo: dossierData.email,
     });
@@ -98,7 +161,7 @@ const handler = async (req: Request): Promise<Response> => {
       to: [dossierData.email],
       subject: "Confirmation de réception - Votre dossier copropriété solaire",
       html: `
-        <h1>Merci ${dossierData.firstName} !</h1>
+        <h1>Merci ${sanitizeHtml(dossierData.firstName)} !</h1>
         <p>Nous avons bien reçu votre dossier pour le projet solaire de votre copropriété.</p>
         <p>Notre équipe va étudier votre demande et vous recontacter sous 48h pour la suite du processus.</p>
         <p>En attendant, n'hésitez pas à nous contacter au <strong>07 82 90 56 69</strong> si vous avez des questions.</p>
