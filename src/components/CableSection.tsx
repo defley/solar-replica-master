@@ -87,13 +87,13 @@ const CableSection = () => {
             const translateX = 12;
 
             if (index === 0) {
-              // Panel A: 0-60% (étendu pour le bouton)
-              if (p <= 0.05) {
-                opacity = p / 0.05; // fade-in 0-5%
-              } else if (p <= 0.55) {
-                opacity = 1; // stable 5-55%
-              } else if (p <= 0.60) {
-                opacity = (0.60 - p) / 0.05; // fade-out 55-60%
+              // Panel A: 0-30%
+              if (p <= 0.03) {
+                opacity = p / 0.03; // fade-in 0-3%
+              } else if (p <= 0.25) {
+                opacity = 1; // stable 3-25%
+              } else if (p <= 0.30) {
+                opacity = (0.30 - p) / 0.05; // fade-out 25-30%
               } else {
                 opacity = 0;
               }
