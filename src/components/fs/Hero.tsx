@@ -48,7 +48,7 @@ const Hero = () => {
               </h2>
               
               <p className="text-lg text-foreground/70 max-w-[42ch] leading-relaxed">
-                Installez des panneaux solaires sur votre copropriété et financez vos travaux grâce au loyer annuel garanti de 2 500 € à 12 000 € pendant 30 ans, sans aucun investissement de votre part.
+                Nous finançons à 100 % l'installation de panneaux solaires sur le toit de votre copropriété et, en plus, nous vous versons un loyer garanti pendant 30 ans, que vous pouvez utiliser pour financer vos travaux de rénovation.
               </p>
             </div>
 
