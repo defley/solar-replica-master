@@ -172,7 +172,7 @@ const CableSection = () => {
                     Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
-                    <a href="#simulator">Simuler son loyer annuel</a>
+                    <a href="#simulateur-toiture">Simuler son loyer annuel</a>
                   </Button>
                 </div>
               </div>
@@ -217,7 +217,7 @@ Vous percevez un loyer garanti ou un versement unique… et réduisez vos charge
 
                 </p>
                   <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
-                    <a href="#simulator">Simuler son loyer annuel</a>
+                    <a href="#simulateur-toiture">Simuler son loyer annuel</a>
                   </Button>
                 </div>
               </div>
