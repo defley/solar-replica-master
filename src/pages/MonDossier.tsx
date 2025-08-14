@@ -111,6 +111,48 @@ const MonDossier = () => {
     };
   }, [currentStep]);
 
+  // Geocoding function to search address and update map
+  const handleAddressSearch = async (address: string) => {
+    if (!address.trim() || address.length < 3) return;
+    
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1&countrycodes=fr`
+      );
+      const data = await response.json();
+      
+      if (data && data.length > 0) {
+        const { lat, lon } = data[0];
+        const coordinates = { lat: parseFloat(lat), lng: parseFloat(lon) };
+        
+        updateFormData("coordinates", coordinates);
+        
+        if (map.current) {
+          map.current.setView([coordinates.lat, coordinates.lng], 15);
+          
+          if (marker.current) {
+            map.current.removeLayer(marker.current);
+          }
+          
+          marker.current = L.marker([coordinates.lat, coordinates.lng]).addTo(map.current);
+        }
+      }
+    } catch (error) {
+      console.log("Geocoding failed:", error);
+    }
+  };
+
+  // Debounced address search
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (formData.address) {
+        handleAddressSearch(formData.address);
+      }
+    }, 1000);
+    
+    return () => clearTimeout(timeoutId);
+  }, [formData.address]);
+
   const handleNext = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
@@ -145,7 +187,7 @@ const MonDossier = () => {
 
       if (response.ok) {
         toast({
-          title: "Dossier envoyé !",
+          title: "Dossier envoyé avec succès !",
           description: "Nous vous recontacterons sous 48h pour étudier votre projet.",
           duration: 5000,
         });
@@ -174,47 +216,10 @@ const MonDossier = () => {
         throw new Error("Erreur lors de l'envoi");
       }
     } catch (error) {
-      // Fallback to mailto
-      const subject = encodeURIComponent("Nouveau dossier copropriété solaire");
-      const body = encodeURIComponent(`
-Bonjour,
-
-Voici mon dossier pour un projet solaire en copropriété :
-
-== LOCALISATION ==
-Adresse : ${formData.address}
-Coordonnées GPS : ${formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : "Non spécifiées"}
-
-== QUI SUIS-JE ==
-Rôle : ${formData.role}
-${formData.syndicName ? `Nom du syndic : ${formData.syndicName}` : ""}
-${formData.syndicContact ? `Contact du syndic : ${formData.syndicContact}` : ""}
-
-== TOITURE ==
-Type de toiture : ${formData.roofType}
-Revêtement : ${formData.roofCovering}
-Surface exploitable : ${formData.exploitableSurface} m²
-Accès toiture : ${formData.roofAccess}
-
-== MES COORDONNÉES ==
-Nom : ${formData.firstName} ${formData.lastName}
-Email : ${formData.email}
-Téléphone : ${formData.phone}
-Adresse complète : ${formData.fullAddress}
-${formData.company ? `Entreprise : ${formData.company}` : ""}
-
-== MESSAGE ==
-${formData.message}
-
-Cordialement,
-${formData.firstName} ${formData.lastName}
-      `);
-      
-      window.location.href = `mailto:romain@claudinon.fr?subject=${subject}&body=${body}`;
-      
       toast({
-        title: "Ouverture de votre client email",
-        description: "Votre dossier a été préparé dans un email. Envoyez-le pour finaliser votre demande.",
+        title: "Erreur lors de l'envoi",
+        description: "Une erreur est survenue. Veuillez réessayer ou nous contacter au 07 82 90 56 69.",
+        variant: "destructive",
         duration: 7000,
       });
     } finally {
@@ -320,6 +325,9 @@ ${formData.firstName} ${formData.lastName}
                           value={formData.address}
                           onChange={(e) => updateFormData("address", e.target.value)}
                         />
+                        <p className="text-xs text-foreground/60 mt-1">
+                          💡 La position se mettra automatiquement à jour sur la carte
+                        </p>
                       </div>
                       <div>
                         <Label>Cliquez sur la carte pour localiser précisément votre copropriété</Label>
