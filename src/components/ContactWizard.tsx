@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 
 type FormDataMap = { [k: string]: string };
 
-const STEPS = [1, 2, 3, 4, 5] as const;
+const STEPS = [1, 2, 3, 4] as const;
 
 export default function ContactWizard() {
   const [step, setStep] = useState<(typeof STEPS)[number]>(1);
@@ -67,9 +67,9 @@ export default function ContactWizard() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormValue(name, value);
-    if (name === "role") {
-      const syndic = value === "syndic_pro" || value === "syndic_benevole";
-      setIsSyndic(syndic);
+    if (name === "syndic") {
+      const isSyndicValue = value === "oui";
+      setIsSyndic(isSyndicValue);
     }
   };
 
@@ -200,45 +200,43 @@ export default function ContactWizard() {
         </Section>
 
         {/* Étape 2 */}
-        <Section n={2} title="Êtes-vous le syndic ?">
-          <div className="grid md:grid-cols-2 gap-6">
-            <Field label="Vous êtes ?">
-              <select
-                name="role"
-                required
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.role || ""}
-                onChange={onChange}
-              >
-                <option value="">— Sélectionner —</option>
-                <option value="syndic_pro">Syndic professionnel</option>
-                <option value="syndic_benevole">Syndic bénévole</option>
-                <option value="conseil_syndical">Membre du conseil syndical</option>
-                <option value="coproprietaire">Copropriétaire</option>
-                <option value="autre">Autre</option>
-              </select>
-            </Field>
-          </div>
+        <Section n={2} title="Qui êtes-vous ?">
+          <Field label="Êtes-vous syndic de copropriété ?">
+            <select
+              name="syndic"
+              required
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              value={formData.syndic || ""}
+              onChange={onChange}
+            >
+              <option value="">— Sélectionner —</option>
+              <option value="oui">Oui</option>
+              <option value="non">Non</option>
+            </select>
+          </Field>
 
           {/* Coordonnées syndic si NON-syndic */}
           {isSyndic === false && (
-            <div className="grid md:grid-cols-2 gap-6 p-4 bg-muted rounded-lg">
-              <Field label="Nom du syndic">
-                <Input
-                  name="syndic_nom"
-                  placeholder="Ex. FONCIA / NEXITY / Citya…"
-                  value={formData.syndic_nom || ""}
-                  onChange={onChange}
-                />
-              </Field>
-              <Field label="Email / Téléphone du syndic">
-                <Input
-                  name="syndic_contact"
-                  placeholder="contact@syndic.fr / 01 23 45 67 89"
-                  value={formData.syndic_contact || ""}
-                  onChange={onChange}
-                />
-              </Field>
+            <div className="p-4 bg-muted rounded-lg">
+              <h3 className="font-medium mb-4">Coordonnées du syndic</h3>
+              <div className="space-y-4">
+                <Field label="Nom du syndic">
+                  <Input
+                    name="syndic_nom"
+                    placeholder="Ex. FONCIA / NEXITY / Citya…"
+                    value={formData.syndic_nom || ""}
+                    onChange={onChange}
+                  />
+                </Field>
+                <Field label="Contact du syndic (email ou téléphone)">
+                  <Input
+                    name="syndic_contact"
+                    placeholder="contact@syndic.fr ou 01 23 45 67 89"
+                    value={formData.syndic_contact || ""}
+                    onChange={onChange}
+                  />
+                </Field>
+              </div>
             </div>
           )}
         </Section>
@@ -309,72 +307,7 @@ export default function ContactWizard() {
         </Section>
 
         {/* Étape 4 */}
-        <Section n={4} title="Détails techniques & calendrier">
-          <div className="grid md:grid-cols-2 gap-6">
-            <Field label="Ombrages significatifs ?">
-              <select
-                name="ombrages"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.ombrages || ""}
-                onChange={onChange}
-              >
-                <option>Non</option>
-                <option>Oui</option>
-                <option>À vérifier</option>
-              </select>
-            </Field>
-            <Field label="Local technique / TGBT accessible ?">
-              <select
-                name="tgbt"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.tgbt || ""}
-                onChange={onChange}
-              >
-                <option>Oui</option>
-                <option>Non</option>
-                <option>À vérifier</option>
-              </select>
-            </Field>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <Field label="Échéance d'AG (si connue)">
-              <Input
-                name="ag_date"
-                type="month"
-                value={formData.ag_date || ""}
-                onChange={onChange}
-              />
-            </Field>
-            <Field label="Préférence de rémunération">
-              <select
-                name="remuneration"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                value={formData.remuneration || ""}
-                onChange={onChange}
-              >
-                <option value="">— Sélectionner —</option>
-                <option>Paiement unique (30–50 k€ selon surface)</option>
-                <option>Loyer annuel sur 30 ans</option>
-                <option>À discuter</option>
-              </select>
-            </Field>
-          </div>
-
-          <Field label="Message libre">
-            <textarea
-              name="message"
-              rows={4}
-              placeholder="Précisions (ex : projets de travaux, contraintes, contacts syndic…)"
-              className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              value={formData.message || ""}
-              onChange={onChange}
-            />
-          </Field>
-        </Section>
-
-        {/* Étape 5 */}
-        <Section n={5} title="Vos coordonnées">
+        <Section n={4} title="Vos coordonnées">
           <div className="grid md:grid-cols-2 gap-6">
             <Field label="Prénom">
               <Input
@@ -393,6 +326,7 @@ export default function ContactWizard() {
               />
             </Field>
           </div>
+          
           <div className="grid md:grid-cols-2 gap-6">
             <Field label="Email">
               <Input
@@ -413,9 +347,39 @@ export default function ContactWizard() {
               />
             </Field>
           </div>
+
+          <Field label="Adresse complète">
+            <Input
+              name="adresse_complete"
+              placeholder="Votre adresse personnelle ou professionnelle"
+              value={formData.adresse_complete || ""}
+              onChange={onChange}
+            />
+          </Field>
+
+          <Field label="Entreprise / Organisation (optionnel)">
+            <Input
+              name="entreprise"
+              placeholder="Nom de votre entreprise ou organisation"
+              value={formData.entreprise || ""}
+              onChange={onChange}
+            />
+          </Field>
+
+          <Field label="Message libre">
+            <textarea
+              name="message"
+              rows={4}
+              placeholder="Précisions sur votre projet, contraintes particulières, questions..."
+              className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              value={formData.message || ""}
+              onChange={onChange}
+            />
+          </Field>
+
           <div className="p-4 bg-muted rounded-lg">
             <p className="text-sm text-muted-foreground">
-              🔒 Les informations ci-dessus seront transmises à <strong>romain@claudinon.fr</strong>
+              🔒 Les informations ci-dessus seront transmises à <strong>romain@claudinon.fr</strong> pour vous proposer une solution adaptée à votre copropriété.
             </p>
           </div>
         </Section>
