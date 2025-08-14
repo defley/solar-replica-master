@@ -18,72 +18,80 @@ interface Article {
 const Magazine = () => {
   const [selectedCategory, setSelectedCategory] = useState("Tous les articles");
   
-  // Mock articles based on scraped content
+  // Articles based on provided content
   const articles: Article[] = [
     {
       id: "1",
-      title: "Combien de panneaux photovoltaïques faut-il pour atteindre 10 000 kW",
-      category: "Technique du photovoltaïque",
-      author: "Hortense Foillard",
-      date: "12/8/25",
+      title: "Pourquoi installer des panneaux solaires en copropriété ?",
+      category: "Copropriété",
+      author: "Hellio",
+      date: "15/1/25",
       image: "/assets/cable/step-1.jpg",
-      excerpt: "Guide complet pour comprendre le dimensionnement d'une installation photovoltaïque de grande envergure."
+      excerpt: "Modèle d'autoconsommation, charges réduites, valeur verte : découvrez tous les avantages du photovoltaïque en copropriété."
     },
     {
       id: "2", 
-      title: "Champ photovoltaïque : Guide complet pour les propriétaires de terrain",
-      category: "Technique du photovoltaïque",
-      author: "Hortense Foillard", 
-      date: "5/8/25",
+      title: "Peut-on installer des panneaux solaires en copropriété ?",
+      category: "Copropriété",
+      author: "Gre-enr", 
+      date: "12/1/25",
       image: "/assets/cable/step-2.jpg",
-      excerpt: "Tout ce qu'il faut savoir avant de louer son terrain pour une centrale solaire."
+      excerpt: "Guide étape-par-étape, simulateur, aides : tout ce qu'il faut savoir pour réussir votre projet."
     },
     {
       id: "3",
-      title: "L'agrivoltaïsme ovin : comment réussir votre projet ?",
-      category: "Monde agricole",
-      author: "Équipe Copro Solaire",
-      date: "2/8/25", 
+      title: "Location de toiture photovoltaïque : gagner de l'argent grâce à son toit",
+      category: "Location de toiture",
+      author: "SunVolt",
+      date: "10/1/25", 
       image: "/assets/cable/step-3.jpg",
-      excerpt: "Combiner élevage et production d'énergie solaire : guide pratique et retours d'expérience."
+      excerpt: "Bail clé en main, revenus garantis, sans investissement : transformez votre toit en source de revenus."
     },
     {
       id: "4",
-      title: "Réglementation solaire : les nouvelles obligations en 2024",
-      category: "Réglementation solaire",
-      author: "Équipe Copro Solaire",
-      date: "28/7/25",
+      title: "Tiers investissement photovoltaïque : Tout comprendre",
+      category: "Financement",
+      author: "Les Énergies Renouvelables",
+      date: "8/1/25",
       image: "/assets/paysage-campagne-1.png",
-      excerpt: "Point sur les évolutions réglementaires qui impactent les projets photovoltaïques."
+      excerpt: "Le modèle contractuel du tiers-investisseur expliqué via bail emphytéotique et ses avantages."
     },
     {
       id: "5",
-      title: "Opportunités de financement pour les fermes solaires",
-      category: "Opportunités",
-      author: "Équipe Copro Solaire",
-      date: "25/7/25",
+      title: "Louer la toiture de sa copropriété : quels avantages et comment faire",
+      category: "Location de toiture",
+      author: "Baticopro",
+      date: "5/1/25",
       image: "/assets/paysage-campagne-2.png",
-      excerpt: "Tour d'horizon des aides et dispositifs de financement disponibles en 2024."
+      excerpt: "Revenus passifs, contrats simples, maintenance incluse : le guide complet de la location de toiture."
     },
     {
       id: "6",
-      title: "Actualités du renouvelable : bilan du premier semestre 2024",
-      category: "Actualités du renouvelable",
-      author: "Équipe Copro Solaire",
-      date: "22/7/25",
+      title: "Panneaux solaires en copropriété : passer à l'autoconsommation",
+      category: "Autoconsommation",
+      author: "Opéra-Énergie",
+      date: "3/1/25",
       image: "/assets/serre-solaire.png",
-      excerpt: "Les chiffres clés de la transition énergétique et les tendances du marché."
+      excerpt: "Bénéfices, étapes, impact sur le DPE et plan travaux : votre guide vers l'autoconsommation."
+    },
+    {
+      id: "7",
+      title: "Article 24-II-k : vote pour panneaux photovoltaïques en copropriété",
+      category: "Réglementation",
+      author: "Cabinet Naudin",
+      date: "1/1/25",
+      image: "/assets/cable/final.jpg",
+      excerpt: "Explication sur la majorité simple en AG, les formalités et la mise en conformité réglementaire."
     }
   ];
 
   const categories = [
     "Tous les articles",
-    "Technique du photovoltaïque", 
-    "Actualités du renouvelable",
-    "Terrain",
-    "Opportunités",
-    "Monde agricole",
-    "Réglementation solaire"
+    "Copropriété", 
+    "Location de toiture",
+    "Financement",
+    "Autoconsommation",
+    "Réglementation"
   ];
 
   const filteredArticles = selectedCategory === "Tous les articles" 
