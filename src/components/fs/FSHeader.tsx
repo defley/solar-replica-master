@@ -20,12 +20,8 @@ const nav = [{
 const FSHeader = () => {
   return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b">
       <div className="container-xl h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center focus-ring" aria-label="Copro Solaire – Accueil">
-          <img 
-            src="/lovable-uploads/f4563c34-b3c7-4d3a-8b51-60524e92f75d.png" 
-            alt="Copro Solaire - Logo soleil" 
-            className="h-10 w-10"
-          />
+        <Link to="/" className="font-display text-xl tracking-tight focus-ring" aria-label="Copro Solaire – Accueil">
+          copro solaire
         </Link>
         <nav className="hidden lg:flex items-center gap-8" aria-label="Navigation principale">
           {nav.map(n => n.isRoute ? <Link key={n.href} to={n.href} className="text-sm text-foreground/80 hover:text-foreground focus-ring">
