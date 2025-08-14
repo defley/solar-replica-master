@@ -9,7 +9,7 @@ const nav = [{
   href: "/faq",
   isRoute: true
 }, {
-  label: "Magazine",
+  label: "Articles",
   href: "/magazine",
   isRoute: true
 }, {

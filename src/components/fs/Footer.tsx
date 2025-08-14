@@ -8,7 +8,7 @@ const Footer = () => {
           <p>© {new Date().getFullYear()} Copro Solaire — Tous droits réservés</p>
           <nav className="flex gap-6" aria-label="Liens de bas de page">
             <Link to="/mentions-legales" className="hover:underline focus-ring">Mentions légales</Link>
-            <Link to="/magazine" className="hover:underline focus-ring">Magazine</Link>
+            <Link to="/magazine" className="hover:underline focus-ring">Articles</Link>
             <Link to="/contact" className="hover:underline focus-ring">Contact</Link>
           </nav>
         </div>

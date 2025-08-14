@@ -125,7 +125,7 @@ const Magazine = () => {
     : articles.filter(article => article.category === selectedCategory);
 
   useEffect(() => {
-    document.title = "Magazine - Copro Solaire";
+    document.title = "Articles - Copro Solaire";
   }, []);
 
   return (
@@ -138,7 +138,7 @@ const Magazine = () => {
           <div className="container-xl">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display leading-tight mb-6">
-                Magazine
+                Articles
               </h1>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
                 Retrouvez ici nos articles et dossiers autour des enjeux du photovoltaïque et des centrales solaires.
