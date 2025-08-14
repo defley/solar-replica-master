@@ -18,42 +18,42 @@ const CommentCaMarche = () => {
       number: "1",
       title: "Je remplis le formulaire en 5 minutes (5 min)",
       description: "En quelques clics, je localise mon immeuble, indique la surface disponible sur le toit (minimum 500 m²) et précise quelques informations utiles. Ces éléments permettront à Copro Solaire d'évaluer rapidement le potentiel du projet.",
-      image: "/lovable-uploads/cd9620d7-a1b6-4ed9-954f-83120541fc26.png",
+      image: "/lovable-uploads/formulaire-etape-1.png",
       icon: <FileText className="w-8 h-8 text-cta" />
     },
     {
       number: "2", 
       title: "Un conseiller dédié me rappelle sous 48 h (2 jours)",
       description: "Il vérifie l'éligibilité de ma copropriété, calcule le loyer ou le financement possible (paiement unique ou annuel) et répond à toutes mes questions, y compris sur le modèle tiers-investisseur.",
-      image: "/lovable-uploads/b643ea79-6349-4b75-a56f-532df1d30e52.png",
+      image: "/lovable-uploads/conseiller-etape-2.png",
       icon: <Phone className="w-8 h-8 text-cta" />
     },
     {
       number: "3",
       title: "Prise de contact avec le syndic et présentation aux copropriétaires (2 à 4 semaines)",
       description: "Nous contactons le syndic pour expliquer la démarche et organiser, si nécessaire, une réunion d'information avec les copropriétaires. Objectif : répondre à toutes les interrogations et présenter les bénéfices concrets du projet.",
-      image: "/lovable-uploads/a6e0aae1-28cf-4595-bf0f-7c0d08c801eb.png",
+      image: "/lovable-uploads/presentation-syndic-etape-3.png",
       icon: <Target className="w-8 h-8 text-cta" />
     },
     {
       number: "4",
       title: "Présentation et vote en Assemblée Générale (1 à 3 mois, selon date de l'AG)",
       description: "Nous fournissons un dossier complet prêt à être intégré à l'ordre du jour. Le projet se vote à la majorité des présents (24-II-K), car il est lié à l'amélioration énergétique et au DPE.",
-      image: "/lovable-uploads/25985e9f-57f1-4a11-a166-d1d648f094e6.png",
+      image: "/lovable-uploads/assemblee-generale-etape-4.png",
       icon: <CheckCircle className="w-8 h-8 text-cta" />
     },
     {
       number: "5",
       title: "Installation et financement (9 à 10 mois, incluant démarches administratives)",
       description: "Une fois voté, le partenaire investisseur finance 100 % de l'installation et prend en charge toutes les démarches administratives (urbanisme, raccordement, contrats, assurances). Durée des travaux sur site : environ 1 semaine seulement, sans gêner la vie de l'immeuble.",
-      image: "/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png",
+      image: "/lovable-uploads/installation-panneaux-etape-5.png",
       icon: <Zap className="w-8 h-8 text-cta" />
     },
     {
       number: "6",
       title: "Mise en service et revenus (à partir du 12ᵉ mois)",
       description: "La centrale démarre et la copropriété perçoit soit un loyer annuel garanti pendant 30 ans, soit un paiement unique (30 000 € à 50 000 € selon la surface). En fin de contrat, la centrale est cédée gratuitement à la copropriété, en état de marche, avec une durée de vie estimée à 40 ans.",
-      image: "/lovable-uploads/572b845a-8ee6-4662-b975-4ab6ced7298f.png",
+      image: "/lovable-uploads/revenus-solaires-etape-6.png",
       icon: <Star className="w-8 h-8 text-cta" />
     }
   ];
@@ -162,8 +162,8 @@ const CommentCaMarche = () => {
         <section className="py-16 bg-background">
           <div className="container-xl text-center">
             <img 
-              src="/lovable-uploads/73f0f72a-4082-4522-a2bc-d2de67c70b5c.png"
-              alt="Installation de panneaux solaires sur copropriété"
+              src="/lovable-uploads/projet-termine-final.png"
+              alt="Installation de panneaux solaires sur copropriété terminée"
               className="w-full max-w-2xl mx-auto h-auto"
             />
           </div>
