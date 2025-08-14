@@ -150,7 +150,7 @@ const CableSection = () => {
       anim.destroy();
     };
   }, [isMobile]);
-  return <section ref={sectionRef} id="cable-section" className="relative min-h-[80vh] bg-background">
+  return <section ref={sectionRef} id="cable-section" className="relative min-h-[80vh] bg-background z-0">
       {/* Cable Lottie Overlay - Behind content */}
       <div ref={cableWrapRef} id="cable-wrap" aria-hidden="true">
         <div ref={cableLottieRef} id="cable-lottie" />
