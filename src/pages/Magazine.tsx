@@ -126,6 +126,7 @@ const Magazine = () => {
 
   useEffect(() => {
     document.title = "Articles - Copro Solaire";
+    window.scrollTo(0, 0);
   }, []);
 
   return (
