@@ -9,6 +9,7 @@ import { CheckCircle, Phone, FileText, Target, Zap, Star } from "lucide-react";
 const CommentCaMarche = () => {
   useEffect(() => {
     document.title = "Comment ça marche - Copro Solaire";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const steps = [
