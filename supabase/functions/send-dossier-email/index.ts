@@ -137,31 +137,44 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Envoyer l'email à l'équipe
     console.log("Sending email to romain@claudinon.fr...");
-    const emailResponse = await resend.emails.send({
-      from: "Copro Solaire <onboarding@resend.dev>",
-      to: ["romain@claudinon.fr"],
-      subject: `Nouveau dossier: ${sanitizeHtml(dossierData.first_name)} ${sanitizeHtml(dossierData.last_name)} - ${dossierData.role || 'Rôle non précisé'}`,
-      html: emailContent,
-      replyTo: dossierData.email,
-    });
+    console.log("RESEND_API_KEY exists:", !!Deno.env.get("RESEND_API_KEY"));
+    
+    try {
+      const emailResponse = await resend.emails.send({
+        from: "Copro Solaire <onboarding@resend.dev>",
+        to: ["romain@claudinon.fr"],
+        subject: `Nouveau dossier: ${sanitizeHtml(dossierData.first_name)} ${sanitizeHtml(dossierData.last_name)} - ${dossierData.role || 'Rôle non précisé'}`,
+        html: emailContent,
+        replyTo: dossierData.email,
+      });
 
-    console.log("Email sent successfully:", emailResponse);
+      console.log("Email sent successfully:", emailResponse);
+
+    } catch (emailError) {
+      console.error("Error sending main email:", emailError);
+      throw emailError;
+    }
 
     // Envoyer un email de confirmation au client
-    const confirmationEmail = await resend.emails.send({
-      from: "Copro Solaire <onboarding@resend.dev>",
-      to: [dossierData.email],
-      subject: "Confirmation de réception - Votre dossier copropriété solaire",
-      html: `
-        <h1>Merci ${sanitizeHtml(dossierData.first_name)} !</h1>
-        <p>Nous avons bien reçu votre dossier pour le projet solaire de votre copropriété.</p>
-        <p>Notre équipe va étudier votre demande et vous recontacter sous 48h pour la suite du processus.</p>
-        <p>En attendant, n'hésitez pas à nous contacter au <strong>07 82 90 56 69</strong> si vous avez des questions.</p>
-        <p>Cordialement,<br>L'équipe Copro Solaire</p>
-      `,
-    });
+    console.log("Sending confirmation email to:", dossierData.email);
+    try {
+      const confirmationEmail = await resend.emails.send({
+        from: "Copro Solaire <onboarding@resend.dev>",
+        to: [dossierData.email],
+        subject: "Confirmation de réception - Votre dossier copropriété solaire",
+        html: `
+          <h1>Merci ${sanitizeHtml(dossierData.first_name)} !</h1>
+          <p>Nous avons bien reçu votre dossier pour le projet solaire de votre copropriété.</p>
+          <p>Notre équipe va étudier votre demande et vous recontacter sous 48h pour la suite du processus.</p>
+          <p>En attendant, n'hésitez pas à nous contacter au <strong>07 82 90 56 69</strong> si vous avez des questions.</p>
+          <p>Cordialement,<br>L'équipe Copro Solaire</p>
+        `,
+      });
 
-    console.log("Confirmation email sent:", confirmationEmail);
+    } catch (confirmationError) {
+      console.error("Error sending confirmation email:", confirmationError);
+      // Don't throw here, main email is more important
+    }
 
     return new Response(
       JSON.stringify({ 
