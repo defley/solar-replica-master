@@ -151,14 +151,14 @@ const CableSection = () => {
       anim.destroy();
     };
   }, [isMobile]);
-  return <section ref={sectionRef} id="cable-section" className="relative min-h-[80vh] bg-background">
+  return <section ref={sectionRef} id="cable-section" className="relative min-h-[50vh] bg-background -mt-12">
       {/* Cable Lottie Overlay - Behind content */}
       <div ref={cableWrapRef} id="cable-wrap" aria-hidden="true">
         <div ref={cableLottieRef} id="cable-lottie" />
       </div>
 
       {/* Content Panels */}
-      <div className="relative z-20 min-h-screen">
+      <div className="relative z-20 min-h-[60vh]">
         {/* Panel A */}
         <div data-panel="0" className="absolute inset-0 flex items-center transition-all duration-300 opacity-0">
           <div className="container-xl">
