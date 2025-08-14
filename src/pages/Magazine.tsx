@@ -33,82 +33,90 @@ const Magazine = () => {
   const articles: Article[] = [
     {
       id: "1",
-      title: "Pourquoi installer des panneaux solaires en copropriété ?",
-      category: "Copropriété",
-      author: "Hellio",
+      title: "Autoconsommation photovoltaïque en copropriété",
+      category: "Autoconsommation",
+      author: "ARC Copro",
       date: "15/1/25",
-      image: coproprietePanneaux1,
-      excerpt: "Modèle d'autoconsommation, charges réduites, valeur verte : découvrez tous les avantages du photovoltaïque en copropriété.",
-      url: "https://copropriete.hellio.com/blog/conseils/panneaux-solaires-immeuble?utm_source=chatgpt.com"
+      image: autoconsommation,
+      excerpt: "Explication claire des modèles d'autoconsommation (individuelle sans revente, avec revente, collective) ainsi que la notion de Personne Morale Organisatrice (PMO).",
+      url: "https://arc-copro.fr/documentation/lautoconsommation-photovoltaique-en-copropriete"
     },
     {
       id: "2", 
-      title: "Peut-on installer des panneaux solaires en copropriété ?",
-      category: "Copropriété",
-      author: "Gre-enr", 
+      title: "Tiers-investisseur (panneau solaire)",
+      category: "Financement",
+      author: "Optima Énergie", 
       date: "12/1/25",
-      image: coproprietePanneaux2,
-      excerpt: "Guide étape-par-étape, simulateur, aides : tout ce qu'il faut savoir pour réussir votre projet.",
-      url: "https://www.gre-enr.fr/panneaux-solaires-copropriete/?utm_source=chatgpt.com"
+      image: financementSolaire,
+      excerpt: "Présente le modèle où un investisseur finance une toiture rénovée équipée de panneaux solaires en échange d'un droit d'exploitation.",
+      url: "https://www.optima-energie.fr/sobriete-energetique/installation-panneau-solaire/tiers-investisseur-panneau-solaire/"
     },
     {
       id: "3",
-      title: "Location de toiture photovoltaïque : gagner de l'argent grâce à son toit",
-      category: "Location de toiture",
-      author: "SunVolt",
+      title: "Autoconsommation collective : monitoring en temps réel via compteur Linky",
+      category: "Autoconsommation",
+      author: "ArXiv",
       date: "10/1/25", 
-      image: locationToiture1,
-      excerpt: "Bail clé en main, revenus garantis, sans investissement : transformez votre toit en source de revenus.",
-      url: "https://www.sunvolt.fr/blog/panneau-solaire/location-de-toiture-photovoltaique/?utm_source=chatgpt.com"
+      image: coproprietePanneaux1,
+      excerpt: "Article académique (en anglais) décrivant une infrastructure open-source de suivi en temps réel pour l'autoconsommation collective via compteurs Linky.",
+      url: "https://arxiv.org/abs/2507.22891"
     },
     {
       id: "4",
-      title: "Tiers investissement photovoltaïque : Tout comprendre",
-      category: "Financement",
-      author: "Les Énergies Renouvelables",
+      title: "Autoconsommation et logement social : des opportunités à saisir",
+      category: "Autoconsommation",
+      author: "Seban & Associés",
       date: "8/1/25",
-      image: financementSolaire,
-      excerpt: "Le modèle contractuel du tiers-investisseur expliqué via bail emphytéotique et ses avantages.",
-      url: "https://www.les-energies-renouvelables.eu/conseils/panneaux-solaires-pour-entreprise-professionnels/tiers-investisseur-photovoltaique/?utm_source=chatgpt.com"
+      image: locationToiture1,
+      excerpt: "Analyse juridique du cadre permettant aux bailleurs sociaux d'installer et mutualiser une production solaire pour alimenter logements et parties communes.",
+      url: "https://www.seban-associes.avocat.fr/autoconsommation-et-logement-social-des-opportunites-a-saisir/"
     },
     {
       id: "5",
-      title: "Louer la toiture de sa copropriété : quels avantages et comment faire",
-      category: "Location de toiture",
-      author: "Baticopro",
+      title: "Mission sur les freins et leviers du développement des petits projets photovoltaïques",
+      category: "Réglementation",
+      author: "Ministère de l'Économie",
       date: "5/1/25",
-      image: locationToiture2,
-      excerpt: "Revenus passifs, contrats simples, maintenance incluse : le guide complet de la location de toiture.",
-      url: "https://www.baticopro.com/guides/louer-la-toiture-de-sa-copropriete-quels-avantages-et-comment-faire.html?utm_source=chatgpt.com"
+      image: reglementationSolaire,
+      excerpt: "Rapport institutionnel montrant l'essor massif de l'autoconsommation chez les petits producteurs (passant de 3 000 à 160 000 installations entre 2015 et 2022).",
+      url: "https://www.economie.gouv.fr/files/files/directions_services/cge/media-document/Developpement-photovoltaiques.pdf"
     },
     {
       id: "6",
-      title: "Panneaux solaires en copropriété : passer à l'autoconsommation",
-      category: "Autoconsommation",
-      author: "Opéra-Énergie",
-      date: "3/1/25",
-      image: autoconsommation,
-      excerpt: "Bénéfices, étapes, impact sur le DPE et plan travaux : votre guide vers l'autoconsommation.",
-      url: "https://opera-energie.com/panneaux-solaires-copropriete/"
-    },
-    {
-      id: "7",
       title: "Article 24-II-k : vote pour panneaux photovoltaïques en copropriété",
       category: "Réglementation",
       author: "Cabinet Naudin",
-      date: "1/1/25",
-      image: reglementationSolaire,
+      date: "3/1/25",
+      image: coproprietePanneaux2,
       excerpt: "Explication sur la majorité simple en AG, les formalités et la mise en conformité réglementaire.",
       url: "https://www.cabinetnaudin.com/details-la%2Bpose%2Bde%2Bpanneaux%2Bphotovoltaiques%2Ben%2Bcopropriete%2Bvotee%2Ba%2Bl%2Barticle%2B24%2Bde%2Bla%2Bloi%2Bdu%2B10%2Bjuillet%2B1965-343.html?utm_source=chatgpt.com"
+    },
+    {
+      id: "7",
+      title: "Des panneaux solaires collectifs pour une énergie partagée – l'exemple de Rochebelle",
+      category: "Autoconsommation",
+      author: "EDF ENR",
+      date: "2/1/25",
+      image: locationToiture2,
+      excerpt: "Projet pilote dans le logement social : 600 m² de panneaux sur les toits, alimentation de 100 logements, réduction de facture de 100 €/an par logement.",
+      url: "https://www.edf.fr/collectivites/engager-votre-transition-energetique/references-et-realisations/l-autoconsommation-collective-pour-reduire-sa-facture-electrique-l-exemple-de-rochebelle"
+    },
+    {
+      id: "8",
+      title: "Tout savoir sur la consommation collective",
+      category: "Autoconsommation",
+      author: "Enedis",
+      date: "1/1/25",
+      image: autoconsommation,
+      excerpt: "Guide pratique détaillant les atouts de l'autoconsommation collective : économies, engagement local, cadre réglementaire (notamment linky), clips pédagogiques à télécharger.",
+      url: "https://www.enedis.fr/tout-savoir-sur-lautoconsommation-collective"
     }
   ];
 
   const categories = [
     "Tous les articles",
-    "Copropriété", 
-    "Location de toiture",
-    "Financement",
     "Autoconsommation",
+    "Financement",
     "Réglementation"
   ];
 
