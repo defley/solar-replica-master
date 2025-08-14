@@ -18,10 +18,15 @@ export default function ScrollToSimulatorButton({
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => {
+    console.log("Button clicked!");
     const target = document.getElementById("simulateur-toiture");
+    console.log("Target found:", target);
+    
     if (target) {
+      console.log("Scrolling to target...");
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
+      console.log("Target not found, navigating to /simulateur");
       navigate("/simulateur");
     }
   }, [navigate]);
