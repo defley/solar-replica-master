@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import lottie, { AnimationItem } from "lottie-web";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Button } from "@/components/ui/button";
+import ScrollToSimulatorButton from "@/components/ScrollToSimulatorButton";
 gsap.registerPlugin(ScrollTrigger);
 const prefersReducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const CableSection = () => {
@@ -171,9 +171,8 @@ const CableSection = () => {
                   <p className="mt-4 text-foreground/80">
                     Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
-                  <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
-                    <a href="#simulateur-toiture">Simuler son loyer annuel</a>
-                  </Button>
+                  <ScrollToSimulatorButton className="mt-6" />
+                
                 </div>
               </div>
               <div className="md:col-span-6 md:col-start-7">

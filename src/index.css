@@ -156,6 +156,10 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  html:focus-within {
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
