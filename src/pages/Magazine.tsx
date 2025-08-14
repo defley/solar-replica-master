@@ -26,7 +26,7 @@ const Magazine = () => {
       category: "Copropriété",
       author: "Hellio",
       date: "15/1/25",
-      image: "/assets/cable/step-1.jpg",
+      image: "/src/assets/copropriete-panneaux-1.jpg",
       excerpt: "Modèle d'autoconsommation, charges réduites, valeur verte : découvrez tous les avantages du photovoltaïque en copropriété."
     },
     {
@@ -35,7 +35,7 @@ const Magazine = () => {
       category: "Copropriété",
       author: "Gre-enr", 
       date: "12/1/25",
-      image: "/assets/cable/step-2.jpg",
+      image: "/src/assets/copropriete-panneaux-2.jpg",
       excerpt: "Guide étape-par-étape, simulateur, aides : tout ce qu'il faut savoir pour réussir votre projet."
     },
     {
@@ -44,7 +44,7 @@ const Magazine = () => {
       category: "Location de toiture",
       author: "SunVolt",
       date: "10/1/25", 
-      image: "/assets/cable/step-3.jpg",
+      image: "/src/assets/location-toiture-1.jpg",
       excerpt: "Bail clé en main, revenus garantis, sans investissement : transformez votre toit en source de revenus."
     },
     {
@@ -53,7 +53,7 @@ const Magazine = () => {
       category: "Financement",
       author: "Les Énergies Renouvelables",
       date: "8/1/25",
-      image: "/assets/paysage-campagne-1.png",
+      image: "/src/assets/financement-solaire.jpg",
       excerpt: "Le modèle contractuel du tiers-investisseur expliqué via bail emphytéotique et ses avantages."
     },
     {
@@ -62,7 +62,7 @@ const Magazine = () => {
       category: "Location de toiture",
       author: "Baticopro",
       date: "5/1/25",
-      image: "/assets/paysage-campagne-2.png",
+      image: "/src/assets/location-toiture-2.jpg",
       excerpt: "Revenus passifs, contrats simples, maintenance incluse : le guide complet de la location de toiture."
     },
     {
@@ -71,7 +71,7 @@ const Magazine = () => {
       category: "Autoconsommation",
       author: "Opéra-Énergie",
       date: "3/1/25",
-      image: "/assets/serre-solaire.png",
+      image: "/src/assets/autoconsommation.jpg",
       excerpt: "Bénéfices, étapes, impact sur le DPE et plan travaux : votre guide vers l'autoconsommation."
     },
     {
@@ -80,7 +80,7 @@ const Magazine = () => {
       category: "Réglementation",
       author: "Cabinet Naudin",
       date: "1/1/25",
-      image: "/assets/cable/final.jpg",
+      image: "/src/assets/reglementation-solaire.jpg",
       excerpt: "Explication sur la majorité simple en AG, les formalités et la mise en conformité réglementaire."
     }
   ];
