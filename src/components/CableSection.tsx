@@ -178,7 +178,7 @@ const CableSection = () => {
                 </div>
               </div>
               <div className="md:col-span-6 md:col-start-7">
-                <img src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" alt="Installation de panneaux solaires sur toit d'immeuble avec équipe technique" className="w-full h-auto rounded-xl border" loading="lazy" />
+                <img src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" alt="Installation de panneaux solaires sur toit d'immeuble avec équipe technique" className="w-full h-auto rounded-xl" loading="lazy" />
               </div>
             </div>
           </div>
