@@ -8,7 +8,13 @@ import { MapPin, Phone, Mail, Clock, Users, Award } from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
-    document.title = "Contact - Copro Solaire";
+    document.title = "Contact panneaux solaires copropriété - Financement travaux | Copro Solaire";
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Contactez nos experts en panneaux solaires pour copropriété. Financement travaux garanti. Devis gratuit autoconsommation collective.');
+    }
   }, []);
 
   return (

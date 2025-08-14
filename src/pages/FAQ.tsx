@@ -13,7 +13,14 @@ import { HelpCircle, Phone, Mail } from "lucide-react";
 
 const FAQ = () => {
   useEffect(() => {
-    document.title = "Questions & Réponses - Centrale solaire en copropriété";
+    document.title = "FAQ Panneaux solaires copropriété - Questions financement travaux | Copro Solaire";
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Questions fréquentes sur les panneaux solaires en copropriété, financement travaux solaire, autoconsommation collective. Réponses d\'experts.');
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 

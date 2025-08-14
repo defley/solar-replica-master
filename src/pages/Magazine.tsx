@@ -128,7 +128,14 @@ const Magazine = () => {
     : articles.filter(article => article.category === selectedCategory);
 
   useEffect(() => {
-    document.title = "Articles - Copro Solaire";
+    document.title = "Articles panneaux solaires copropriété - Financement travaux | Copro Solaire";
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Articles sur les panneaux solaires en copropriété, financement travaux solaire, autoconsommation collective. Guides pratiques et actualités photovoltaïque.');
+    }
+    
     window.scrollTo(0, 0);
   }, []);
 

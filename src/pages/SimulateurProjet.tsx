@@ -5,7 +5,14 @@ import ContactWizard from "@/components/ContactWizard";
 
 const SimulateurProjet = () => {
   useEffect(() => {
-    document.title = "Simulateur de projet - Copro Solaire";
+    document.title = "Simulateur panneaux solaires copropriété - Financement travaux | Copro Solaire";
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Simulez votre projet de panneaux solaires en copropriété. Calculez le financement de vos travaux. Autoconsommation collective gratuite.');
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
