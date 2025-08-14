@@ -46,18 +46,22 @@ const Hero = () => {
             <div className="space-y-6">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl leading-[1.1] font-bold font-display">
                 <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                  Hébergez une
+                  Panneaux solaires
                 </span>
                 <br />
-                <span className="text-primary">centrale solaire</span>
+                <span className="text-primary">copropriété</span>
                 <br />
                 <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                  sur votre toit
+                  financement travaux
                 </span>
               </h1>
               
+              <h2 className="text-xl sm:text-2xl text-primary/80 font-semibold mb-4">
+                Autoconsommation collective 100% financée
+              </h2>
+              
               <p className="text-lg text-foreground/70 max-w-[42ch] leading-relaxed">
-                Accueillez une centrale solaire sur le toit de votre copropriété et financez vos travaux grâce au loyer annuel garanti de 2 500 € à 12 000 € pendant 30 ans, sans aucun investissement.
+                Installez des panneaux solaires sur votre copropriété et financez vos travaux grâce au loyer annuel garanti de 2 500 € à 12 000 € pendant 30 ans, sans aucun investissement de votre part.
               </p>
             </div>
 
