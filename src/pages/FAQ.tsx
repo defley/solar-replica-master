@@ -75,6 +75,11 @@ const FAQ = () => {
     },
     {
       id: "faq12",
+      question: "Combien de temps durent les travaux d'installation ?",
+      answer: "L'installation de la centrale solaire dure environ 1 semaine. Cependant, le dossier complet (de la prise de contact au lancement effectif de la centrale) prend environ 1 an à être traité, incluant toutes les démarches administratives et autorisations nécessaires."
+    },
+    {
+      id: "faq13",
       question: "Est-ce que cela augmente la valeur de notre immeuble ?",
       answer: "Oui. Un immeuble équipé de panneaux solaires est perçu comme plus moderne, économe et respectueux de l'environnement, ce qui peut améliorer sa valeur et son attractivité."
     }
