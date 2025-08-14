@@ -223,7 +223,7 @@ Vous percevez un loyer garanti ou un versement unique… et réduisez vos charge
                 </div>
               </div>
               <div className="md:col-span-6 md:col-start-7">
-                <img src="/lovable-uploads/cd9620d7-a1b6-4ed9-954f-83120541fc26.png" alt="Installation de panneaux solaires - Service transparent et conseiller dédié" className="w-full h-auto rounded-xl border" loading="lazy" />
+                <img src="/lovable-uploads/cd9620d7-a1b6-4ed9-954f-83120541fc26.png" alt="Installation de panneaux solaires - Service transparent et conseiller dédié" className="w-full h-auto rounded-xl" loading="lazy" />
               </div>
             </div>
           </div>
