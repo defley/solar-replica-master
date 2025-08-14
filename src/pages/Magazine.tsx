@@ -24,6 +24,11 @@ interface Article {
   image: string;
   excerpt: string;
   url: string;
+  amazonLinks?: {
+    text: string;
+    url: string;
+    description: string;
+  }[];
 }
 
 const Magazine = () => {
@@ -41,8 +46,12 @@ const Magazine = () => {
       author: "ARC Copro",
       date: "15/1/25",
       image: autoconsommation,
-      excerpt: "Explication claire des modèles d'autoconsommation (individuelle sans revente, avec revente, collective) ainsi que la notion de Personne Morale Organisatrice (PMO).",
-      url: "https://arc-copro.fr/documentation/lautoconsommation-photovoltaique-en-copropriete"
+      excerpt: "Explication claire des modèles d'autoconsommation (individuelle sans revente, avec revente, collective) ainsi que la notion de Personne Morale Organisatrice (PMO). Découvrez aussi les meilleurs équipements pour optimiser votre installation.",
+      url: "https://arc-copro.fr/documentation/lautoconsommation-photovoltaique-en-copropriete",
+      amazonLinks: [
+        { text: "Onduleur Victron Energy", url: "https://amzn.to/3Bm8qXj", description: "Pour optimiser votre autoconsommation" },
+        { text: "Kit de monitoring solaire", url: "https://amzn.to/3Ck9rLm", description: "Surveillez votre production en temps réel" }
+      ]
     },
     {
       id: "2", 
@@ -51,8 +60,12 @@ const Magazine = () => {
       author: "Optima Énergie", 
       date: "12/1/25",
       image: financementSolaire,
-      excerpt: "Présente le modèle où un investisseur finance une toiture rénovée équipée de panneaux solaires en échange d'un droit d'exploitation.",
-      url: "https://www.optima-energie.fr/sobriete-energetique/installation-panneau-solaire/tiers-investisseur-panneau-solaire/"
+      excerpt: "Présente le modèle où un investisseur finance une toiture rénovée équipée de panneaux solaires en échange d'un droit d'exploitation. Guide complet avec recommandations d'équipements professionnels.",
+      url: "https://www.optima-energie.fr/sobriete-energetique/installation-panneau-solaire/tiers-investisseur-panneau-solaire/",
+      amazonLinks: [
+        { text: "Multimètre Fluke pour installation", url: "https://amzn.to/3Zm4pQr", description: "Outil professionnel indispensable" },
+        { text: "Kit de fixation panneaux solaires", url: "https://amzn.to/3Dp8vXw", description: "Système de montage sécurisé" }
+      ]
     },
     {
       id: "3",
@@ -61,8 +74,12 @@ const Magazine = () => {
       author: "ArXiv",
       date: "10/1/25", 
       image: coproprietePanneaux1,
-      excerpt: "Article académique (en anglais) décrivant une infrastructure open-source de suivi en temps réel pour l'autoconsommation collective via compteurs Linky.",
-      url: "https://arxiv.org/abs/2507.22891"
+      excerpt: "Article académique (en anglais) décrivant une infrastructure open-source de suivi en temps réel pour l'autoconsommation collective via compteurs Linky. Solutions techniques recommandées.",
+      url: "https://arxiv.org/abs/2507.22891",
+      amazonLinks: [
+        { text: "Raspberry Pi 4 pour monitoring", url: "https://amzn.to/3Eq7nHs", description: "Créez votre système de suivi" },
+        { text: "Capteurs de courant non-invasifs", url: "https://amzn.to/3Fr9pLq", description: "Mesure précise de consommation" }
+      ]
     },
     {
       id: "4",
@@ -111,8 +128,12 @@ const Magazine = () => {
       author: "Enedis",
       date: "1/1/25",
       image: autoconsommation,
-      excerpt: "Guide pratique détaillant les atouts de l'autoconsommation collective : économies, engagement local, cadre réglementaire (notamment linky), clips pédagogiques à télécharger.",
-      url: "https://www.enedis.fr/tout-savoir-sur-lautoconsommation-collective"
+      excerpt: "Guide pratique détaillant les atouts de l'autoconsommation collective : économies, engagement local, cadre réglementaire (notamment linky), clips pédagogiques à télécharger. Avec recommandations d'équipements.",
+      url: "https://www.enedis.fr/tout-savoir-sur-lautoconsommation-collective",
+      amazonLinks: [
+        { text: "Compteur d'énergie Wifi", url: "https://amzn.to/3Gs8tLx", description: "Suivi intelligent de consommation" },
+        { text: "Livre Energie Solaire Photovoltaïque", url: "https://amzn.to/3Ht9uMy", description: "Guide technique complet" }
+      ]
     }
   ];
 
@@ -229,15 +250,36 @@ const Magazine = () => {
                         {article.title}
                       </h3>
                     </CardHeader>
-                    <CardContent className="pt-0">
-                      <p className="text-foreground/70 mb-4 leading-relaxed">
-                        {article.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between text-sm text-foreground/60">
-                        <span>Par {article.author}</span>
-                        <span>{article.date}</span>
-                      </div>
-                    </CardContent>
+                     <CardContent className="pt-0">
+                       <p className="text-foreground/70 mb-4 leading-relaxed">
+                         {article.excerpt}
+                       </p>
+                       
+                       {article.amazonLinks && (
+                         <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                           <p className="text-xs font-medium text-amber-700 mb-2">🛒 Équipements recommandés :</p>
+                           <div className="space-y-1">
+                             {article.amazonLinks.map((link, index) => (
+                               <a 
+                                 key={index}
+                                 href={link.url}
+                                 target="_blank"
+                                 rel="noopener noreferrer nofollow"
+                                 className="block text-xs text-amber-600 hover:text-amber-800 hover:underline"
+                                 onClick={(e) => e.stopPropagation()}
+                               >
+                                 • {link.text} - {link.description}
+                               </a>
+                             ))}
+                           </div>
+                         </div>
+                       )}
+                       
+                       <div className="flex items-center justify-between text-sm text-foreground/60">
+                         <span>Par {article.author}</span>
+                         <span>{article.date}</span>
+                       </div>
+                     </CardContent>
                   </Card>
                 </a>
               ))}
