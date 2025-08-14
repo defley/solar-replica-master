@@ -46,18 +46,18 @@ const Hero = () => {
             <div className="space-y-6">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl leading-[1.1] font-bold font-display">
                 <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                  Panneaux solaires
+                  Hébergez une
                 </span>
                 <br />
-                <span className="text-primary">copropriété</span>
+                <span className="text-primary">centrale solaire</span>
                 <br />
                 <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                  financement travaux
+                  sur votre toit
                 </span>
               </h1>
               
               <h2 className="text-xl sm:text-2xl text-primary/80 font-semibold mb-4">
-                Autoconsommation collective 100% financée
+                Louez votre toit et percevez une rente
               </h2>
               
               <p className="text-lg text-foreground/70 max-w-[42ch] leading-relaxed">
