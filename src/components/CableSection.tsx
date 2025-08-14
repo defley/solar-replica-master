@@ -60,7 +60,7 @@ const CableSection = () => {
       const st = ScrollTrigger.create({
         trigger: "#cable-section",
         start: "top top",
-        end: `+=400%`,
+        end: `+=${finalEndPct}%`,
         scrub: 0.8,
         pin: true,
         pinSpacing: true,
@@ -150,7 +150,7 @@ const CableSection = () => {
       anim.destroy();
     };
   }, [isMobile]);
-  return <section ref={sectionRef} id="cable-section" className="relative min-h-[60vh] bg-background -mt-8">
+  return <section ref={sectionRef} id="cable-section" className="relative min-h-[80vh] bg-background">
       {/* Cable Lottie Overlay - Behind content */}
       <div ref={cableWrapRef} id="cable-wrap" aria-hidden="true">
         <div ref={cableLottieRef} id="cable-lottie" />
