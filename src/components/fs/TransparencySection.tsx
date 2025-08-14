@@ -1,4 +1,4 @@
 const TransparencySection = () => {
-  return;
+  return null;
 };
 export default TransparencySection;

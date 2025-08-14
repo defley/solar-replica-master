@@ -1,4 +1,4 @@
 const LandscapeBanner = () => {
-  return;
+  return null;
 };
 export default LandscapeBanner;

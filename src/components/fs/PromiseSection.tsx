@@ -7,7 +7,7 @@ const PromiseSection = () => {
       <div className="container-xl">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-sm italic text-foreground/70">Notre promesse :</p>
-          <h2 className="mt-1 text-3xl md:text-4xl font-display leading-tight">Trouver  <br className="md:hidden"/> l'offre la plus adaptée à vos besoins</h2>
+          <h2 className="mt-1 text-3xl md:text-4xl font-display leading-tight">Crée  <br className="md:hidden"/> l'offre la plus adaptée à vos besoins</h2>
           <p className="mt-4 text-foreground/80">Copro Solaire est le premier acteur indépendant qui met en relation les copropriétés et les producteurs d'énergies renouvelables.</p>
         </div>
 

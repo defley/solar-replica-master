@@ -1,4 +1,4 @@
 const GainSection = () => {
-  return;
+  return null;
 };
 export default GainSection;
