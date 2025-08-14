@@ -94,11 +94,10 @@ const Hero = () => {
 
               {/* Value props modernes */}
               <div className="flex flex-wrap gap-6 text-sm">
-                {[
-                  { icon: CheckCircle, text: "Gratuit de A à Z", color: "text-green-600" },
-                  { icon: Shield, text: "Sans engagement", color: "text-blue-600" },
-                  { icon: TrendingUp, text: "30 ans garantis", color: "text-purple-600" }
-                ].map((item, index) => (
+              {[
+                { icon: CheckCircle, text: "Gratuit de A à Z", color: "text-green-600" },
+                { icon: TrendingUp, text: "30 ans garantis", color: "text-purple-600" }
+              ].map((item, index) => (
                   <div key={index} className="flex items-center gap-2 text-foreground/70">
                     <item.icon className={`w-4 h-4 ${item.color}`} />
                     <span>{item.text}</span>
