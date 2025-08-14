@@ -14,7 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      dossiers_copropriete: {
+        Row: {
+          address: string
+          company: string | null
+          coordinates: string | null
+          created_at: string
+          email: string
+          exploitable_surface: string
+          first_name: string
+          full_address: string | null
+          id: string
+          last_name: string
+          message: string | null
+          phone: string
+          role: string
+          roof_access: string
+          roof_covering: string
+          roof_type: string
+          status: string | null
+          syndic_contact: string | null
+          syndic_name: string | null
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          company?: string | null
+          coordinates?: string | null
+          created_at?: string
+          email: string
+          exploitable_surface: string
+          first_name: string
+          full_address?: string | null
+          id?: string
+          last_name: string
+          message?: string | null
+          phone: string
+          role: string
+          roof_access: string
+          roof_covering: string
+          roof_type: string
+          status?: string | null
+          syndic_contact?: string | null
+          syndic_name?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          company?: string | null
+          coordinates?: string | null
+          created_at?: string
+          email?: string
+          exploitable_surface?: string
+          first_name?: string
+          full_address?: string | null
+          id?: string
+          last_name?: string
+          message?: string | null
+          phone?: string
+          role?: string
+          roof_access?: string
+          roof_covering?: string
+          roof_type?: string
+          status?: string | null
+          syndic_contact?: string | null
+          syndic_name?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
