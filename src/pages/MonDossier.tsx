@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { ChevronLeft, ChevronRight, MapPin, Home, Wrench, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -187,49 +187,43 @@ const MonDossier = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     
-    const submitData = {
-      address: formData.address,
-      coordinates: formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : null,
-      role: formData.role,
-      syndic_name: formData.syndicName,
-      syndic_contact: formData.syndicContact,
-      roof_type: formData.roofType,
-      roof_covering: formData.roofCovering,
-      exploitable_surface: formData.exploitableSurface,
-      roof_access: formData.roofAccess,
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      full_address: formData.fullAddress,
-      company: formData.company,
-      message: formData.message
-    };
-
     try {
-      // Sauvegarder dans la base de données
-      const { data, error: dbError } = await supabase
-        .from('dossiers_copropriete')
-        .insert(submitData);
+      // Préparer les données pour Formspree
+      const formspreeData = {
+        _subject: `Nouveau dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`,
+        nom: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        telephone: formData.phone || 'Non renseigné',
+        entreprise: formData.company || 'Non renseignée',
+        adresse: formData.address,
+        adresse_complete: formData.fullAddress || 'Non renseignée',
+        coordonnees: formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : 'Non renseignées',
+        role: formData.role,
+        nom_syndic: formData.syndicName || 'Non renseigné',
+        contact_syndic: formData.syndicContact || 'Non renseigné',
+        type_toiture: formData.roofType,
+        revetement_toiture: formData.roofCovering,
+        surface_exploitable: formData.exploitableSurface,
+        acces_toiture: formData.roofAccess,
+        message: formData.message || 'Aucun message'
+      };
 
-      if (dbError) {
-        throw dbError;
-      }
-
-      // Envoyer l'email via la fonction edge
-      const { data: emailResponse, error: emailError } = await supabase.functions.invoke('send-dossier-email', {
-        body: submitData
+      // Envoyer via Formspree
+      const response = await fetch("https://formspree.io/f/xldekgol", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formspreeData),
       });
 
-      if (emailError) {
-        console.error('Email error:', emailError);
-        // Continuer même si l'email échoue, car les données sont sauvegardées
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du formulaire");
       }
-
+      
       toast({
         title: "Dossier envoyé avec succès !",
-        description: "Nous vous recontacterons sous 48h pour étudier votre projet.",
-        duration: 5000,
+        description: "Nous avons bien reçu votre dossier et vous recontacterons sous 48h.",
       });
       
       // Reset form
@@ -252,13 +246,65 @@ const MonDossier = () => {
         company: "",
         message: ""
       });
-    } catch (error) {
-      console.error('Submit error:', error);
+    } catch (error: any) {
+      console.error('Erreur lors de la soumission:', error);
+      
+      // Fallback avec mailto si Formspree échoue
+      const subject = encodeURIComponent(`Dossier copropriété solaire - ${formData.firstName} ${formData.lastName}`);
+      const body = encodeURIComponent(`
+Nouveau dossier copropriété solaire
+
+CONTACT:
+- Nom: ${formData.firstName} ${formData.lastName}
+- Email: ${formData.email}
+- Téléphone: ${formData.phone || 'Non renseigné'}
+- Entreprise: ${formData.company || 'Non renseignée'}
+
+LOCALISATION:
+- Adresse: ${formData.address}
+- Adresse complète: ${formData.fullAddress || 'Non renseignée'}
+- Coordonnées: ${formData.coordinates ? `${formData.coordinates.lat}, ${formData.coordinates.lng}` : 'Non renseignées'}
+
+RÔLE:
+- Rôle dans la copropriété: ${formData.role}
+- Nom du syndic: ${formData.syndicName || 'Non renseigné'}
+- Contact syndic: ${formData.syndicContact || 'Non renseigné'}
+
+TOITURE:
+- Type: ${formData.roofType}
+- Revêtement: ${formData.roofCovering}
+- Surface exploitable: ${formData.exploitableSurface}
+- Accès: ${formData.roofAccess}
+
+MESSAGE:
+${formData.message || 'Aucun message'}
+      `);
+      
+      window.location.href = `mailto:romain@claudinon.fr?subject=${subject}&body=${body}`;
+      
       toast({
-        title: "Erreur lors de l'envoi",
-        description: "Une erreur est survenue. Veuillez réessayer ou nous contacter au 07 82 90 56 69.",
-        variant: "destructive",
-        duration: 7000,
+        title: "Ouverture de votre client mail",
+        description: "Votre client mail va s'ouvrir avec le dossier pré-rempli.",
+      });
+      
+      setCurrentStep(1);
+      setFormData({
+        address: "",
+        coordinates: null,
+        role: "",
+        syndicName: "",
+        syndicContact: "",
+        roofType: "",
+        roofCovering: "",
+        exploitableSurface: "",
+        roofAccess: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        fullAddress: "",
+        company: "",
+        message: ""
       });
     } finally {
       setIsSubmitting(false);
