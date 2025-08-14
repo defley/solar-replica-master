@@ -176,20 +176,64 @@ const CableSection = () => {
     );
   }
 
-  // Version desktop avec animation (code existant simplifié pour éviter les conflits)
+  // Version desktop optimisée - Design moderne avec micro-interactions et hiérarchie visuelle
   return (
-    <section className="relative min-h-[80vh] bg-background">
-      <div className="container-xl py-20">
-        <div className="text-center max-w-4xl mx-auto space-y-16">
-          {/* Panel A - Desktop */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="text-left">
-              <h3 className="text-3xl font-display leading-tight">
-                Financez vos travaux grâce à votre toiture
-              </h3>
-              <p className="mt-4 text-foreground/80">
-                Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
-              </p>
+    <section className="relative py-20 bg-gradient-to-b from-background via-background/95 to-background overflow-hidden">
+      {/* Background pattern subtil */}
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,hsl(var(--muted))_1px,transparent_1px),linear-gradient(-45deg,hsl(var(--muted))_1px,transparent_1px)] bg-[length:60px_60px] opacity-30"></div>
+      
+      <div className="container-xl relative z-10">
+        
+        {/* Header section avec hiérarchie visuelle claire */}
+        <div className="text-center mb-16 space-y-6">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-full border border-primary/20">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-sm font-semibold text-primary">Solution 100% gratuite et garantie</span>
+          </div>
+          
+          <h2 className="text-4xl lg:text-5xl font-display font-bold leading-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+            Transformez votre toiture en<br/>
+            <span className="text-primary">source de revenus</span>
+          </h2>
+          
+          <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+            Une solution innovante qui finance vos travaux tout en générant des revenus durables pour votre copropriété
+          </p>
+        </div>
+
+        {/* Grid système moderne avec cards avancées */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          
+          {/* Card 1 - Revenus avec animation hover sophistiquée */}
+          <div className="group relative bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 transition-all duration-500 hover:border-primary/30 hover:bg-card/80 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+            {/* Effet de brillance au hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="relative z-10 space-y-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-8 h-8 text-green-600" />
+              </div>
+              
+              <div className="space-y-4">
+                <h3 className="text-2xl font-display font-bold leading-tight group-hover:text-primary transition-colors duration-300">
+                  Loyer annuel garanti
+                </h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Percevez entre <strong className="text-green-600">2 500 € et 12 000 €</strong> par an pendant 30 ans, sans aucun investissement.
+                </p>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span className="text-sm text-foreground/60">Revenus garantis pendant 30 ans</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span className="text-sm text-foreground/60">Aucun risque financier</span>
+                  </div>
+                </div>
+              </div>
+              
               <Button
                 onClick={() => {
                   const target = document.getElementById("simulateur-toiture");
@@ -198,55 +242,149 @@ const CableSection = () => {
                   }
                 }}
                 variant="cta"
-                className="mt-6 rounded-full h-11 px-6"
+                className="w-full rounded-2xl group-hover:scale-105 transition-transform duration-200"
               >
+                <TrendingUp className="w-4 h-4 mr-2" />
                 Simuler mon loyer
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
             </div>
-            <img 
-              src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" 
-              alt="Installation de panneaux solaires sur toit d'immeuble avec équipe technique" 
-              className="w-full h-auto rounded-xl" 
-              loading="lazy" 
-            />
-          </div>
-
-          {/* Panel B - Desktop */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <img 
-              src="/assets/cable/step-2.jpg" 
-              alt="Démarches administratives simplifiées" 
-              className="w-full h-auto rounded-xl border order-2 md:order-1" 
-              loading="lazy" 
-            />
-            <div className="text-left order-1 md:order-2">
-              <h3 className="text-3xl font-display leading-tight">
-                Financez votre Plan Pluriannuel de Travaux
-              </h3>
-              <p className="mt-4 text-foreground/80">
-                Louez votre toiture et obtenez un versement unique de 30 000 à 50 000 €, selon la surface, pour réaliser vos travaux sans appel de fonds aux copropriétaires.
-              </p>
+            
+            <div className="mt-6 pt-6 border-t border-border/30">
+              <img 
+                src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" 
+                alt="Installation panneaux solaires" 
+                className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy" 
+              />
             </div>
           </div>
 
-          {/* Panel C - Desktop */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="text-left">
-              <h3 className="text-3xl font-display leading-tight">
-                Bénéficiez d'une centrale solaire sans aucun frais pour la copropriété.
-              </h3>
-              <p className="mt-4 text-foreground/80">
-                Grâce au modèle du tiers-investissement, nous prenons en charge 100 % de l'installation, de la maintenance et de l'exploitation, pendant toute la durée du contrat. Vous percevez un loyer garanti ou un versement unique… et réduisez vos charges sans investir un centime.
-              </p>
+          {/* Card 2 - Financement avec design sophistiqué */}
+          <div className="group relative bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 transition-all duration-500 hover:border-blue-500/30 hover:bg-card/80 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="relative z-10 space-y-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <CheckCircle className="w-8 h-8 text-blue-600" />
+              </div>
+              
+              <div className="space-y-4">
+                <h3 className="text-2xl font-display font-bold leading-tight group-hover:text-blue-600 transition-colors duration-300">
+                  Financement immédiat
+                </h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Versement unique de <strong className="text-blue-600">30 000 à 50 000 €</strong> pour votre Plan Pluriannuel de Travaux.
+                </p>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-blue-50 dark:bg-blue-950/30 rounded-xl p-3 text-center">
+                    <div className="text-sm font-semibold text-blue-700 dark:text-blue-300">0% apport</div>
+                    <div className="text-xs text-blue-600/70">requis</div>
+                  </div>
+                  <div className="bg-green-50 dark:bg-green-950/30 rounded-xl p-3 text-center">
+                    <div className="text-sm font-semibold text-green-700 dark:text-green-300">Immédiat</div>
+                    <div className="text-xs text-green-600/70">disponible</div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <img 
-              src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" 
-              alt="Installation de panneaux solaires - Service transparent et conseiller dédié" 
-              className="w-full h-auto" 
-              loading="lazy" 
-            />
+            
+            <div className="mt-6 pt-6 border-t border-border/30">
+              <img 
+                src="/assets/cable/step-2.jpg" 
+                alt="Financement travaux" 
+                className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy" 
+              />
+            </div>
+          </div>
+
+          {/* Card 3 - Service avec design premium */}
+          <div className="group relative bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 transition-all duration-500 hover:border-purple-500/30 hover:bg-card/80 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="relative z-10 space-y-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Shield className="w-8 h-8 text-purple-600" />
+              </div>
+              
+              <div className="space-y-4">
+                <h3 className="text-2xl font-display font-bold leading-tight group-hover:text-purple-600 transition-colors duration-300">
+                  Service tout compris
+                </h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Installation, maintenance et exploitation <strong className="text-purple-600">100% prises en charge</strong> pendant 30 ans.
+                </p>
+                
+                <div className="space-y-2">
+                  {['Installation complète', 'Maintenance 30 ans', 'Exploitation garantie'].map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 text-sm">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <span className="text-foreground/70">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-6 pt-6 border-t border-border/30">
+              <img 
+                src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" 
+                alt="Service transparent" 
+                className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" 
+                loading="lazy" 
+              />
+            </div>
           </div>
         </div>
+
+        {/* CTA Section finale avec design moderne */}
+        <div className="relative bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-3xl p-12 border border-primary/20 text-center overflow-hidden">
+          {/* Pattern de fond subtil */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_70%)]"></div>
+          
+          <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
+            <h3 className="text-3xl font-display font-bold">
+              Prêt à valoriser votre toiture ?
+            </h3>
+            <p className="text-lg text-foreground/70">
+              Découvrez en 2 minutes le potentiel de revenus de votre copropriété
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                onClick={() => {
+                  const target = document.getElementById("simulateur-toiture");
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+                variant="cta"
+                size="lg"
+                className="rounded-2xl hover:scale-105 transition-transform duration-200"
+              >
+                <TrendingUp className="w-5 h-5 mr-2" />
+                Simuler mon projet
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-2xl hover:scale-105 transition-transform duration-200"
+                onClick={() => {
+                  const target = document.getElementById("contact");
+                  if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+              >
+                <Shield className="w-5 h-5 mr-2" />
+                En savoir plus
+              </Button>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </section>
   );
