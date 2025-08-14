@@ -1,32 +1,79 @@
-const CheckIcon = () => <svg width="14" height="11" viewBox="0 0 14 11" aria-hidden>
-    <g fill="none" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="square">
-      <polyline points="9.679 0 3.025 6.862 0 3.743" />
-    </g>
-  </svg>;
-const StarIcon = () => <svg width="17" height="16" viewBox="0 0 17 16" aria-hidden>
-    <path fill="hsl(var(--accent))" d="M7.567.352c.146-.468.813-.468.959 0l1.543 4.965a.55.55 0 0 0 .517.351h5.043c.479 0 .686.606.305.896l-4.122 3.133a.55.55 0 0 0-.177.559l1.564 5.036c.144.464-.433.83-.821.536L8.35 12.759a.62.62 0 0 0-.61 0L3.713 15.82c-.388.294-.965-.072-.821-.536l1.563-5.036a.55.55 0 0 0-.177-.543L.198 6.563c-.381-.29-.174-.896.305-.896h5.043a.55.55 0 0 0 .517-.351L7.567.352Z" />
-  </svg>;
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { CheckCircle, Star, Phone, ArrowRight } from "lucide-react";
+
 const ValueProposition = () => {
-  return <section className="py-16 md:py-24">
-      <div className="container-xs text-center">
-        <h2 className="text-3xl md:text-4xl font-display leading-tight">Valorisez votre toit au profit de la transition écologique.</h2>
-        <p className="paragraph-xl text-grey mt-3">Investissez dans un avenir durable<br /> en hébergeant une centrale solaire.</p>
+  return (
+    <section className="py-20 md:py-28 bg-gradient-to-b from-background/50 to-background">
+      <div className="container-xl">
+        <div className="text-center max-w-4xl mx-auto space-y-8">
+          
+          {/* Header modernisé */}
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">
+              <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                Valorisez votre toit au profit de la
+              </span>
+              <br />
+              <span className="text-primary">transition écologique</span>
+            </h2>
+            
+            <p className="text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
+              Investissez dans un avenir durable en hébergeant une centrale solaire et générez des revenus garantis pour votre copropriété
+            </p>
+          </div>
 
-        <div className="mt-4 flex items-center justify-center gap-8 text-sm">
-          <div className="flex items-center gap-2"><CheckIcon /> <span>Gratuit de A à Z</span></div>
-          <div className="flex items-center gap-2"><CheckIcon /> <span>Sans engagement</span></div>
-          <div className="flex items-center gap-2"><StarIcon /> <span>Trustpilot</span></div>
-        </div>
+          {/* Benefits modernisés avec animations */}
+          <div className="flex flex-wrap justify-center gap-8 text-sm">
+            {[
+              { icon: CheckCircle, text: "Gratuit de A à Z", color: "text-green-600", bg: "bg-green-100 dark:bg-green-950/30" },
+              { icon: CheckCircle, text: "Sans engagement", color: "text-blue-600", bg: "bg-blue-100 dark:bg-blue-950/30" },
+              { icon: Star, text: "Avis Trustpilot ⭐⭐⭐⭐⭐", color: "text-yellow-600", bg: "bg-yellow-100 dark:bg-yellow-950/30" }
+            ].map((benefit, index) => (
+              <div 
+                key={index} 
+                className={`flex items-center gap-3 px-4 py-3 ${benefit.bg} rounded-2xl hover:scale-105 transition-transform duration-200`}
+              >
+                <benefit.icon className={`w-5 h-5 ${benefit.color}`} />
+                <span className="font-medium">{benefit.text}</span>
+              </div>
+            ))}
+          </div>
 
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <a href="/mondossier" className="rounded-full h-11 px-5 inline-flex items-center justify-center bg-primary text-primary-foreground font-medium focus-ring">
-            Héberger une centrale solaire
-          </a>
-          <a href="tel:+33782905669" className="text-sm text-foreground/80 hover:underline focus-ring rounded-md">
-            ou appelez-nous au 07.82.90.56.69
-          </a>
+          {/* CTA section modernisée */}
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                asChild 
+                variant="cta" 
+                size="lg" 
+                className="rounded-2xl hover:scale-105 transition-transform duration-200"
+              >
+                <Link to="/mondossier">
+                  <ArrowRight className="w-5 h-5 mr-2" />
+                  Héberger une centrale solaire
+                </Link>
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="rounded-2xl hover:scale-105 transition-transform duration-200"
+                onClick={() => window.open('tel:+33782905669')}
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                07.82.90.56.69
+              </Button>
+            </div>
+            
+            <p className="text-sm text-foreground/60">
+              ✨ Consultation gratuite • Réponse sous 24h • Expert dédié
+            </p>
+          </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ValueProposition;

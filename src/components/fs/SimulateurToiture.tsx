@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AutoConsumptionPanel, { AutoConsumptionState } from "@/components/sim/AutoConsumptionPanel";
 import AutoConsumptionResultsDisplay from "@/components/sim/AutoConsumptionResults";
@@ -106,13 +107,29 @@ const SimulateurToiture = () => {
   }, [autoConsumptionState]);
 
   return (
-    <section id="simulateur-toiture" className="py-20 md:py-28 scroll-mt-24">
+    <section id="simulateur-toiture" className="py-20 md:py-28 scroll-mt-24 bg-gradient-to-b from-background/50 to-background">
       <div className="container-xl">
-        <header className="text-center max-w-3xl mx-auto">
-          <h2 className="font-display text-3xl md:text-4xl leading-tight">
-            Simuler votre loyer annuel pendant 30 ans
+        
+        {/* Header modernisé */}
+        <div className="text-center max-w-4xl mx-auto space-y-6 mb-16">
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-primary/10 rounded-full">
+            <TrendingUp className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Simulateur gratuit</span>
+          </div>
+          
+          <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight">
+            <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+              Simulez votre
+            </span>
+            <br />
+            <span className="text-primary">loyer annuel</span>
+            <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent"> pendant 30 ans</span>
           </h2>
-        </header>
+          
+          <p className="text-xl text-foreground/70 leading-relaxed">
+            Découvrez en 2 minutes le potentiel de revenus de votre toiture
+          </p>
+        </div>
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left: Controls */}
