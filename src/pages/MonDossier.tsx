@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { ChevronLeft, ChevronRight, MapPin, Home, Wrench, Phone, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -257,16 +258,16 @@ ${formData.firstName} ${formData.lastName}
     <div className="min-h-screen bg-surface">
       {/* Header */}
       <header className="border-b bg-background">
-        <div className="container-xl py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <img 
-                src="/assets/home-hero.png" 
-                alt="Copro Solaire" 
-                className="h-8"
-              />
-              <span className="font-display text-xl">copro solaire</span>
-            </div>
+          <div className="container-xl py-4">
+            <div className="flex items-center justify-between">
+              <Link to="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+                <img 
+                  src="/assets/home-hero.png" 
+                  alt="Copro Solaire" 
+                  className="h-8"
+                />
+                <span className="font-display text-xl">copro solaire</span>
+              </Link>
             <a 
               href="tel:+33782905669" 
               className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground"
