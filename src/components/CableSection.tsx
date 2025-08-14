@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, TrendingUp, Shield } from "lucide-react";
-
 const CableSection = () => {
   const [isMobile, setIsMobile] = useState(false);
-  
   useEffect(() => {
     if (typeof window === "undefined") return;
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -12,11 +10,9 @@ const CableSection = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
   if (isMobile) {
     // Version mobile optimisée - Design moderne et fluide
-    return (
-      <section className="py-8 bg-gradient-to-b from-background to-background/50">
+    return <section className="py-8 bg-gradient-to-b from-background to-background/50">
         <div className="container-xl px-4 space-y-12">
           
           {/* Section Hero Mobile */}
@@ -50,17 +46,15 @@ const CableSection = () => {
                     Percevez entre 2 500 € et 12 000 € par an pendant 30 ans, sans aucun investissement de votre part.
                   </p>
                   <div className="pt-2">
-                    <Button
-                      onClick={() => {
-                        const target = document.getElementById("simulateur-toiture");
-                        if (target) {
-                          target.scrollIntoView({ behavior: "smooth", block: "start" });
-                        }
-                      }}
-                      variant="cta"
-                      size="sm"
-                      className="rounded-full"
-                    >
+                    <Button onClick={() => {
+                    const target = document.getElementById("simulateur-toiture");
+                    if (target) {
+                      target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                      });
+                    }
+                  }} variant="cta" size="sm" className="rounded-full">
                       Simuler mon loyer
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -68,12 +62,7 @@ const CableSection = () => {
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t border-border/30">
-                <img 
-                  src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" 
-                  alt="Installation panneaux solaires" 
-                  className="w-full h-40 object-cover rounded-xl" 
-                  loading="lazy" 
-                />
+                <img src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" alt="Installation panneaux solaires" className="w-full h-40 object-cover rounded-xl" loading="lazy" />
               </div>
             </div>
 
@@ -103,12 +92,7 @@ const CableSection = () => {
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t border-border/30">
-                <img 
-                  src="/assets/cable/step-2.jpg" 
-                  alt="Financement travaux" 
-                  className="w-full h-40 object-cover rounded-xl" 
-                  loading="lazy" 
-                />
+                <img src="/assets/cable/step-2.jpg" alt="Financement travaux" className="w-full h-40 object-cover rounded-xl" loading="lazy" />
               </div>
             </div>
 
@@ -138,12 +122,7 @@ const CableSection = () => {
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t border-border/30">
-                <img 
-                  src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" 
-                  alt="Service transparent" 
-                  className="w-full h-40 object-cover rounded-xl" 
-                  loading="lazy" 
-                />
+                <img src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" alt="Service transparent" className="w-full h-40 object-cover rounded-xl" loading="lazy" />
               </div>
             </div>
           </div>
@@ -156,29 +135,26 @@ const CableSection = () => {
             <p className="text-sm text-foreground/70">
               Découvrez le potentiel de votre toiture en 2 minutes
             </p>
-            <Button
-              onClick={() => {
-                const target = document.getElementById("simulateur-toiture");
-                if (target) {
-                  target.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
-              variant="cta"
-              className="w-full rounded-full"
-            >
+            <Button onClick={() => {
+            const target = document.getElementById("simulateur-toiture");
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          }} variant="cta" className="w-full rounded-full">
               Simuler mon projet
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
           
         </div>
-      </section>
-    );
+      </section>;
   }
 
   // Version desktop optimisée - Design moderne avec micro-interactions et hiérarchie visuelle
-  return (
-    <section className="relative py-20 bg-gradient-to-b from-background via-background/95 to-background overflow-hidden">
+  return <section className="relative py-20 bg-gradient-to-b from-background via-background/95 to-background overflow-hidden">
       {/* Background pattern subtil */}
       <div className="absolute inset-0 bg-[linear-gradient(45deg,hsl(var(--muted))_1px,transparent_1px),linear-gradient(-45deg,hsl(var(--muted))_1px,transparent_1px)] bg-[length:60px_60px] opacity-30"></div>
       
@@ -192,7 +168,7 @@ const CableSection = () => {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-display font-bold leading-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-            Transformez votre toiture en<br/>
+            Transformez votre toiture en<br />
             <span className="text-primary">source de revenus</span>
           </h2>
           
@@ -234,16 +210,15 @@ const CableSection = () => {
                 </div>
               </div>
               
-              <Button
-                onClick={() => {
-                  const target = document.getElementById("simulateur-toiture");
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
-                variant="cta"
-                className="w-full rounded-2xl group-hover:scale-105 transition-transform duration-200"
-              >
+              <Button onClick={() => {
+              const target = document.getElementById("simulateur-toiture");
+              if (target) {
+                target.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }
+            }} variant="cta" className="w-full rounded-2xl group-hover:scale-105 transition-transform duration-200">
                 <TrendingUp className="w-4 h-4 mr-2" />
                 Simuler mon loyer
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
@@ -251,12 +226,7 @@ const CableSection = () => {
             </div>
             
             <div className="mt-6 pt-6 border-t border-border/30">
-              <img 
-                src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" 
-                alt="Installation panneaux solaires" 
-                className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" 
-                loading="lazy" 
-              />
+              <img src="/lovable-uploads/dabe97e5-856c-40db-858c-c69084db4e37.png" alt="Installation panneaux solaires" className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             </div>
           </div>
 
@@ -270,9 +240,7 @@ const CableSection = () => {
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-2xl font-display font-bold leading-tight group-hover:text-blue-600 transition-colors duration-300">
-                  Financement immédiat
-                </h3>
+                <h3 className="text-2xl font-display font-bold leading-tight group-hover:text-blue-600 transition-colors duration-300">Optez pour un versement unique</h3>
                 <p className="text-foreground/70 leading-relaxed">
                   Versement unique de <strong className="text-blue-600">30 000 à 50 000 €</strong> pour votre Plan Pluriannuel de Travaux.
                 </p>
@@ -291,12 +259,7 @@ const CableSection = () => {
             </div>
             
             <div className="mt-6 pt-6 border-t border-border/30">
-              <img 
-                src="/assets/cable/step-2.jpg" 
-                alt="Financement travaux" 
-                className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" 
-                loading="lazy" 
-              />
+              <img src="/assets/cable/step-2.jpg" alt="Financement travaux" className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             </div>
           </div>
 
@@ -318,23 +281,16 @@ const CableSection = () => {
                 </p>
                 
                 <div className="space-y-2">
-                  {['Installation complète', 'Maintenance 30 ans', 'Exploitation garantie'].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 text-sm">
+                  {['Installation complète', 'Maintenance 30 ans', 'Exploitation garantie'].map((item, index) => <div key={index} className="flex items-center gap-3 text-sm">
                       <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                       <span className="text-foreground/70">{item}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </div>
             </div>
             
             <div className="mt-6 pt-6 border-t border-border/30">
-              <img 
-                src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" 
-                alt="Service transparent" 
-                className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" 
-                loading="lazy" 
-              />
+              <img src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" alt="Service transparent" className="w-full h-48 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             </div>
           </div>
         </div>
@@ -352,32 +308,28 @@ const CableSection = () => {
               Découvrez en 2 minutes le potentiel de revenus de votre copropriété
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => {
-                  const target = document.getElementById("simulateur-toiture");
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
-                variant="cta"
-                size="lg"
-                className="rounded-2xl hover:scale-105 transition-transform duration-200"
-              >
+              <Button onClick={() => {
+              const target = document.getElementById("simulateur-toiture");
+              if (target) {
+                target.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }
+            }} variant="cta" size="lg" className="rounded-2xl hover:scale-105 transition-transform duration-200">
                 <TrendingUp className="w-5 h-5 mr-2" />
                 Simuler mon projet
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-2xl hover:scale-105 transition-transform duration-200"
-                onClick={() => {
-                  const target = document.getElementById("contact");
-                  if (target) {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
-              >
+              <Button variant="outline" size="lg" className="rounded-2xl hover:scale-105 transition-transform duration-200" onClick={() => {
+              const target = document.getElementById("contact");
+              if (target) {
+                target.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+              }
+            }}>
                 <Shield className="w-5 h-5 mr-2" />
                 En savoir plus
               </Button>
@@ -386,8 +338,6 @@ const CableSection = () => {
         </div>
         
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CableSection;
