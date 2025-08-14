@@ -88,13 +88,13 @@ const CableSection = () => {
             const translateX = 12;
 
             if (index === 0) {
-              // Panel A: 0-30%
+              // Panel A: 0-50% (extended for button accessibility)
               if (p <= 0.03) {
                 opacity = p / 0.03; // fade-in 0-3%
-              } else if (p <= 0.25) {
-                opacity = 1; // stable 3-25%
-              } else if (p <= 0.30) {
-                opacity = (0.30 - p) / 0.05; // fade-out 25-30%
+              } else if (p <= 0.45) {
+                opacity = 1; // stable 3-45%
+              } else if (p <= 0.50) {
+                opacity = (0.50 - p) / 0.05; // fade-out 45-50%
               } else {
                 opacity = 0;
               }
@@ -171,8 +171,8 @@ const CableSection = () => {
                   <p className="mt-4 text-foreground/80">
                     Accueillez une centrale solaire sur le toit de votre copropriété et percevez un loyer annuel de 2 500 € à 12 000 €, garanti pendant 30 ans, sans aucun investissement.
                   </p>
-                  <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6">
-                    <a href="#simulateur-toiture">Simuler son loyer annuel</a>
+                  <Button asChild variant="cta" className="mt-6 rounded-full h-11 px-6 relative z-10">
+                    <a href="#simulateur-toiture" className="scroll-smooth">Simuler son loyer annuel</a>
                   </Button>
                 </div>
               </div>
