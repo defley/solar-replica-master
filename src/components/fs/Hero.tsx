@@ -21,7 +21,7 @@ const Hero = () => (
       </div>
       <div className="relative lg:scale-110 xl:scale-125 z-10">
         <video 
-          className="w-full h-auto select-none rounded-lg"
+          className="w-full h-auto select-none"
           autoPlay
           loop
           muted
