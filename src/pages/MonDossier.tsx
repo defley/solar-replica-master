@@ -303,13 +303,8 @@ const MonDossier = () => {
       <header className="border-b bg-background">
           <div className="container-xl py-4">
             <div className="flex items-center justify-between">
-              <Link to="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                <img 
-                  src="/assets/home-hero.png" 
-                  alt="Copro Solaire" 
-                  className="h-8"
-                />
-                <span className="font-display text-xl">copro solaire</span>
+              <Link to="/" className="font-display text-xl tracking-tight hover:opacity-80 transition-opacity">
+                copro solaire
               </Link>
             <a 
               href="tel:+33782905669" 

@@ -1,9 +1,7 @@
 // Internal reproduction authorized by Copro Solaire
-import CableLottie from "@/components/CableLottie";
 
 const Hero = () => (
   <section id="top" className="relative pt-10 lg:pt-20">
-    <CableLottie />
     <div className="container-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
       <div>
         <h1 className="text-5xl sm:text-6xl xl:text-7xl leading-[0.95] font-bold font-display">
@@ -27,7 +25,7 @@ const Hero = () => (
           muted
           playsInline
           preload="metadata"
-          poster="/assets/hero-video-poster.jpeg"
+          
           controls={false}
           width="1200"
           height="900"

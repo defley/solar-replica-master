@@ -199,7 +199,7 @@ const Contact = () => {
                   className="w-full h-48 object-cover rounded-lg -mt-8"
                 />
                 <img 
-                  src="/assets/cable/step-3.jpg"
+                  src="/assets/adaptee-1.jpg"
                   alt="Consultation"
                   className="w-full h-48 object-cover rounded-lg"
                 />
