@@ -77,45 +77,44 @@ const CableSection = () => {
             el.style.transform = `translate(var(--cable-x),var(--cable-y)) scale(var(--cable-scale))`;
           }
 
-          // Panel visibility avec chevauchements fluides pour une UX agréable
-          // Inspiré des meilleures pratiques de storytelling interactif
-          // Panel A: 0-35% (fade-in 0-3%, stable 3-25%, fade-out 25-35%)
-          // Panel B: 25-60% (fade-in 25-28%, stable 28-50%, fade-out 50-60%)  
-          // Panel C: 50-100% (fade-in 50-53%, stable 53-100%)
+          // Panel visibility avec transitions séquentielles fluides
+          // Panel A: 0-30% (fade-in 0-3%, stable 3-25%, fade-out 25-30%)
+          // Panel B: 35-65% (fade-in 35-38%, stable 38-60%, fade-out 60-65%)  
+          // Panel C: 70-100% (fade-in 70-73%, stable 73-100%)
           const panels = sectionRef.current?.querySelectorAll('[data-panel]');
           panels?.forEach((panel, index) => {
             const element = panel as HTMLElement;
             let opacity = 0;
-            const translateX = 12; // Mouvement plus subtil
+            const translateX = 12;
 
             if (index === 0) {
-              // Panel A: 0-35% avec transition douce
+              // Panel A: 0-30%
               if (p <= 0.03) {
-                opacity = p / 0.03; // fade-in rapide 0-3%
+                opacity = p / 0.03; // fade-in 0-3%
               } else if (p <= 0.25) {
                 opacity = 1; // stable 3-25%
-              } else if (p <= 0.35) {
-                opacity = Math.max(0, (0.35 - p) / 0.10); // fade-out progressif 25-35%
+              } else if (p <= 0.30) {
+                opacity = (0.30 - p) / 0.05; // fade-out 25-30%
               } else {
                 opacity = 0;
               }
             } else if (index === 1) {
-              // Panel B: 25-60% avec chevauchement sur Panel A
-              if (p >= 0.25 && p <= 0.28) {
-                opacity = (p - 0.25) / 0.03; // fade-in 25-28%
-              } else if (p > 0.28 && p <= 0.50) {
-                opacity = 1; // stable 28-50%
-              } else if (p > 0.50 && p <= 0.60) {
-                opacity = Math.max(0, (0.60 - p) / 0.10); // fade-out progressif 50-60%
+              // Panel B: 35-65% 
+              if (p >= 0.35 && p <= 0.38) {
+                opacity = (p - 0.35) / 0.03; // fade-in 35-38%
+              } else if (p > 0.38 && p <= 0.60) {
+                opacity = 1; // stable 38-60%
+              } else if (p > 0.60 && p <= 0.65) {
+                opacity = (0.65 - p) / 0.05; // fade-out 60-65%
               } else {
                 opacity = 0;
               }
             } else if (index === 2) {
-              // Panel C: 50-100% avec chevauchement sur Panel B
-              if (p >= 0.50 && p <= 0.53) {
-                opacity = (p - 0.50) / 0.03; // fade-in 50-53%
-              } else if (p > 0.53) {
-                opacity = 1; // stable 53-100%
+              // Panel C: 70-100%
+              if (p >= 0.70 && p <= 0.73) {
+                opacity = (p - 0.70) / 0.03; // fade-in 70-73%
+              } else if (p > 0.73) {
+                opacity = 1; // stable 73-100%
               } else {
                 opacity = 0;
               }
