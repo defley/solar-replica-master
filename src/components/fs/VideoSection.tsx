@@ -1,5 +1,5 @@
 const VideoSection = () => (
-  <section className="mt-16 relative">
+  <section className="mb-8 relative">
     <div className="container-xl">
       <div className="relative overflow-hidden rounded-xl border bg-card">
         <video
