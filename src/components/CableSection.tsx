@@ -185,7 +185,7 @@ const CableSection = () => {
                     className="relative z-50 mt-6 rounded-full h-11 px-6 bg-cta text-cta-foreground hover:bg-cta/90 inline-flex items-center justify-center font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta pointer-events-auto"
                     style={{ zIndex: 9999 }}
                   >
-                    Simuler loyer
+                    Simuler mon loyer
                   </button>
                 </div>
               </div>
