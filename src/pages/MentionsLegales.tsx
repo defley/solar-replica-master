@@ -25,8 +25,8 @@ const MentionsLegales = () => {
                 <p><strong>Copro Solaire</strong></p>
                 <p>Société par Actions Simplifiée</p>
                 <p>Capital social : [montant] €</p>
-                <p>Siège social : Aix-en-Provence, France</p>
-                <p>RCS Aix-en-Provence : [numéro]</p>
+                <p>Siège social : France</p>
+                <p>RCS : [numéro]</p>
                 <p>Numéro TVA intracommunautaire : FR[numéro]</p>
                 <p>Téléphone : 07 82 90 56 69</p>
                 <p>Email : romain@claudinon.fr</p>
@@ -123,7 +123,7 @@ const MentionsLegales = () => {
                 <ul className="list-disc list-inside mt-4 space-y-2">
                   <li>Par téléphone : 07 82 90 56 69</li>
                   <li>Par email : romain@claudinon.fr</li>
-                  <li>Par courrier : Copro Solaire, Aix-en-Provence, France</li>
+                  <li>Par courrier : Copro Solaire, France</li>
                 </ul>
               </div>
             </section>

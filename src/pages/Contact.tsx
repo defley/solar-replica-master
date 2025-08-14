@@ -24,7 +24,7 @@ const Contact = () => {
                 Contactez-nous
               </h1>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
-                Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur les fermes solaires.
+                Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur les solutions solaires pour copropriétés.
               </p>
             </div>
           </div>
@@ -84,24 +84,6 @@ const Contact = () => {
               </Card>
 
               {/* Address */}
-              <Card className="text-center md:col-span-2 lg:col-span-1">
-                <CardHeader>
-                  <div className="w-16 h-16 mx-auto bg-cta/10 rounded-full flex items-center justify-center mb-4">
-                    <MapPin className="w-8 h-8 text-cta" />
-                  </div>
-                  <CardTitle>Notre siège</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70 mb-4">
-                    Basés à Aix-en-Provence
-                  </p>
-                  <p className="font-medium">
-                    Aix-en-Provence<br />
-                    Provence-Alpes-Côte d'Azur<br />
-                    France
-                  </p>
-                </CardContent>
-              </Card>
             </div>
 
             {/* Team Section */}
@@ -111,7 +93,7 @@ const Contact = () => {
                   Notre équipe indépendante
                 </h2>
                 <p className="text-foreground/80 leading-relaxed mb-6">
-                  Notre siège est situé à Aix-en-Provence et nos équipes sont réparties sur tout le territoire français. 
+                  Nos équipes sont réparties sur tout le territoire français. 
                   Nous travaillons avec des développeurs de centrales photovoltaïques reconnus en France et à l'international 
                   afin de vous assurer un projet fiable et le mieux adapté à vos besoins.
                 </p>
