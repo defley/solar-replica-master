@@ -30,63 +30,127 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Cards */}
+        {/* Contact Section - Centered */}
         <section className="py-16">
           <div className="container-xl">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="text-center max-w-4xl mx-auto">
               
-              {/* Phone Contact */}
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="w-16 h-16 mx-auto bg-cta/10 rounded-full flex items-center justify-center mb-4">
+              {/* Contact Info Cards */}
+              <div className="grid md:grid-cols-2 gap-8 mb-16">
+                
+                {/* Phone Contact */}
+                <div className="text-center">
+                  <div className="w-16 h-16 mx-auto bg-cta/10 rounded-full flex items-center justify-center mb-6">
                     <Phone className="w-8 h-8 text-cta" />
                   </div>
-                  <CardTitle>Appelez-nous</CardTitle>
-                </CardHeader>
-                <CardContent>
+                  <h2 className="text-2xl font-display mb-4">Appelez-nous</h2>
                   <p className="text-foreground/70 mb-4">
                     Un conseiller dédié vous rappelle sous 48h
                   </p>
                   <a 
                     href="tel:+33782905669"
-                    className="text-2xl font-semibold text-cta hover:underline"
+                    className="text-3xl font-bold text-cta hover:underline block mb-2"
                   >
                     07 82 90 56 69
                   </a>
-                  <p className="text-sm text-foreground/60 mt-2">
+                  <p className="text-foreground/60">
                     Du lundi au vendredi, 9h-18h
                   </p>
-                </CardContent>
-              </Card>
+                </div>
 
-              {/* Email Contact */}
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="w-16 h-16 mx-auto bg-cta/10 rounded-full flex items-center justify-center mb-4">
+                {/* Email Contact */}
+                <div className="text-center">
+                  <div className="w-16 h-16 mx-auto bg-cta/10 rounded-full flex items-center justify-center mb-6">
                     <Mail className="w-8 h-8 text-cta" />
                   </div>
-                  <CardTitle>Écrivez-nous</CardTitle>
-                </CardHeader>
-                <CardContent>
+                  <h2 className="text-2xl font-display mb-4">Écrivez-nous</h2>
                   <p className="text-foreground/70 mb-4">
                     Envoyez-nous vos questions par email
                   </p>
                   <a 
                     href="mailto:romain@claudinon.fr"
-                    className="text-lg font-semibold text-cta hover:underline"
+                    className="text-xl font-semibold text-cta hover:underline block mb-2"
                   >
                     romain@claudinon.fr
                   </a>
-                  <p className="text-sm text-foreground/60 mt-2">
+                  <p className="text-foreground/60">
                     Réponse sous 24h
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-surface">
+          <div className="container-xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display leading-tight mb-4">
+                Questions fréquentes
+              </h2>
+              <p className="text-foreground/80">
+                Trouvez rapidement les réponses à vos questions les plus courantes.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Le revenu généré peut-il financer notre Plan Pluriannuel de Travaux ?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground/70">
+                    Oui. Selon la surface disponible, vous pouvez opter pour un versement unique de 30 000 à 50 000 € ou un loyer annuel sur 30 ans. Ce budget peut couvrir une partie ou la totalité de votre PPT, sans appel de fonds aux copropriétaires.
                   </p>
                 </CardContent>
               </Card>
 
-              {/* Address */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Quelle est la surface minimale pour installer une centrale solaire ?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground/70">
+                    En copropriété, il faut au moins 500 m² de toiture exploitable. Plus la surface est grande, plus la centrale est rentable et plus le revenu est important.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Qui finance l'installation et la mise en service ?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground/70">
+                    Tout est financé par un tiers investisseur. La copropriété ne débourse rien.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Combien de temps dure le contrat et que se passe-t-il à la fin ?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-foreground/70">
+                    La durée standard est de 30 ans. À la fin, la centrale est donnée à la copropriété en état de marche. Conçue pour durer 40 ans, elle pourra encore produire de l'énergie.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
 
-            {/* Team Section */}
+            <div className="text-center mt-12">
+              <Button asChild variant="outline" size="lg" className="rounded-full">
+                <Link to="/faq">Voir toutes les questions</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="py-16">
+          <div className="container-xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-display leading-tight mb-6">
@@ -140,70 +204,6 @@ const Contact = () => {
                   className="w-full h-48 object-cover rounded-lg"
                 />
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Quick Section */}
-        <section className="py-16 bg-surface">
-          <div className="container-xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display leading-tight mb-4">
-                Questions fréquentes
-              </h2>
-              <p className="text-foreground/80">
-                Trouvez rapidement les réponses à vos questions les plus courantes.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Combien coûte votre service ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">
-                    Notre service est entièrement gratuit de A à Z. Aucun frais caché, 
-                    aucun engagement financier de votre part.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Quelle est la surface minimale requise ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">
-                    La surface minimale est de 1 hectare pour les projets au sol. 
-                    Les projets sur toiture (hangar, serre) peuvent être plus petits.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Combien de temps dure un contrat ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">
-                    Les contrats de location durent généralement entre 20 et 40 ans, 
-                    selon les modalités négociées.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Dois-je investir de l'argent ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-foreground/70">
-                    Non, aucun investissement n'est requis de votre part. Vous percevez 
-                    uniquement un loyer pour la mise à disposition de votre terrain.
-                  </p>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
