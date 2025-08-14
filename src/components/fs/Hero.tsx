@@ -151,16 +151,17 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Section stats moderne en bas */}
+        {/* Section objectifs 2030 */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { label: "Copropriétés équipées", value: "200+", color: "text-green-600" },
-            { label: "MW installés", value: "50+", color: "text-blue-600" },
-            { label: "Tonnes CO₂ évitées", value: "15K+", color: "text-purple-600" }
+            { label: "Copropriétés à équiper", value: "1000+", color: "text-green-600" },
+            { label: "MW à installer", value: "200+", color: "text-blue-600" },
+            { label: "Tonnes CO₂ à éviter", value: "50K+", color: "text-purple-600" }
           ].map((stat, index) => (
             <div key={index} className="text-center p-6 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:bg-card/50 transition-colors duration-300">
               <div className={`text-3xl font-bold ${stat.color}`}>{stat.value}</div>
               <div className="text-sm text-foreground/60 mt-1">{stat.label}</div>
+              <div className="text-xs text-foreground/40 mt-1">Objectifs 2030</div>
             </div>
           ))}
         </div>
