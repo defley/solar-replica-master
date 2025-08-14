@@ -87,13 +87,13 @@ const CableSection = () => {
             const translateX = 12;
 
             if (index === 0) {
-              // Panel A: 0-30%
-              if (p <= 0.03) {
-                opacity = p / 0.03; // fade-in 0-3%
-              } else if (p <= 0.25) {
-                opacity = 1; // stable 3-25%
-              } else if (p <= 0.30) {
-                opacity = (0.30 - p) / 0.05; // fade-out 25-30%
+              // Panel A: 0-60% (étendu pour le bouton)
+              if (p <= 0.05) {
+                opacity = p / 0.05; // fade-in 0-5%
+              } else if (p <= 0.55) {
+                opacity = 1; // stable 5-55%
+              } else if (p <= 0.60) {
+                opacity = (0.60 - p) / 0.05; // fade-out 55-60%
               } else {
                 opacity = 0;
               }
@@ -159,7 +159,7 @@ const CableSection = () => {
       {/* Content Panels */}
       <div className="relative z-20 min-h-screen">
         {/* Panel A */}
-        <div data-panel="0" className="absolute inset-0 flex items-center transition-all duration-300 opacity-0">
+        <div data-panel="0" className="absolute inset-0 flex items-center transition-all duration-300 opacity-0 z-30">
           <div className="container-xl">
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-5">
@@ -182,7 +182,8 @@ const CableSection = () => {
                         console.log("No target found, simulator not on page");
                       }
                     }}
-                    className="mt-6 rounded-full h-11 px-6 bg-cta text-cta-foreground hover:bg-cta/90 inline-flex items-center justify-center font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+                    className="relative z-50 mt-6 rounded-full h-11 px-6 bg-cta text-cta-foreground hover:bg-cta/90 inline-flex items-center justify-center font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta pointer-events-auto"
+                    style={{ zIndex: 9999 }}
                   >
                     Simuler loyer
                   </button>
