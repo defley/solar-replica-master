@@ -84,7 +84,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Envoyer l'email à l'équipe
     const emailResponse = await resend.emails.send({
       from: "Copro Solaire <onboarding@resend.dev>",
-      to: ["contact@coprosolaire.fr"], // Remplacez par votre vraie adresse
+      to: ["romain@claudinon.fr"],
       subject: `Nouveau dossier: ${dossierData.firstName} ${dossierData.lastName} - ${dossierData.role}`,
       html: emailContent,
       replyTo: dossierData.email,
