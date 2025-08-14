@@ -16,8 +16,17 @@ const Hero = () => {
           </h1>
           <p className="mt-6 text-foreground/80 max-w-[36ch]">Accueillez une centrale solaire sur le toit de votre copropriété et financez vos travaux grâce à un loyer annuel de 2 500 € à 12 000 €, en fonction de la surface, garanti pendant 30 ans, sans aucun investissement.</p>
         </div>
-        <div className="relative">
-          <img src="/lovable-uploads/93c633ac-c794-41e9-8f28-e3759d487062.png" alt="Panneaux solaires sur toit d'immeuble en ville" className="w-full h-auto select-none" loading="eager" width={1200} height={900} />
+        <div className="relative lg:scale-110 xl:scale-125">
+          <video 
+            className="w-full h-auto select-none rounded-lg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          >
+            <source src="/assets/social_u3382912938_Make_a_picture_with_the_same_style_of_a_residenti_f4f30469-fe54-4a42-b91a-809b5d4c75c9_2.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
