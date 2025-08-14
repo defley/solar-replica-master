@@ -18,7 +18,7 @@ const Hero = () => {
         </div>
         <div className="relative lg:scale-110 xl:scale-125 z-10">
           <video 
-            className="w-full h-auto select-none rounded-lg relative z-0"
+            className="w-full h-auto select-none rounded-lg"
             autoPlay
             loop
             muted
@@ -28,7 +28,6 @@ const Hero = () => {
             controls={false}
             width="1200"
             height="900"
-            style={{ position: 'relative', zIndex: 1 }}
           >
             <source src="/assets/social_u3382912938_Make_a_picture_with_the_same_style_of_a_residenti_f4f30469-fe54-4a42-b91a-809b5d4c75c9_2.mp4" type="video/mp4" />
             <p>Votre navigateur ne supporte pas les vidéos HTML5. <a href="/assets/social_u3382912938_Make_a_picture_with_the_same_style_of_a_residenti_f4f30469-fe54-4a42-b91a-809b5d4c75c9_2.mp4">Télécharger la vidéo</a>.</p>
