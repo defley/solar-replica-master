@@ -1,14 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 const PromiseSection = () => {
-  return (
-    <section className="py-20 md:py-24">
+  return <section className="py-20 md:py-24">
       <div className="container-xl">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-sm italic text-foreground/70">Notre promesse :</p>
-          <h2 className="mt-1 text-3xl md:text-4xl font-display leading-tight">Crée  <br className="md:hidden"/> l'offre la plus adaptée à vos besoins</h2>
-          <p className="mt-4 text-foreground/80">Copro Solaire est le premier acteur indépendant qui met en relation les copropriétés et les producteurs d'énergies renouvelables.</p>
+          <h2 className="mt-1 text-3xl md:text-4xl font-display leading-tight">Crée  <br className="md:hidden" /> l'offre la plus adaptée à vos besoins</h2>
+          <p className="mt-4 text-foreground/80">Copro Solaire, le premier acteur à offrir aux copropriétés une solution solaire clé-en-main, 100 % financée, sans aucun apport</p>
         </div>
 
         <div className="mt-10 grid sm:grid-cols-3 gap-4">
@@ -24,8 +22,6 @@ const PromiseSection = () => {
           <Link to="/comment-ca-marche" className="text-foreground/80 hover:underline focus-ring rounded-md">Voir Comment ça marche</Link>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PromiseSection;
