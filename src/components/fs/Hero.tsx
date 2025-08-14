@@ -155,7 +155,7 @@ const Hero = () => {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { label: "Copropriétés à équiper", value: "150+", color: "text-green-600" },
-            { label: "MW à installer", value: "200+", color: "text-blue-600" },
+            { label: "MW à installer", value: "10+", color: "text-blue-600" },
             { label: "Tonnes CO₂ à éviter", value: "50K+", color: "text-purple-600" }
           ].map((stat, index) => (
             <div key={index} className="text-center p-6 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:bg-card/50 transition-colors duration-300">
