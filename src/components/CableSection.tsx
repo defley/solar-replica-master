@@ -240,7 +240,7 @@ const CableSection = () => {
               <div className="space-y-4">
                 <h3 className="text-2xl font-display font-bold leading-tight group-hover:text-blue-600 transition-colors duration-300">Optez pour un versement unique</h3>
                 <p className="text-foreground/70 leading-relaxed">
-                  Vous pouvez opter pour un versement unique plutôt qu'un loyer de <strong className="text-blue-600">30 000 à 50 000 €</strong> pour votre Plan Pluriannuel de Travaux.
+                  Pour financer votre Plan Pluriannuel de Travaux, vous pouvez choisir un versement unique de <strong className="text-blue-600">30 000 à 50 000 €</strong> plutôt qu'un loyer annuel.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-3">
