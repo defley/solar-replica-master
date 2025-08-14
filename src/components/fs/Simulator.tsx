@@ -1,4 +1,4 @@
 const Simulator = () => {
-  return;
+  return <div></div>;
 };
 export default Simulator;
