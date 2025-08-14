@@ -57,9 +57,7 @@ const Hero = () => {
               </h1>
               
               <p className="text-lg text-foreground/70 max-w-[42ch] leading-relaxed">
-                Accueillez une centrale solaire sur le toit de votre copropriété et financez vos travaux grâce à un 
-                <strong className="text-primary"> loyer annuel garanti de 2 500 € à 12 000 €</strong> pendant 30 ans, 
-                sans aucun investissement.
+                Accueillez une centrale solaire sur le toit de votre copropriété et financez vos travaux grâce au loyer annuel garanti de 2 500 € à 12 000 € pendant 30 ans, sans aucun investissement.
               </p>
             </div>
 
