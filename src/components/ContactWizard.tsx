@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 type FormDataMap = { [k: string]: string };
 
@@ -367,11 +368,10 @@ export default function ContactWizard() {
           </Field>
 
           <Field label="Message libre">
-            <textarea
+            <Textarea
               name="message"
               rows={4}
               placeholder="Précisions sur votre projet, contraintes particulières, questions..."
-              className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               value={formData.message || ""}
               onChange={onChange}
             />
