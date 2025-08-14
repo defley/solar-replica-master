@@ -1,3 +1,4 @@
+
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
@@ -48,10 +49,6 @@ const sanitizeHtml = (text: string): string => {
     .replace(/'/g, '&#x27;');
 };
 
-const validateInputLength = (text: string, maxLength: number): boolean => {
-  return !text || text.length <= maxLength;
-};
-
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -80,27 +77,12 @@ const handler = async (req: Request): Promise<Response> => {
     const dossierData: DossierData = JSON.parse(rawBody);
     console.log("Parsed dossier data:", dossierData);
     
-    // Input validation
-    if (!validateEmail(dossierData.email)) {
-      return new Response(
-        JSON.stringify({ error: "Format d'email invalide" }),
-        { status: 400, headers: corsHeaders }
-      );
-    }
-
-    if (!validatePhone(dossierData.phone)) {
-      return new Response(
-        JSON.stringify({ error: "Format de téléphone invalide" }),
-        { status: 400, headers: corsHeaders }
-      );
-    }
-
-    // Validate required fields exist
-    if (!dossierData.firstName || !dossierData.lastName || !dossierData.address) {
-      console.log("Missing required fields:", {
+    // Basic validation - only check what's really required
+    if (!dossierData.firstName || !dossierData.lastName || !dossierData.email) {
+      console.log("Missing critical fields:", {
         firstName: !dossierData.firstName,
         lastName: !dossierData.lastName,
-        address: !dossierData.address
+        email: !dossierData.email
       });
       return new Response(
         JSON.stringify({ error: "Champs obligatoires manquants" }),
@@ -108,22 +90,15 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Validate input lengths
-    if (!validateInputLength(dossierData.firstName, 100) ||
-        !validateInputLength(dossierData.lastName, 100) ||
-        !validateInputLength(dossierData.address, 500)) {
-      console.log("Input length validation failed");
+    // Email format validation
+    if (!validateEmail(dossierData.email)) {
       return new Response(
-        JSON.stringify({ error: "Données d'entrée trop longues" }),
+        JSON.stringify({ error: "Format d'email invalide" }),
         { status: 400, headers: corsHeaders }
       );
     }
     
-    console.log("Received dossier data:", {
-      email: dossierData.email,
-      role: dossierData.role,
-      address: dossierData.address
-    });
+    console.log("All validations passed, proceeding with email send");
 
     // Construire le contenu de l'email avec sanitisation
     const emailContent = `
@@ -132,24 +107,24 @@ const handler = async (req: Request): Promise<Response> => {
       <h2>Informations de contact</h2>
       <p><strong>Nom:</strong> ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)}</p>
       <p><strong>Email:</strong> ${sanitizeHtml(dossierData.email)}</p>
-      <p><strong>Téléphone:</strong> ${sanitizeHtml(dossierData.phone)}</p>
+      <p><strong>Téléphone:</strong> ${dossierData.phone ? sanitizeHtml(dossierData.phone) : 'Non renseigné'}</p>
       ${dossierData.company ? `<p><strong>Entreprise:</strong> ${sanitizeHtml(dossierData.company)}</p>` : ''}
       
       <h2>Rôle dans la copropriété</h2>
-      <p><strong>Rôle:</strong> ${sanitizeHtml(dossierData.role)}</p>
+      <p><strong>Rôle:</strong> ${dossierData.role ? sanitizeHtml(dossierData.role) : 'Non renseigné'}</p>
       ${dossierData.syndicName ? `<p><strong>Nom du syndic:</strong> ${sanitizeHtml(dossierData.syndicName)}</p>` : ''}
       ${dossierData.syndicContact ? `<p><strong>Contact syndic:</strong> ${sanitizeHtml(dossierData.syndicContact)}</p>` : ''}
       
       <h2>Localisation</h2>
-      <p><strong>Adresse:</strong> ${sanitizeHtml(dossierData.address)}</p>
+      <p><strong>Adresse:</strong> ${dossierData.address ? sanitizeHtml(dossierData.address) : 'Non renseignée'}</p>
       ${dossierData.fullAddress ? `<p><strong>Adresse complète:</strong> ${sanitizeHtml(dossierData.fullAddress)}</p>` : ''}
       ${dossierData.coordinates ? `<p><strong>Coordonnées:</strong> ${sanitizeHtml(dossierData.coordinates)}</p>` : ''}
       
       <h2>Informations toiture</h2>
-      <p><strong>Type de toiture:</strong> ${sanitizeHtml(dossierData.roofType)}</p>
-      <p><strong>Revêtement:</strong> ${sanitizeHtml(dossierData.roofCovering)}</p>
-      <p><strong>Surface exploitable:</strong> ${sanitizeHtml(dossierData.exploitableSurface)}</p>
-      <p><strong>Accès toiture:</strong> ${sanitizeHtml(dossierData.roofAccess)}</p>
+      <p><strong>Type de toiture:</strong> ${dossierData.roofType ? sanitizeHtml(dossierData.roofType) : 'Non renseigné'}</p>
+      <p><strong>Revêtement:</strong> ${dossierData.roofCovering ? sanitizeHtml(dossierData.roofCovering) : 'Non renseigné'}</p>
+      <p><strong>Surface exploitable:</strong> ${dossierData.exploitableSurface ? sanitizeHtml(dossierData.exploitableSurface) : 'Non renseignée'}</p>
+      <p><strong>Accès toiture:</strong> ${dossierData.roofAccess ? sanitizeHtml(dossierData.roofAccess) : 'Non renseigné'}</p>
       
       ${dossierData.message ? `
       <h2>Message</h2>
@@ -161,10 +136,11 @@ const handler = async (req: Request): Promise<Response> => {
     `;
 
     // Envoyer l'email à l'équipe
+    console.log("Sending email to romain@claudinon.fr...");
     const emailResponse = await resend.emails.send({
       from: "Copro Solaire <onboarding@resend.dev>",
       to: ["romain@claudinon.fr"],
-      subject: `Nouveau dossier: ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)} - ${sanitizeHtml(dossierData.role)}`,
+      subject: `Nouveau dossier: ${sanitizeHtml(dossierData.firstName)} ${sanitizeHtml(dossierData.lastName)} - ${dossierData.role || 'Rôle non précisé'}`,
       html: emailContent,
       replyTo: dossierData.email,
     });
