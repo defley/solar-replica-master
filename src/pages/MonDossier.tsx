@@ -51,6 +51,8 @@ const MonDossier = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const { toast } = useToast();
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<L.Map | null>(null);
@@ -111,34 +113,50 @@ const MonDossier = () => {
     };
   }, [currentStep]);
 
-  // Geocoding function to search address and update map
-  const handleAddressSearch = async (address: string) => {
-    if (!address.trim() || address.length < 3) return;
+  // Address autocomplete function using French API
+  const searchAddresses = async (query: string) => {
+    if (!query.trim() || query.length < 3) {
+      setAddressSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
     
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1&countrycodes=fr`
+        `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5`
       );
       const data = await response.json();
       
-      if (data && data.length > 0) {
-        const { lat, lon } = data[0];
-        const coordinates = { lat: parseFloat(lat), lng: parseFloat(lon) };
-        
-        updateFormData("coordinates", coordinates);
-        
-        if (map.current) {
-          map.current.setView([coordinates.lat, coordinates.lng], 15);
-          
-          if (marker.current) {
-            map.current.removeLayer(marker.current);
-          }
-          
-          marker.current = L.marker([coordinates.lat, coordinates.lng]).addTo(map.current);
-        }
+      if (data && data.features) {
+        setAddressSuggestions(data.features);
+        setShowSuggestions(true);
       }
     } catch (error) {
-      console.log("Geocoding failed:", error);
+      console.log("Address search failed:", error);
+      setAddressSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  // Handle address selection from suggestions
+  const selectAddress = (feature: any) => {
+    const address = feature.properties.label;
+    const [lng, lat] = feature.geometry.coordinates;
+    const coordinates = { lat, lng };
+    
+    updateFormData("address", address);
+    updateFormData("coordinates", coordinates);
+    setShowSuggestions(false);
+    setAddressSuggestions([]);
+    
+    if (map.current) {
+      map.current.setView([lat, lng], 16);
+      
+      if (marker.current) {
+        map.current.removeLayer(marker.current);
+      }
+      
+      marker.current = L.marker([lat, lng]).addTo(map.current);
     }
   };
 
@@ -146,9 +164,9 @@ const MonDossier = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (formData.address) {
-        handleAddressSearch(formData.address);
+        searchAddresses(formData.address);
       }
-    }, 1000);
+    }, 300);
     
     return () => clearTimeout(timeoutId);
   }, [formData.address]);
@@ -317,16 +335,43 @@ const MonDossier = () => {
                   <div>
                     <h3 className="text-lg font-medium mb-4">Où se situe votre copropriété ?</h3>
                     <div className="space-y-4">
-                      <div>
+                      <div className="relative">
                         <Label htmlFor="address">Adresse de l'immeuble</Label>
                         <Input
                           id="address"
                           placeholder="Tapez l'adresse de votre copropriété"
                           value={formData.address}
                           onChange={(e) => updateFormData("address", e.target.value)}
+                          onFocus={() => {
+                            if (addressSuggestions.length > 0) {
+                              setShowSuggestions(true);
+                            }
+                          }}
+                          onBlur={() => {
+                            // Delay hiding to allow clicking on suggestions
+                            setTimeout(() => setShowSuggestions(false), 200);
+                          }}
                         />
+                        
+                        {/* Address suggestions dropdown */}
+                        {showSuggestions && addressSuggestions.length > 0 && (
+                          <div className="absolute z-10 w-full mt-1 bg-background border border-input rounded-md shadow-lg max-h-60 overflow-y-auto">
+                            {addressSuggestions.map((suggestion, index) => (
+                              <button
+                                key={index}
+                                type="button"
+                                className="w-full px-3 py-2 text-left hover:bg-muted focus:bg-muted focus:outline-none text-sm"
+                                onClick={() => selectAddress(suggestion)}
+                              >
+                                <div className="font-medium">{suggestion.properties.name}</div>
+                                <div className="text-xs text-foreground/60">{suggestion.properties.context}</div>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                        
                         <p className="text-xs text-foreground/60 mt-1">
-                          💡 La position se mettra automatiquement à jour sur la carte
+                          💡 Tapez votre adresse pour voir les suggestions et la position se mettra automatiquement à jour
                         </p>
                       </div>
                       <div>
