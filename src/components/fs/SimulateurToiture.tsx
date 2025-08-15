@@ -260,7 +260,7 @@ const SimulateurToiture = () => {
                     href="tel:+33412280241" 
                     className="mt-3 block text-center text-sm text-foreground/80 hover:underline focus-ring rounded-md"
                   >
-                    ou appelez nous au 04.12.28.02.41
+                    ou appelez nous au 07 82 90 56 69
                   </a>
                 </div>
               </div>
