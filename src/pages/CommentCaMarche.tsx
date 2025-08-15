@@ -134,10 +134,6 @@ const CommentCaMarche = () => {
                   <CheckCircle className="w-5 h-5 text-accent" />
                   <span>Sans engagement</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Star className="w-5 h-5 text-cta" />
-                  <span>Trustpilot</span>
-                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

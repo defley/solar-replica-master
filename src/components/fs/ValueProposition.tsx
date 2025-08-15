@@ -27,8 +27,7 @@ const ValueProposition = () => {
           <div className="flex flex-wrap justify-center gap-8 text-sm">
             {[
               { icon: CheckCircle, text: "Gratuit de A à Z", color: "text-green-600", bg: "bg-green-100 dark:bg-green-950/30" },
-              { icon: CheckCircle, text: "Sans engagement", color: "text-blue-600", bg: "bg-blue-100 dark:bg-blue-950/30" },
-              { icon: Star, text: "Avis Trustpilot ⭐⭐⭐⭐⭐", color: "text-yellow-600", bg: "bg-yellow-100 dark:bg-yellow-950/30" }
+              { icon: CheckCircle, text: "Sans engagement", color: "text-blue-600", bg: "bg-blue-100 dark:bg-blue-950/30" }
             ].map((benefit, index) => (
               <div 
                 key={index} 
