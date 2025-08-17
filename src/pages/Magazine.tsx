@@ -35,36 +35,6 @@ const Magazine = () => {
   // Articles based on provided content
   const articles: Article[] = [
     {
-      id: "1",
-      title: "Autoconsommation photovoltaïque en copropriété",
-      category: "Autoconsommation",
-      author: "ARC Copro",
-      date: "15/1/25",
-      image: autoconsommation,
-      excerpt: "Explication claire des modèles d'autoconsommation (individuelle sans revente, avec revente, collective) ainsi que la notion de Personne Morale Organisatrice (PMO).",
-      url: "https://arc-copro.fr/documentation/lautoconsommation-photovoltaique-en-copropriete"
-    },
-    {
-      id: "2", 
-      title: "Tiers-investisseur (panneau solaire)",
-      category: "Financement",
-      author: "Optima Énergie", 
-      date: "12/1/25",
-      image: financementSolaire,
-      excerpt: "Présente le modèle où un investisseur finance une toiture rénovée équipée de panneaux solaires en échange d'un droit d'exploitation.",
-      url: "https://www.optima-energie.fr/sobriete-energetique/installation-panneau-solaire/tiers-investisseur-panneau-solaire/"
-    },
-    {
-      id: "3",
-      title: "Autoconsommation collective : monitoring en temps réel via compteur Linky",
-      category: "Autoconsommation",
-      author: "ArXiv",
-      date: "10/1/25", 
-      image: coproprietePanneaux1,
-      excerpt: "Article académique (en anglais) décrivant une infrastructure open-source de suivi en temps réel pour l'autoconsommation collective via compteurs Linky.",
-      url: "https://arxiv.org/abs/2507.22891"
-    },
-    {
       id: "4",
       title: "Autoconsommation et logement social : des opportunités à saisir",
       category: "Autoconsommation",
