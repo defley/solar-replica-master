@@ -182,10 +182,10 @@ const FAQ = () => {
                   <div className="text-left">
                     <p className="text-sm text-foreground/60">Écrivez-nous</p>
                     <a 
-                      href="mailto:romain@claudinon.fr"
+                      href="mailto:contact@coprosolaire.com"
                       className="text-lg font-semibold text-cta hover:underline"
                     >
-                      romain@claudinon.fr
+                      contact@coprosolaire.com
                     </a>
                   </div>
                 </div>

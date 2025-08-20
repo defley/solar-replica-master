@@ -221,7 +221,7 @@ ${formData.message || 'Aucun message supplémentaire'}
 Envoyé via le formulaire de Copro Solaire`);
     
     try {
-      window.location.href = `mailto:romain@claudinon.fr?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:contact@coprosolaire.com?subject=${subject}&body=${body}`;
       
       toast({
         title: "Dossier envoyé !",

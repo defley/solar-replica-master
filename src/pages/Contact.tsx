@@ -74,10 +74,10 @@ const Contact = () => {
                     Envoyez-nous vos questions par email
                   </p>
                   <a 
-                    href="mailto:romain@claudinon.fr"
+                    href="mailto:contact@coprosolaire.com"
                     className="text-xl font-semibold text-cta hover:underline block mb-2"
                   >
-                    romain@claudinon.fr
+                    contact@coprosolaire.com
                   </a>
                   <p className="text-foreground/60">
                     Réponse sous 24h

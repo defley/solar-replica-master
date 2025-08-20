@@ -29,7 +29,7 @@ const MentionsLegales = () => {
                 <p>RCS : [numéro]</p>
                 <p>Numéro TVA intracommunautaire : FR[numéro]</p>
                 <p>Téléphone : 07 82 90 56 69</p>
-                <p>Email : romain@claudinon.fr</p>
+                <p>Email : contact@coprosolaire.com</p>
               </div>
             </section>
 
@@ -67,7 +67,7 @@ const MentionsLegales = () => {
                 vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.
               </p>
               <p>
-                Pour exercer ces droits, vous pouvez nous contacter à l'adresse : romain@claudinon.fr ou par courrier 
+                Pour exercer ces droits, vous pouvez nous contacter à l'adresse : contact@coprosolaire.com ou par courrier 
                 à notre siège social.
               </p>
               <p>
@@ -122,7 +122,7 @@ const MentionsLegales = () => {
                 <p>Pour toute question concernant ces mentions légales, vous pouvez nous contacter :</p>
                 <ul className="list-disc list-inside mt-4 space-y-2">
                   <li>Par téléphone : 07 82 90 56 69</li>
-                  <li>Par email : romain@claudinon.fr</li>
+                  <li>Par email : contact@coprosolaire.com</li>
                   <li>Par courrier : Copro Solaire, France</li>
                 </ul>
               </div>

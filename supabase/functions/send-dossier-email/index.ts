@@ -136,13 +136,13 @@ const handler = async (req: Request): Promise<Response> => {
     `;
 
     // Envoyer l'email à l'équipe
-    console.log("Sending email to romain@claudinon.fr...");
+    console.log("Sending email to contact@coprosolaire.com...");
     console.log("RESEND_API_KEY exists:", !!Deno.env.get("RESEND_API_KEY"));
     
     try {
       const emailResponse = await resend.emails.send({
         from: "Copro Solaire <onboarding@resend.dev>",
-        to: ["romain@claudinon.fr"],
+        to: ["contact@coprosolaire.com"],
         subject: `Nouveau dossier: ${sanitizeHtml(dossierData.first_name)} ${sanitizeHtml(dossierData.last_name)} - ${dossierData.role || 'Rôle non précisé'}`,
         html: emailContent,
         replyTo: dossierData.email,

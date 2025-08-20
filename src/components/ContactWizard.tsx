@@ -112,14 +112,14 @@ export default function ContactWizard() {
         } catch {}
       } else {
         // Fallback mailto
-        window.location.href = `mailto:romain@claudinon.fr?subject=Dossier%20projet%20solaire%20copro&body=${encodeURIComponent(
+        window.location.href = `mailto:contact@coprosolaire.com?subject=Dossier%20projet%20solaire%20copro&body=${encodeURIComponent(
           Object.entries(formData)
             .map(([k, v]) => `${k}: ${v}`)
             .join("\n")
         )}`;
       }
     } catch {
-      window.location.href = `mailto:romain@claudinon.fr?subject=Dossier%20projet%20solaire%20copro&body=${encodeURIComponent(
+      window.location.href = `mailto:contact@coprosolaire.com?subject=Dossier%20projet%20solaire%20copro&body=${encodeURIComponent(
         Object.entries(formData)
           .map(([k, v]) => `${k}: ${v}`)
           .join("\n")
@@ -379,7 +379,7 @@ export default function ContactWizard() {
 
           <div className="p-4 bg-muted rounded-lg">
             <p className="text-sm text-muted-foreground">
-              🔒 Les informations ci-dessus seront transmises à <strong>romain@claudinon.fr</strong> pour vous proposer une solution adaptée à votre copropriété.
+              🔒 Les informations ci-dessus seront transmises à <strong>contact@coprosolaire.com</strong> pour vous proposer une solution adaptée à votre copropriété.
             </p>
           </div>
         </Section>
