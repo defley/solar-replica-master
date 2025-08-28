@@ -14,7 +14,7 @@ const PromiseSection = () => {
             <span className="text-sm font-semibold text-primary">Notre promesse</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight">
+          <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight" title="Coprosolaire - Offres personnalisées copro solaire">
             <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
               Créer l'offre la plus
             </span>
@@ -31,9 +31,9 @@ const PromiseSection = () => {
         {/* Images grid modernisé */}
         <div className="mt-16 grid sm:grid-cols-3 gap-6">
           {[
-            { src: "/assets/adaptee-1.jpg", alt: "Panneaux solaires", title: "Installation moderne" },
-            { src: "/assets/adaptee-2.jpg", alt: "Installateur de panneaux", title: "Équipe experte" },
-            { src: "/assets/adaptee-3.jpg", alt: "Notre équipe examinant les dossiers", title: "Service personnalisé" }
+            { src: "/assets/adaptee-1.jpg", alt: "Coprosolaire - Panneaux solaires installation copro", title: "Installation moderne" },
+            { src: "/assets/adaptee-2.jpg", alt: "Copro solaire - Installateur expert autoconsommation", title: "Équipe experte" },
+            { src: "/assets/adaptee-3.jpg", alt: "Coprosolaire équipe analyse dossiers copro solaire", title: "Service personnalisé" }
           ].map((image, index) => (
             <div 
               key={index} 
