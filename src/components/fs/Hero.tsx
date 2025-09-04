@@ -31,7 +31,7 @@ const Hero = () => {
             </div>
 
             <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl xl:text-6xl leading-[1.1] font-bold font-display" title="Copro Solaire - Solutions copropriété solaire pour autoconsommation collective">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl leading-[1.1] font-bold font-display" title="Coprosolaire - Solutions copro solaire pour autoconsommation collective">
                 <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
                   Hébergez une
                 </span>
@@ -43,7 +43,7 @@ const Hero = () => {
                 </span>
               </h1>
               
-              <h2 className="text-xl sm:text-2xl text-primary/80 font-semibold mb-4" title="Copropriété solaire - Location toiture et rente garantie">
+              <h2 className="text-xl sm:text-2xl text-primary/80 font-semibold mb-4" title="Copro solaire - Location toiture et rente garantie">
                 Louez votre toit et percevez une rente
               </h2>
               
@@ -111,8 +111,8 @@ const Hero = () => {
                   controls={false}
                   width="1200"
                   height="900"
-                  title="Copro Solaire - Vidéo présentation copropriété solaire autoconsommation collective"
-                  aria-label="Présentation vidéo Copro Solaire - solutions copropriété solaire pour l'autoconsommation collective"
+                  title="Coprosolaire - Vidéo présentation copro solaire autoconsommation"
+                  aria-label="Présentation vidéo des solutions coprosolaire pour l'autoconsommation collective en copropriété"
                 >
                   <source src="/assets/social_u3382912938_Make_a_picture_with_the_same_style_of_a_residenti_f4f30469-fe54-4a42-b91a-809b5d4c75c9_2.mp4" type="video/mp4" />
                   <p>Votre navigateur ne supporte pas les vidéos HTML5.</p>
