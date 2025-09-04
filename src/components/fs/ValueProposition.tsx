@@ -10,7 +10,7 @@ const ValueProposition = () => {
           
           {/* Header modernisé */}
           <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight" title="Coprosolaire - Valorisation toiture copro solaire">
+            <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight" title="Copro Solaire - Valorisation toiture copropriété solaire">
               <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
                 Valorisez votre toit au profit de la
               </span>

@@ -11,6 +11,8 @@ import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
 import FAQ from "./pages/FAQ";
 import SimulateurProjet from "./pages/SimulateurProjet";
+import CoproSolaire from "./pages/CoproSolaire";
+import BlogCoproSolaire from "./pages/BlogCoproSolaire";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/simulateur-projet" element={<SimulateurProjet />} />
+          <Route path="/copro-solaire" element={<CoproSolaire />} />
+          <Route path="/blog/copro-solaire-avantages" element={<BlogCoproSolaire />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

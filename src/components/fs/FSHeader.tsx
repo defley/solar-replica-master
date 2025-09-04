@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 
 const nav = [{
+  label: "Copro Solaire",
+  href: "/copro-solaire",
+  isRoute: true
+}, {
   label: "Comment ça marche ?",
   href: "/comment-ca-marche",
   isRoute: true
@@ -28,7 +32,7 @@ const FSHeader = () => {
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b">
       <div className="container-xl h-16 flex items-center justify-between">
-        <Link to="/" className="font-display text-xl tracking-tight focus-ring" aria-label="Copro Solaire – Accueil">
+        <Link to="/" className="font-display text-xl tracking-tight focus-ring" aria-label="Copro Solaire – Accueil" title="Coprosolaire - Solutions copro solaire">
           copro solaire
         </Link>
         
